@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.CSAMainController">
+    <children>
+        <Button fx:id="ikBenEenKlant_button" layoutX="114.0" layoutY="194.0" mnemonicParsing="false" text="Klant" />
+        <Button fx:id="ikBenEenBoer_button" layoutX="446.0" layoutY="182.0" mnemonicParsing="false" text="Boer" />
+        <Button fx:id="ikBenEenAdmin_button" layoutX="275.0" layoutY="287.0" mnemonicParsing="false" text="Admin" />
+        <Text layoutX="270.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ik ben een" />
+    </children>
+</AnchorPane>
