@@ -6,6 +6,7 @@ import be.kuleuven.csa.domain.AuteurRepository;
 import be.kuleuven.csa.domain.KlantRepository;
 import be.kuleuven.csa.domain.Pakket;
 import be.kuleuven.csa.domain.PakketRepository;
+import be.kuleuven.csa.domain.helpdomain.PakketBoerVoorTable;
 import be.kuleuven.csa.jdbi.AuteurRepositoryJdbi3Impl;
 import be.kuleuven.csa.jdbi.ConnectionManager;
 import be.kuleuven.csa.jdbi.KlantRepositoryJdbi3Impl;
@@ -33,7 +34,7 @@ public class BestaandeKlantController {
     public Button nieuwPakketBestellen_button;
     public Button annuleerPakket_button;
     public Button wijzigPakket_button;
-    public TableView<Pakket> bestaandeKlantPakketten_Tbl;
+    public TableView<PakketBoerVoorTable> bestaandeKlantPakketten_Tbl;
 
     public String klantNaam;
 
@@ -55,18 +56,27 @@ public class BestaandeKlantController {
         setUpRepo();
 
         wijzigPakket_button.setOnAction(e -> isEenRijSelecteerd());
+        nieuwPakketBestellen_button.setOnAction(e -> showSchermNieuwPakket("nieuw_pakket_klant"));
 
         bestaandeKlantPakketten_Tbl.getColumns().clear();
-        TableColumn<Pakket, Integer> colPakket_id = new TableColumn<>("Pakket_id");
+
+        TableColumn<PakketBoerVoorTable, Integer> colPakket_id = new TableColumn<>("Pakket_id");
         colPakket_id.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_id()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);
-        TableColumn<Pakket, String> colNaam = new TableColumn<>("Naam");
+
+        TableColumn<PakketBoerVoorTable, String> colNaam = new TableColumn<>("Naam");
         colNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colNaam);
-        TableColumn<Pakket, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
+
+        TableColumn<PakketBoerVoorTable, String> colBoer = new TableColumn<>("Boer");
+        colBoer.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getAuteur_naam()));
+        bestaandeKlantPakketten_Tbl.getColumns().add(colBoer);
+
+        TableColumn<PakketBoerVoorTable, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
         colAantalVolwassenen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalVolwassenen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalVolwassenen);
-        TableColumn<Pakket, Integer> colAantalKinderen = new TableColumn<>("Aantal Kinderen");
+
+        TableColumn<PakketBoerVoorTable, Integer> colAantalKinderen = new TableColumn<>("Aantal Kinderen");
         colAantalKinderen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalKinderen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalKinderen);
 
@@ -76,8 +86,8 @@ public class BestaandeKlantController {
     public void refreshTable() {
         bestaandeKlantPakketten_Tbl.getItems().clear();
 
-        List<Pakket> pakketList = pakketRepository.getPakketByKlantName(klantNaam);
-        for (Pakket p : pakketList) {
+        List<PakketBoerVoorTable> pakketBoerVoorTableList = pakketRepository.getPakketAndBoerByKlantName(klantNaam);
+        for (PakketBoerVoorTable p : pakketBoerVoorTableList) {
             bestaandeKlantPakketten_Tbl.getItems().add(p);
         }
     }
@@ -109,7 +119,7 @@ public class BestaandeKlantController {
         refreshTable();
     }
 
-    private void showSchermMetData(String id) {
+    private void showSchermNieuwPakket(String id) {
         var resourceName = id + ".fxml";
         try {
             var stage = new Stage();
@@ -117,10 +127,31 @@ public class BestaandeKlantController {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
             Parent root = (AnchorPane) loader.load();
 
-            Pakket geselecteerdPakket = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem();
+            NieuwPakketKlantController nieuwPakketKlantController = loader.getController();
+            nieuwPakketKlantController.getKlantNaam(klantNaam);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
+    }
+
+    private void showSchermWijzigPakket(String id) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
 
             WijzigPakketKlantController wijzigPakketKlantController = loader.getController();
-            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, geselecteerdPakket);
+            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam);
 
             var scene = new Scene(root);
             stage.setScene(scene);
@@ -139,6 +170,6 @@ public class BestaandeKlantController {
             showAlert("Warning!", "Selecteer een pakket dat u wenst te wijzigen of te annuleren");
             return;
         }
-        showSchermMetData("wijzig_pakket_klant");
+        showSchermWijzigPakket("wijzig_pakket_klant");
     }
 }

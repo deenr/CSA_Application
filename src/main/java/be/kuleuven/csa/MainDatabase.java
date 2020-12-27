@@ -1,6 +1,7 @@
 package be.kuleuven.csa;
 
 import be.kuleuven.csa.domain.*;
+import be.kuleuven.csa.domain.helpdomain.PakketBoerVoorTable;
 import be.kuleuven.csa.jdbi.*;
 import com.sun.tools.javac.Main;
 import org.jdbi.v3.core.Jdbi;
@@ -12,6 +13,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class MainDatabase {
     private static AuteurRepository auteurRepository;
@@ -19,6 +21,7 @@ public class MainDatabase {
     private static PakketRepository pakketRepository;
     private static BoerRepository boerRepository;
     private static VerkooptRepository verkooptRepository;
+    private static ZitInRepository zitInRepository;
 
     public final static String DatabasePath = "D:\\Coding\\DAB\\CSA_Application\\csa_database.db";
 
@@ -36,6 +39,7 @@ public class MainDatabase {
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
+        zitInRepository = new ZitInRepositoryJdbi3Impl(jdbi);
     }
 
 
@@ -45,7 +49,12 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        System.out.println(verkooptRepository.getVerkooptByKlantName("Dean"));
+        List<PakketBoerVoorTable> pakketBoerVoorTableList = pakketRepository.getPakketAndBoerByKlantName("Dean");
+        for (PakketBoerVoorTable pk:
+                pakketBoerVoorTableList) {
+            System.out.println(pk.toString());
+
+        }
 
         //auteurRepository.saveNewAuteur(auteur);
 

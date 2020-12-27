@@ -64,4 +64,26 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
                     .list();
         });
     }
+
+    @Override
+    public void voegHaaltAfToe(HaaltAf haaltAf) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("INSERT INTO HaaltAf(auteur_id, verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (?,?,?,?);")
+                    .bind(0, haaltAf.getAuteur_id())
+                    .bind(1, haaltAf.getVerkoopt_id())
+                    .bind(2, haaltAf.getPakket_weeknr())
+                    .bind(3, haaltAf.getPakket_afgehaald())
+                    .execute();
+        });
+    }
+
+    @Override
+    public void voegSchijftInToe(SchrijftIn schrijftIn) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("INSERT INTO SchrijftIn(auteur_id,verkoopt_id) VALUES (?,?);")
+                    .bind(0, schrijftIn.getAuteur_id())
+                    .bind(1, schrijftIn.getVerkoopt_id())
+                    .execute();
+        });
+    }
 }

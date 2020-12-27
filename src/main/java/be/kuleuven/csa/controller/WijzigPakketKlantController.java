@@ -23,7 +23,6 @@ import java.util.List;
 
 public class WijzigPakketKlantController {
     private String klantNaam;
-    private Pakket geselecteerdPakket;
 
     public ChoiceBox<String> wijzigPakketKeuzeBoer_choice;
     public ChoiceBox<String> wijzigPakketKeuzePakket_choice;
@@ -55,7 +54,6 @@ public class WijzigPakketKlantController {
             String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
             String selectedPakket = wijzigPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
             if (selectedBoer != null && selectedPakket != null) {
-                System.out.println(selectedBoer + " " + selectedPakket);
                 List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
                 int auteur_id = boerList.get(0).getAuteur_id();
                 int pakket_id = 0;
@@ -77,7 +75,6 @@ public class WijzigPakketKlantController {
             String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
             String selectedPakket = wijzigPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
             if (selectedBoer != null && selectedPakket != null) {
-                System.out.println(selectedBoer + " " + selectedPakket);
                 List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
                 int auteur_id = boerList.get(0).getAuteur_id();
                 int pakket_id = 0;
@@ -103,7 +100,6 @@ public class WijzigPakketKlantController {
         String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
         String selectedPakket = wijzigPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
         if (selectedBoer != null && selectedPakket != null) {
-            System.out.println(selectedBoer + " " + selectedPakket);
             List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
             int boer_id = boerList.get(0).getAuteur_id();
             int pakket_id = 0;
@@ -124,17 +120,23 @@ public class WijzigPakketKlantController {
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
             int klant_id = klantList.get(0).getAuteur_id();
 
-            List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
-            HaaltAf haaltAf = haaltAfList.get(0);
-            haaltAf.setVerkoopt_id(nieuwVerkoopt_id);
-            verkooptRepository.wijzigHaaltAf(haaltAf);
+            List<HaaltAf> controleerHaaltAfLijst = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
+            if (controleerHaaltAfLijst.isEmpty()) {
+                List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
+                HaaltAf haaltAf = haaltAfList.get(0);
+                haaltAf.setVerkoopt_id(nieuwVerkoopt_id);
+                verkooptRepository.wijzigHaaltAf(haaltAf);
+                SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
+                verkooptRepository.wijzigSchrijftIn(schrijftIn);
 
-            SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
-            verkooptRepository.wijzigSchrijftIn(schrijftIn);
-
-            BestaandeKlantController.getInstance().refreshTable();
-            Stage stage = (Stage) wijzigPakket_button.getScene().getWindow();
-            stage.close();
+                BestaandeKlantController.getInstance().refreshTable();
+                Stage stage = (Stage) wijzigPakket_button.getScene().getWindow();
+                stage.close();
+            } else {
+                showAlert("Warning!", "U bent al geabonneerd op dit pakket");
+            }
+        } else {
+            showAlert("Warning!", "Gelieve beide velden in te vullen");
         }
     }
 
@@ -162,9 +164,8 @@ public class WijzigPakketKlantController {
         alert.showAndWait();
     }
 
-    public void getNaamEnGeselecteerdPakket(String klantNaam, Pakket pakket) {
+    public void getNaamEnGeselecteerdPakket(String klantNaam) {
         this.klantNaam = klantNaam;
-        this.geselecteerdPakket = pakket;
         refreshItems();
     }
 

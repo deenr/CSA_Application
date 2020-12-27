@@ -9,4 +9,6 @@ public interface VerkooptRepository {
     void wijzigHaaltAf(HaaltAf haaltAf);
     List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
     List<Verkoopt> getVerkooptByKlantName(String naam);
+    void voegHaaltAfToe(HaaltAf haaltAf);
+    void voegSchijftInToe(SchrijftIn schrijftIn);
 }

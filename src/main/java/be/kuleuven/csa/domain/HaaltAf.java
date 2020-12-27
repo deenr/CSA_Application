@@ -1,6 +1,7 @@
 package be.kuleuven.csa.domain;
 
 public class HaaltAf {
+    private int haalfAf_id;
     private int auteur_id;
     private int verkoopt_id;
     private int pakket_weeknr;
@@ -8,8 +9,6 @@ public class HaaltAf {
 
     public HaaltAf() {
     }
-
-
 
     public HaaltAf(int auteur_id, int verkoopt_id, int pakket_weeknr) {
         this.auteur_id = auteur_id;
@@ -23,6 +22,22 @@ public class HaaltAf {
         this.verkoopt_id = verkoopt_id;
         this.pakket_weeknr = pakket_weeknr;
         this.pakket_afgehaald = pakket_afgehaald;
+    }
+
+    public HaaltAf(int haalfAf_id, int auteur_id, int verkoopt_id, int pakket_weeknr, int pakket_afgehaald) {
+        this.haalfAf_id = haalfAf_id;
+        this.auteur_id = auteur_id;
+        this.verkoopt_id = verkoopt_id;
+        this.pakket_weeknr = pakket_weeknr;
+        this.pakket_afgehaald = pakket_afgehaald;
+    }
+
+    public int getHaalfAf_id() {
+        return haalfAf_id;
+    }
+
+    public void setHaalfAf_id(int haalfAf_id) {
+        this.haalfAf_id = haalfAf_id;
     }
 
     public int getAuteur_id() {

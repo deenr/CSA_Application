@@ -1,6 +1,7 @@
 package be.kuleuven.csa.domain;
 
 public class ZitIn {
+    private int zitIn_id;
     private int product_id;
     private int verkoopt_id;
     private int zitIn_hoeveelheid;
@@ -14,6 +15,22 @@ public class ZitIn {
         this.verkoopt_id = verkoopt_id;
         this.zitIn_hoeveelheid = zitIn_hoeveelheid;
         this.zitIn_weeknr = zitIn_weeknr;
+    }
+
+    public ZitIn(int zitIn_id, int product_id, int verkoopt_id, int zitIn_hoeveelheid, int zitIn_weeknr) {
+        this.zitIn_id = zitIn_id;
+        this.product_id = product_id;
+        this.verkoopt_id = verkoopt_id;
+        this.zitIn_hoeveelheid = zitIn_hoeveelheid;
+        this.zitIn_weeknr = zitIn_weeknr;
+    }
+
+    public int getZitIn_id() {
+        return zitIn_id;
+    }
+
+    public void setZitIn_id(int zitIn_id) {
+        this.zitIn_id = zitIn_id;
     }
 
     public int getProduct_id() {
