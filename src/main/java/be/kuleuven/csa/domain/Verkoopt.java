@@ -9,8 +9,7 @@ public class Verkoopt {
     public Verkoopt() {
     }
 
-    public Verkoopt(int verkoopt_id, int auteur_id, int pakket_id, int verkoopt_prijs) {
-        this.verkoopt_id = verkoopt_id;
+    public Verkoopt(int auteur_id, int pakket_id, int verkoopt_prijs) {
         this.auteur_id = auteur_id;
         this.pakket_id = pakket_id;
         this.verkoopt_prijs = verkoopt_prijs;

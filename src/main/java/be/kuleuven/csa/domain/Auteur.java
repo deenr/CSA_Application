@@ -7,8 +7,7 @@ public class Auteur {
     public Auteur() {
     }
 
-    public Auteur(int auteur_id, String auteur_naam) {
-        this.auteur_id = auteur_id;
+    public Auteur(String auteur_naam) {
         this.auteur_naam = auteur_naam;
     }
 

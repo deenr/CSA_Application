@@ -10,8 +10,8 @@ public class AuteurRepositoryJdbi3Impl implements AuteurRepository {
 
     private final Jdbi jdbi;
 
-    public AuteurRepositoryJdbi3Impl(String connectionString) {
-        this.jdbi = Jdbi.create(connectionString);
+    public AuteurRepositoryJdbi3Impl(Jdbi jdbi) {
+        this.jdbi = jdbi;
     }
 
     @Override

@@ -8,14 +8,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(int product_id, String product_naam) {
-        this.product_id = product_id;
+    public Product(String product_naam) {
         this.product_naam = product_naam;
         this.product_soort = null;
     }
 
-    public Product(int product_id, String product_naam, String product_soort) {
-        this.product_id = product_id;
+    public Product(String product_naam, String product_soort) {
         this.product_naam = product_naam;
         this.product_soort = product_soort;
     }

@@ -64,7 +64,7 @@ CREATE TABLE Verkoopt (
 	verkoopt_prijs	INTEGER NOT NULL,
 	FOREIGN KEY(auteur_id) REFERENCES Boer(auteur_id),
 	FOREIGN KEY(pakket_id) REFERENCES Pakket(pakket_id),
-	PRIMARY KEY(verkoopt_id)
+	PRIMARY KEY(verkoopt_id AUTOINCREMENT)
 );
 
 DROP TABLE IF EXISTS ZitIn;

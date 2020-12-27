@@ -9,8 +9,7 @@ public class Pakket {
     public Pakket() {
     }
 
-    public Pakket(int pakket_id, String pakket_naam, int pakket_aantalVolwassenen, int Pakket_aantalKinderen) {
-        this.pakket_id = pakket_id;
+    public Pakket(String pakket_naam, int pakket_aantalVolwassenen, int Pakket_aantalKinderen) {
         this.pakket_naam = pakket_naam;
         this.pakket_aantalVolwassenen = pakket_aantalVolwassenen;
         this.Pakket_aantalKinderen = Pakket_aantalKinderen;
