@@ -14,12 +14,23 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
     public BoerRepositoryJdbi3Impl(Jdbi jdbi) {
         this.jdbi = jdbi;
     }
+
     @Override
     public List<Boer> getAlleBoeren() {
         var query = "SELECT * FROM Boer";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
                     .mapToBean(Boer.class)
+                    .list();
+        });
+    }
+
+    @Override
+    public List<String> getAlleBoerNamen() {
+        var query = "SELECT a.auteur_naam FROM Boer b, Auteur a WHERE b.auteur_id = a.auteur_id";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapTo(String.class)
                     .list();
         });
     }

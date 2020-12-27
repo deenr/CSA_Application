@@ -8,4 +8,5 @@ public interface BoerRepository {
     List<Boer> getBoerByName(String naam);
     void saveNewBoer(Boer boer);
     void updateBoer(Boer boer);
+    List<String> getAlleBoerNamen();
 }

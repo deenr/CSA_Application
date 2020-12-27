@@ -1,5 +1,6 @@
 package be.kuleuven.csa.controller;
 
+import be.kuleuven.csa.CSAMain;
 import be.kuleuven.csa.MainDatabase;
 import be.kuleuven.csa.domain.AuteurRepository;
 import be.kuleuven.csa.domain.KlantRepository;
@@ -10,10 +11,16 @@ import be.kuleuven.csa.jdbi.ConnectionManager;
 import be.kuleuven.csa.jdbi.KlantRepositoryJdbi3Impl;
 import be.kuleuven.csa.jdbi.PakketRepositoryJdbi3Impl;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
@@ -26,7 +33,7 @@ public class BestaandeKlantController {
     public Button nieuwPakketBestellen_button;
     public Button annuleerPakket_button;
     public Button wijzigPakket_button;
-    public TableView bestaandeKlantPakketten_Tbl;
+    public TableView<Pakket> bestaandeKlantPakketten_Tbl;
 
     public String klantNaam;
 
@@ -36,6 +43,8 @@ public class BestaandeKlantController {
 
     public void initialize() throws IOException {
         setUpRepo();
+
+        wijzigPakket_button.setOnAction(e -> showSchermMetData("wijzig_pakket_klant"));
 
         bestaandeKlantPakketten_Tbl.getColumns().clear();
 
@@ -56,17 +65,12 @@ public class BestaandeKlantController {
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalKinderen);
 
         refreshTable();
-
-
     }
 
     public void refreshTable() {
         bestaandeKlantPakketten_Tbl.getItems().clear();
 
-        System.out.println(klantNaam);
-
         List<Pakket> pakketList = pakketRepository.getPakketByName(klantNaam);
-        System.out.println(pakketList.toString());
 
         for (Pakket p : pakketList) {
             bestaandeKlantPakketten_Tbl.getItems().add(p);
@@ -98,5 +102,28 @@ public class BestaandeKlantController {
     public void getNaamVanBestaandeKlant(String naam) {
         this.klantNaam = naam;
         refreshTable();
+    }
+
+    private void showSchermMetData(String id) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
+
+            WijzigPakketKlantController wijzigPakketKlantController = loader.getController();
+            wijzigPakketKlantController.getNaamVanKlant(klantNaam);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
     }
 }

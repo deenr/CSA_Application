@@ -34,4 +34,8 @@ public class PakketRepositoryJdbi3Impl implements PakketRepository {
                     .list();
         });
     }
+
+    public void updatePakket(Pakket pakket) {
+
+    }
 }

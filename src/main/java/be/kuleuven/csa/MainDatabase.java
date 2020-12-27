@@ -1,13 +1,7 @@
 package be.kuleuven.csa;
 
-import be.kuleuven.csa.domain.Auteur;
-import be.kuleuven.csa.domain.AuteurRepository;
-import be.kuleuven.csa.domain.KlantRepository;
-import be.kuleuven.csa.domain.PakketRepository;
-import be.kuleuven.csa.jdbi.AuteurRepositoryJdbi3Impl;
-import be.kuleuven.csa.jdbi.ConnectionManager;
-import be.kuleuven.csa.jdbi.KlantRepositoryJdbi3Impl;
-import be.kuleuven.csa.jdbi.PakketRepositoryJdbi3Impl;
+import be.kuleuven.csa.domain.*;
+import be.kuleuven.csa.jdbi.*;
 import com.sun.tools.javac.Main;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
@@ -23,6 +17,9 @@ public class MainDatabase {
     private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
+    private static BoerRepository boerRepository;
+    private static VerkooptRepository verkooptRepository;
+
     public final static String DatabasePath = "D:\\Coding\\DAB\\CSA_Application\\csa_database.db";
 
     private static void setUpRepo() throws IOException {
@@ -37,6 +34,8 @@ public class MainDatabase {
         auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
+        boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
+        verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
 
@@ -46,7 +45,7 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        System.out.println(pakketRepository.getPakketByName("Dean"));
+        System.out.println(verkooptRepository.getVerkooptByBoerAndSize(1,3));
 
         //auteurRepository.saveNewAuteur(auteur);
 
