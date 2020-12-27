@@ -9,6 +9,7 @@ public class Klant {
 
     public Klant(int auteur_id) {
         this.auteur_id = auteur_id;
+        this.klant_teBetalenBedrag = 0;
     }
 
     public Klant(int auteur_id, int klant_teBetalenBedrag) {

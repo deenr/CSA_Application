@@ -14,20 +14,21 @@ CREATE TABLE Boer (
 
 DROP TABLE IF EXISTS HaaltAf;
 CREATE TABLE HaaltAf (
-	klant_id	INTEGER NOT NULL,
+	auteur_id	INTEGER NOT NULL,
 	verkoopt_id	INTEGER NOT NULL,
 	pakket_weeknr	INTEGER NOT NULL,
 	pakket_afgehaald	INTEGER DEFAULT 0,
 	FOREIGN KEY(verkoopt_id) REFERENCES Verkoopt(verkoopt_id),
-	FOREIGN KEY(klant_id) REFERENCES Klant(auteur_id),
-	PRIMARY KEY(verkoopt_id,klant_id)
+	FOREIGN KEY(auteur_id) REFERENCES Klant(auteur_id),
+	PRIMARY KEY(verkoopt_id,auteur_id)
 );
 
 DROP TABLE IF EXISTS Klant;
-CREATE TABLE Klant (
-	auteur_id	INTEGER NOT NULL,
-	PRIMARY KEY(auteur_id),
-	FOREIGN KEY(auteur_id) REFERENCES Auteur(auteur_id)
+CREATE TABLE "Klant" (
+	"auteur_id"	INTEGER NOT NULL,
+	"klant_teBetalenBedrag"	INTEGER DEFAULT 0,
+	PRIMARY KEY("auteur_id"),
+	FOREIGN KEY("auteur_id") REFERENCES "Auteur"("auteur_id")
 );
 
 DROP TABLE IF EXISTS Pakket;
@@ -49,10 +50,10 @@ CREATE TABLE Product (
 
 DROP TABLE IF EXISTS SchrijftIn;
 CREATE TABLE SchrijftIn (
-	klant_id	INTEGER NOT NULL,
+	auteur_id	INTEGER NOT NULL,
 	verkoopt_id	INTEGER NOT NULL,
-	PRIMARY KEY(klant_id,verkoopt_id),
-	FOREIGN KEY(klant_id) REFERENCES Klant(auteur_id),
+	PRIMARY KEY(auteur_id,verkoopt_id),
+	FOREIGN KEY(auteur_id) REFERENCES Klant(auteur_id),
 	FOREIGN KEY(verkoopt_id) REFERENCES Verkoopt(verkoopt_id)
 );
 
@@ -200,12 +201,12 @@ INSERT INTO ZitIn(verkoopt_id, product_id, zitIn_hoeveelheid, zitIn_weeknr) VALU
 INSERT INTO ZitIn(verkoopt_id, product_id, zitIn_hoeveelheid, zitIn_weeknr) VALUES (9,15,4,1);
 INSERT INTO ZitIn(verkoopt_id, product_id, zitIn_hoeveelheid, zitIn_weeknr) VALUES (9,20,17,1);
 
-INSERT INTO SchrijftIn(klant_id,verkoopt_id) VALUES (4,3);
-INSERT INTO SchrijftIn(klant_id,verkoopt_id) VALUES (5,6);
-INSERT INTO SchrijftIn(klant_id,verkoopt_id) VALUES (6,8);
-INSERT INTO SchrijftIn(klant_id,verkoopt_id) VALUES (7,1);
+INSERT INTO SchrijftIn(auteur_id,verkoopt_id) VALUES (4,3);
+INSERT INTO SchrijftIn(auteur_id,verkoopt_id) VALUES (5,6);
+INSERT INTO SchrijftIn(auteur_id,verkoopt_id) VALUES (6,8);
+INSERT INTO SchrijftIn(auteur_id,verkoopt_id) VALUES (7,1);
 
-INSERT INTO HaaltAf(klant_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (4,3,1,0);
-INSERT INTO HaaltAf(klant_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (5,6,1,0);
-INSERT INTO HaaltAf(klant_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (6,8,1,0);
-INSERT INTO HaaltAf(klant_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (7,1,1,1);
+INSERT INTO HaaltAf(auteur_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (4,3,1,0);
+INSERT INTO HaaltAf(auteur_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (5,6,1,0);
+INSERT INTO HaaltAf(auteur_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (6,8,1,0);
+INSERT INTO HaaltAf(auteur_id,verkoopt_id, pakket_weeknr, pakket_afgehaald) VALUES (7,1,1,1);

@@ -1,7 +1,7 @@
 package be.kuleuven.csa.domain;
 
 public class HaaltAf {
-    private int klant_id;
+    private int auteur_id;
     private int verkoopt_id;
     private int pakket_weeknr;
     private int pakket_afgehaald;
@@ -9,26 +9,26 @@ public class HaaltAf {
     public HaaltAf() {
     }
 
-    public HaaltAf(int klant_id, int verkoopt_id, int pakket_weeknr) {
-        this.klant_id = klant_id;
+    public HaaltAf(int auteur_id, int verkoopt_id, int pakket_weeknr) {
+        this.auteur_id = auteur_id;
         this.verkoopt_id = verkoopt_id;
         this.pakket_weeknr = pakket_weeknr;
         this.pakket_afgehaald = 0;
     }
 
-    public HaaltAf(int klant_id, int verkoopt_id, int pakket_weeknr, int pakket_afgehaald) {
-        this.klant_id = klant_id;
+    public HaaltAf(int auteur_id, int verkoopt_id, int pakket_weeknr, int pakket_afgehaald) {
+        this.auteur_id = auteur_id;
         this.verkoopt_id = verkoopt_id;
         this.pakket_weeknr = pakket_weeknr;
         this.pakket_afgehaald = pakket_afgehaald;
     }
 
-    public int getKlant_id() {
-        return klant_id;
+    public int getAuteur_id_id() {
+        return auteur_id;
     }
 
-    public void setKlant_id(int klant_id) {
-        this.klant_id = klant_id;
+    public void setAuteur_id(int auteur_id) {
+        this.auteur_id = auteur_id;
     }
 
     public int getVerkoopt_id() {
@@ -58,7 +58,7 @@ public class HaaltAf {
     @Override
     public String toString() {
         return "HaaltAf{" +
-                "klant_id=" + klant_id +
+                "auteur_id=" + auteur_id +
                 ", verkoopt_id=" + verkoopt_id +
                 ", pakket_weeknr=" + pakket_weeknr +
                 ", pakket_afgehaald=" + pakket_afgehaald +

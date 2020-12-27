@@ -1,23 +1,23 @@
 package be.kuleuven.csa.domain;
 
 public class SchrijftIn {
-    private int klant_id;
+    private int auteur_id;
     private int verkoopt_id;
 
     public SchrijftIn() {
     }
 
-    public SchrijftIn(int klant_id, int verkoopt_id) {
-        this.klant_id = klant_id;
+    public SchrijftIn(int auteur_id, int verkoopt_id) {
+        this.auteur_id = auteur_id;
         this.verkoopt_id = verkoopt_id;
     }
 
-    public int getKlant_id() {
-        return klant_id;
+    public int getAuteur_id() {
+        return auteur_id;
     }
 
-    public void setKlant_id(int klant_id) {
-        this.klant_id = klant_id;
+    public void setAuteur_id(int auteur_id) {
+        this.auteur_id = auteur_id;
     }
 
     public int getVerkoopt_id() {
@@ -31,7 +31,7 @@ public class SchrijftIn {
     @Override
     public String toString() {
         return "SchrijftIn{" +
-                "klant_id=" + klant_id +
+                "auteur_id=" + auteur_id +
                 ", verkoopt_id=" + verkoopt_id +
                 '}';
     }
