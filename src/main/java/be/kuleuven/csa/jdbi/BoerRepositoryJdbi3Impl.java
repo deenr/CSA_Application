@@ -37,7 +37,7 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
 
     @Override
     public List<Boer> getBoerByName(String naam) {
-        var query = "SELECT * FROM Boer WHERE auteur_naam = '" + naam + "'";
+        var query = "SELECT b.auteur_id, b.boer_adres FROM Auteur a, Boer b WHERE auteur_naam = '" + naam + "'AND a.auteur_id = b.auteur_id";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
                     .mapToBean(Boer.class)
@@ -58,9 +58,9 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
     @Override
     public void updateBoer(Boer boer) {
         jdbi.useHandle(handle -> {
-            handle.createUpdate("UPDATE Boer SET auteur_id = ?, boer_adres = ?")
-                    .bind(0, boer.getAuteur_id())
-                    .bind(1, boer.getBoer_adres())
+            handle.createUpdate("UPDATE Boer SET boer_adres = ? WHERE auteur_id = ?")
+                    .bind(0, boer.getBoer_adres())
+                    .bind(1, boer.getAuteur_id())
                     .execute();
         });
     }

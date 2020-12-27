@@ -41,25 +41,31 @@ public class BestaandeKlantController {
     private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
 
+    private static BestaandeKlantController instance;
+
+    public BestaandeKlantController() {
+        instance = this;
+    }
+
+    public static BestaandeKlantController getInstance() {
+        return instance;
+    }
+
     public void initialize() throws IOException {
         setUpRepo();
 
-        wijzigPakket_button.setOnAction(e -> showSchermMetData("wijzig_pakket_klant"));
+        wijzigPakket_button.setOnAction(e -> isEenRijSelecteerd());
 
         bestaandeKlantPakketten_Tbl.getColumns().clear();
-
         TableColumn<Pakket, Integer> colPakket_id = new TableColumn<>("Pakket_id");
         colPakket_id.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_id()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);
-
         TableColumn<Pakket, String> colNaam = new TableColumn<>("Naam");
         colNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colNaam);
-
         TableColumn<Pakket, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
         colAantalVolwassenen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalVolwassenen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalVolwassenen);
-
         TableColumn<Pakket, Integer> colAantalKinderen = new TableColumn<>("Aantal Kinderen");
         colAantalKinderen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalKinderen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalKinderen);
@@ -70,8 +76,7 @@ public class BestaandeKlantController {
     public void refreshTable() {
         bestaandeKlantPakketten_Tbl.getItems().clear();
 
-        List<Pakket> pakketList = pakketRepository.getPakketByName(klantNaam);
-
+        List<Pakket> pakketList = pakketRepository.getPakketByKlantName(klantNaam);
         for (Pakket p : pakketList) {
             bestaandeKlantPakketten_Tbl.getItems().add(p);
         }
@@ -112,8 +117,10 @@ public class BestaandeKlantController {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
             Parent root = (AnchorPane) loader.load();
 
+            Pakket geselecteerdPakket = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem();
+
             WijzigPakketKlantController wijzigPakketKlantController = loader.getController();
-            wijzigPakketKlantController.getNaamVanKlant(klantNaam);
+            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, geselecteerdPakket);
 
             var scene = new Scene(root);
             stage.setScene(scene);
@@ -125,5 +132,13 @@ public class BestaandeKlantController {
         } catch (Exception e) {
             throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
         }
+    }
+
+    private void isEenRijSelecteerd() {
+        if (bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedCells().size() == 0) {
+            showAlert("Warning!", "Selecteer een pakket dat u wenst te wijzigen of te annuleren");
+            return;
+        }
+        showSchermMetData("wijzig_pakket_klant");
     }
 }

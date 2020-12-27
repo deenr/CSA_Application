@@ -45,7 +45,7 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        System.out.println(verkooptRepository.getVerkooptByBoerAndSize(1,3));
+        System.out.println(verkooptRepository.getVerkooptByKlantName("Dean"));
 
         //auteurRepository.saveNewAuteur(auteur);
 

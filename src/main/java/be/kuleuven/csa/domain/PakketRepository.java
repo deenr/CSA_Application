@@ -5,5 +5,5 @@ import java.util.List;
 public interface PakketRepository {
 
     List<Pakket> getAllePakketten();
-    List<Pakket> getPakketByName(String naam);
+    List<Pakket> getPakketByKlantName(String naam);
 }

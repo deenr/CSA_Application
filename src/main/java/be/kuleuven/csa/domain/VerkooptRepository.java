@@ -4,5 +4,9 @@ import java.util.List;
 
 public interface VerkooptRepository {
 
-    List<Verkoopt> getVerkooptByBoerAndSize(int auteur_id, int pakket_id);
+    List<Verkoopt> getVerkooptByBoerAndPakket(int auteur_id, int pakket_id);
+    void wijzigSchrijftIn(SchrijftIn schrijftIn);
+    void wijzigHaaltAf(HaaltAf haaltAf);
+    List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
+    List<Verkoopt> getVerkooptByKlantName(String naam);
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class WijzigPakketKlantController {
     private String klantNaam;
+    private Pakket geselecteerdPakket;
 
     public ChoiceBox<String> wijzigPakketKeuzeBoer_choice;
     public ChoiceBox<String> wijzigPakketKeuzePakket_choice;
@@ -38,24 +40,102 @@ public class WijzigPakketKlantController {
         setUpRepo();
         refreshItems();
 
+
+        wijzigPakket_button.setOnAction(e -> wijzigPakket());
     }
 
     public void refreshItems() {
         List<String> boerNamen = boerRepository.getAlleBoerNamen();
-        List<String> pakketFormaten = Arrays.asList("Medium","Groot", "Familie");
+        List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
 
         wijzigPakketKeuzeBoer_choice.setItems(FXCollections.observableArrayList(boerNamen));
         wijzigPakketKeuzePakket_choice.setItems(FXCollections.observableArrayList(pakketFormaten));
 
         wijzigPakketKeuzeBoer_choice.setOnAction((event) -> {
-            Object selectedItem = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
-        });
+            String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
+            String selectedPakket = wijzigPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
+            if (selectedBoer != null && selectedPakket != null) {
+                System.out.println(selectedBoer + " " + selectedPakket);
+                List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
+                int auteur_id = boerList.get(0).getAuteur_id();
+                int pakket_id = 0;
+                if (selectedPakket.equals(pakketFormaten.get(0))) {
+                    pakket_id = 1;
+                } else if (selectedPakket.equals(pakketFormaten.get(1))) {
+                    pakket_id = 2;
+                } else if (selectedPakket.equals(pakketFormaten.get(2))) {
+                    pakket_id = 3;
+                }
 
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+
+                int prijs = verkooptList.get(0).getVerkoopt_prijs();
+                wijzigPakketPrijsPakket_text.setText(prijs + " euro");
+            }
+        });
         wijzigPakketKeuzePakket_choice.setOnAction((event) -> {
-            Object selectedItem = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
-        });
+            String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
+            String selectedPakket = wijzigPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
+            if (selectedBoer != null && selectedPakket != null) {
+                System.out.println(selectedBoer + " " + selectedPakket);
+                List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
+                int auteur_id = boerList.get(0).getAuteur_id();
+                int pakket_id = 0;
+                if (selectedPakket.equals(pakketFormaten.get(0))) {
+                    pakket_id = 1;
+                } else if (selectedPakket.equals(pakketFormaten.get(1))) {
+                    pakket_id = 2;
+                } else if (selectedPakket.equals(pakketFormaten.get(2))) {
+                    pakket_id = 3;
+                }
 
-        int pakket_id = 0;
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+
+                int prijs = verkooptList.get(0).getVerkoopt_prijs();
+                wijzigPakketPrijsPakket_text.setText(prijs + " euro");
+            }
+        });
+    }
+
+    public void wijzigPakket() {
+        List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
+
+        String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
+        String selectedPakket = wijzigPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
+        if (selectedBoer != null && selectedPakket != null) {
+            System.out.println(selectedBoer + " " + selectedPakket);
+            List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
+            int boer_id = boerList.get(0).getAuteur_id();
+            int pakket_id = 0;
+            if (selectedPakket.equals(pakketFormaten.get(0))) {
+                pakket_id = 1;
+            } else if (selectedPakket.equals(pakketFormaten.get(1))) {
+                pakket_id = 2;
+            } else if (selectedPakket.equals(pakketFormaten.get(2))) {
+                pakket_id = 3;
+            }
+
+            List<Verkoopt> nieuweVerkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
+            int nieuwVerkoopt_id = nieuweVerkooptList.get(0).getVerkoopt_id();
+
+            List<Verkoopt> oudeVerkooptList = verkooptRepository.getVerkooptByKlantName(klantNaam);
+            int oudeVerkoopt_id = oudeVerkooptList.get(0).getVerkoopt_id();
+
+            List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
+            int klant_id = klantList.get(0).getAuteur_id();
+
+            List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
+            HaaltAf haaltAf = haaltAfList.get(0);
+            haaltAf.setVerkoopt_id(nieuwVerkoopt_id);
+            verkooptRepository.wijzigHaaltAf(haaltAf);
+
+            SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
+            verkooptRepository.wijzigSchrijftIn(schrijftIn);
+
+            BestaandeKlantController.getInstance().refreshTable();
+            Stage stage = (Stage) wijzigPakket_button.getScene().getWindow();
+            stage.close();
+        }
     }
 
     private static void setUpRepo() throws IOException {
@@ -82,8 +162,10 @@ public class WijzigPakketKlantController {
         alert.showAndWait();
     }
 
-    public void getNaamVanKlant(String klantNaam) {
+    public void getNaamEnGeselecteerdPakket(String klantNaam, Pakket pakket) {
         this.klantNaam = klantNaam;
+        this.geselecteerdPakket = pakket;
         refreshItems();
     }
+
 }

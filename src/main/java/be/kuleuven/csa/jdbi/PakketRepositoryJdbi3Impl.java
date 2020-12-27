@@ -26,7 +26,7 @@ public class PakketRepositoryJdbi3Impl implements PakketRepository {
     }
 
     @Override
-    public List<Pakket> getPakketByName(String naam) {
+    public List<Pakket> getPakketByKlantName(String naam) {
         var query = "SELECT p.pakket_id, p.pakket_naam, p.pakket_aantalVolwassenen, p.pakket_aantalKinderen FROM Auteur a, Klant k, SchrijftIn s, Verkoopt v, Pakket p WHERE auteur_naam = '" + naam + "' AND a.auteur_id = k.auteur_id AND k.auteur_id = s.auteur_id AND s.verkoopt_id = v.verkoopt_id AND v.pakket_id = p.pakket_id";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)

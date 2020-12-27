@@ -49,8 +49,9 @@ public class KlantRepositoryJdbi3Impl implements KlantRepository {
     @Override
     public void updateKlant(Klant klant) {
         jdbi.useHandle(handle -> {
-            handle.createUpdate("UPDATE Klant SET klant_teBetalenBedrag = ?")
+            handle.createUpdate("UPDATE Klant SET klant_teBetalenBedrag = ? WHERE auteur_id = ?")
                     .bind(0, klant.getKlant_teBetalenBedrag())
+                    .bind(1, klant.getAuteur_id())
                     .execute();
         });
     }

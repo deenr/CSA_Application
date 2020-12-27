@@ -9,6 +9,8 @@ public class HaaltAf {
     public HaaltAf() {
     }
 
+
+
     public HaaltAf(int auteur_id, int verkoopt_id, int pakket_weeknr) {
         this.auteur_id = auteur_id;
         this.verkoopt_id = verkoopt_id;
@@ -23,7 +25,7 @@ public class HaaltAf {
         this.pakket_afgehaald = pakket_afgehaald;
     }
 
-    public int getAuteur_id_id() {
+    public int getAuteur_id() {
         return auteur_id;
     }
 
