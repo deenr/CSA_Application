@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dfd0d4ab-3c2c-49af-b5fd-806ab20879cc" name="Default Changelist" comment="domains added">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dbcreate.sql" afterDir="false" />
+    <list default="true" id="dfd0d4ab-3c2c-49af-b5fd-806ab20879cc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/AuteurRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/AuteurRepositoryJdbi3Impl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Klant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -122,38 +125,46 @@
       <option name="project" value="LOCAL" />
       <updated>1609064034445</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dbcreate added">
+      <created>1609064597891</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609064597891</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="domains added" />
-    <option name="LAST_COMMIT_MESSAGE" value="domains added" />
+    <MESSAGE value="dbcreate added" />
+    <option name="LAST_COMMIT_MESSAGE" value="dbcreate added" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1609064016563">
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1609065329699">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609064016563" />
-    <state x="614" y="119" key="CommitChangelistDialog2" timestamp="1609064109836">
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609065329699" />
+    <state x="973" y="100" key="CommitChangelistDialog2" timestamp="1609065499578">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="614" y="119" key="CommitChangelistDialog2/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609064109836" />
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1609063318903">
+    <state x="973" y="100" key="CommitChangelistDialog2/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609065499578" />
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1609065499667">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609063318903" />
-    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1609063318903">
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609065499667" />
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1609065499666">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609063318903" />
-    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1609063318903">
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609065499666" />
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1609065499666">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609063318903" />
-    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1609063318903">
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609065499666" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1609065499667">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609063318903" />
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609065499667" />
     <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1609062673107">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
