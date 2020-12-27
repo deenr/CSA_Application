@@ -8,6 +8,7 @@ public interface VerkooptRepository {
     void wijzigSchrijftIn(SchrijftIn schrijftIn);
     void wijzigHaaltAf(HaaltAf haaltAf);
     List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
+    List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
     List<Verkoopt> getVerkooptByKlantName(String naam);
     void voegHaaltAfToe(HaaltAf haaltAf);
     void voegSchijftInToe(SchrijftIn schrijftIn);

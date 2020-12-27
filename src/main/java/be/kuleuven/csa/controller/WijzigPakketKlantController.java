@@ -23,6 +23,7 @@ import java.util.List;
 
 public class WijzigPakketKlantController {
     private String klantNaam;
+    private int selectedRow;
 
     public ChoiceBox<String> wijzigPakketKeuzeBoer_choice;
     public ChoiceBox<String> wijzigPakketKeuzePakket_choice;
@@ -115,7 +116,7 @@ public class WijzigPakketKlantController {
             int nieuwVerkoopt_id = nieuweVerkooptList.get(0).getVerkoopt_id();
 
             List<Verkoopt> oudeVerkooptList = verkooptRepository.getVerkooptByKlantName(klantNaam);
-            int oudeVerkoopt_id = oudeVerkooptList.get(0).getVerkoopt_id();
+            int oudeVerkoopt_id = oudeVerkooptList.get(selectedRow).getVerkoopt_id();
 
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
             int klant_id = klantList.get(0).getAuteur_id();
@@ -126,7 +127,10 @@ public class WijzigPakketKlantController {
                 HaaltAf haaltAf = haaltAfList.get(0);
                 haaltAf.setVerkoopt_id(nieuwVerkoopt_id);
                 verkooptRepository.wijzigHaaltAf(haaltAf);
-                SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
+
+                List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
+                SchrijftIn schrijftIn = schrijftInList.get(0);
+                schrijftIn.setVerkoopt_id(nieuwVerkoopt_id);
                 verkooptRepository.wijzigSchrijftIn(schrijftIn);
 
                 BestaandeKlantController.getInstance().refreshTable();
@@ -164,8 +168,10 @@ public class WijzigPakketKlantController {
         alert.showAndWait();
     }
 
-    public void getNaamEnGeselecteerdPakket(String klantNaam) {
+    public void getNaamEnGeselecteerdPakket(String klantNaam, int selectedRow) {
         this.klantNaam = klantNaam;
+        this.selectedRow = selectedRow;
+        System.out.println(selectedRow);
         refreshItems();
     }
 

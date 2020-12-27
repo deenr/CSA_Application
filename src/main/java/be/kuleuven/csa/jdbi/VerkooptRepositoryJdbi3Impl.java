@@ -27,9 +27,10 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     @Override
     public void wijzigSchrijftIn(SchrijftIn schrijftIn) {
         jdbi.useHandle(handle -> {
-            handle.createUpdate("UPDATE SchrijftIn SET verkoopt_id = ? WHERE auteur_id = ?")
+            handle.createUpdate("UPDATE SchrijftIn SET verkoopt_id = ? WHERE auteur_id = ? AND schrijftIn_id = ?")
                     .bind(0, schrijftIn.getVerkoopt_id())
                     .bind(1, schrijftIn.getAuteur_id())
+                    .bind(2, schrijftIn.getSchrijftIn_id())
                     .execute();
         });
     }
@@ -37,11 +38,12 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     @Override
     public void wijzigHaaltAf(HaaltAf haaltAf) {
         jdbi.useHandle(handle -> {
-            handle.createUpdate("UPDATE HaaltAf SET verkoopt_id = ?, pakket_weeknr = ?, pakket_afgehaald = ? WHERE auteur_id = ?")
+            handle.createUpdate("UPDATE HaaltAf SET verkoopt_id = ?, pakket_weeknr = ?, pakket_afgehaald = ? WHERE auteur_id = ? AND haaltAf_id = ?")
                     .bind(0, haaltAf.getVerkoopt_id())
                     .bind(1, haaltAf.getPakket_weeknr())
                     .bind(2, haaltAf.getPakket_afgehaald())
                     .bind(3, haaltAf.getAuteur_id())
+                    .bind(4, haaltAf.getHaaltAf_id())
                     .execute();
         });
     }
@@ -51,6 +53,15 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
                     .mapToBean(HaaltAf.class)
+                    .list();
+        });
+    }
+
+    public List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id) {
+        var query = "SELECT * FROM SchrijftIn s WHERE s.verkoopt_id = " + verkoopt_id + " AND s.auteur_id = " + auteur_id + ";";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(SchrijftIn.class)
                     .list();
         });
     }

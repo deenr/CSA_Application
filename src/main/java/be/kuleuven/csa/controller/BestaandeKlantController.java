@@ -142,7 +142,7 @@ public class BestaandeKlantController {
         }
     }
 
-    private void showSchermWijzigPakket(String id) {
+    private void showSchermWijzigPakket(String id, int selectedRow) {
         var resourceName = id + ".fxml";
         try {
             var stage = new Stage();
@@ -151,7 +151,7 @@ public class BestaandeKlantController {
             Parent root = (AnchorPane) loader.load();
 
             WijzigPakketKlantController wijzigPakketKlantController = loader.getController();
-            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam);
+            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, selectedRow);
 
             var scene = new Scene(root);
             stage.setScene(scene);
@@ -170,6 +170,6 @@ public class BestaandeKlantController {
             showAlert("Warning!", "Selecteer een pakket dat u wenst te wijzigen of te annuleren");
             return;
         }
-        showSchermWijzigPakket("wijzig_pakket_klant");
+        showSchermWijzigPakket("wijzig_pakket_klant", bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedIndex());
     }
 }

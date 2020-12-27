@@ -49,12 +49,7 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        List<PakketBoerVoorTable> pakketBoerVoorTableList = pakketRepository.getPakketAndBoerByKlantName("Dean");
-        for (PakketBoerVoorTable pk:
-                pakketBoerVoorTableList) {
-            System.out.println(pk.toString());
-
-        }
+        System.out.println(pakketRepository.getPakketAndBoerByKlantName("Dean"));
 
         //auteurRepository.saveNewAuteur(auteur);
 
