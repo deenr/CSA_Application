@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.NieuweKlantController">
    <children>
-      <Button fx:id="registreerNieuweKlant_button" layoutX="265.0" layoutY="298.0" mnemonicParsing="false" text="Registreer" />
-      <Text layoutX="45.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naam" />
-      <TextField fx:id="insertNieuweKlant_naam" layoutX="92.0" layoutY="158.0" />
-      <Text layoutX="265.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nieuwe klant" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="600.0">
+         <fill>
+            <LinearGradient endX="0.5238095238095238" startX="0.49523809523809526">
+               <stops>
+                  <Stop color="#1370bc" />
+                  <Stop color="#0f5586" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <Button fx:id="registreerNieuweKlant_button" alignment="CENTER" layoutX="194.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0" style="-fx-background-color: #0f406b;" text="REGISTREER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+
+      <Text fill="WHITE" layoutX="196.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naam">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      <TextField fx:id="insertNieuweKlant_naam" layoutX="255.0" layoutY="188.0" prefWidth="149.0" />
+      <Text fill="WHITE" layoutX="117.0" layoutY="111.0" stroke="#ffffff00" strokeType="OUTSIDE" strokeWidth="0.0" text="NIEUWE KLANT" textAlignment="CENTER" wrappingWidth="365.8828125" AnchorPane.topAnchor="72.15234375">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font></Text>
    </children>
 </AnchorPane>

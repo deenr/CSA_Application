@@ -11,4 +11,5 @@ public interface PakketRepository {
     List<Pakket> getPakketByKlantName(String naam);
     List<DataVoorAbonnementenTableView> getDataForAbonnementenTableViewByKlantName(String naam);
     List<DataVoorAfhalingenTableView> getDataForAfhalingenTableViewByKlantName(String naam);
+    List<String> getPakkettenListByBoerNameAndKlantName(String boerNaam, String klantNaam);
 }

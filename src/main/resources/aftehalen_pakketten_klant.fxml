@@ -4,13 +4,30 @@
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.AfTeHalenPakkettenKlantController">
-   <children>
-      <TableView fx:id="afTeHalenPakkettenKlant_table" layoutX="14.0" layoutY="14.0" prefHeight="369.0" prefWidth="568.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-   </children>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="be.kuleuven.csa.controller.AfTeHalenPakkettenKlantController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE"
+                   strokeWidth="0.0" width="600.0">
+            <fill>
+                <LinearGradient endX="0.5238095238095238" startX="0.49523809523809526">
+                    <stops>
+                        <Stop color="#1370bc"/>
+                        <Stop color="#0f5586" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <TableView fx:id="afTeHalenPakkettenKlant_table" layoutX="14.0" layoutY="14.0" prefHeight="369.0"
+                   prefWidth="568.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1"/>
+                <TableColumn prefWidth="75.0" text="C2"/>
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>

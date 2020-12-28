@@ -19,5 +19,6 @@ public interface VerkooptRepository {
     void verwijderSchrijftIn(SchrijftIn schrijftIn);
     void maakNieuweVerkooptAan(Verkoopt verkoopt);
     List<Integer> getVerkooptPrijzenByName(String naam);
+    List<Integer> getVerkooptPrijzenByKlantAndByBoer(String klantNaam, String boerNaam);
 
 }

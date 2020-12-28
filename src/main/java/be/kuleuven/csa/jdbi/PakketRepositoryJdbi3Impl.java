@@ -56,6 +56,16 @@ public class PakketRepositoryJdbi3Impl implements PakketRepository {
         });
     }
 
+    @Override
+    public List<String> getPakkettenListByBoerNameAndKlantName(String boerNaam, String klantNaam) {
+        var query = "SELECT p.pakket_naam FROM Auteur a1, Auteur a2, SchrijftIn s, Verkoopt v, Pakket p WHERE a1.auteur_naam = '"+klantNaam+"' and a1.auteur_id = s.auteur_id and s.verkoopt_id = v.verkoopt_id and v.pakket_id = p.pakket_id and a2.auteur_naam = '"+boerNaam+"' and a2.auteur_id = v.auteur_id";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapTo(String.class)
+                    .list();
+        });
+    }
+
     public void updatePakket(Pakket pakket) {
     }
 }

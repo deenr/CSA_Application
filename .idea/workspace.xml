@@ -5,15 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfd0d4ab-3c2c-49af-b5fd-806ab20879cc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BoerBekijktKlantenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/helpdomain/KlantenBoer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/boer_bekijkt_klanten.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/MainDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/MainDatabase.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/AfTeHalenPakkettenKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/AfTeHalenPakkettenKlantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeBoerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeBoerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BoerMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BoerMainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/KlantMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/KlantMainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuwPakketKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuwPakketKlantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuweBoerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuweBoerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuweKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuweKlantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/WijzigPakketKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/WijzigPakketKlantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/PakketRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/PakketRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/ConnectionManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/ConnectionManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/begin_scherm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/begin_scherm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/bestaande_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/bestaande_klant.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/nieuwe_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/nieuwe_klant.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csa_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/csa_database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/AuteurRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/AuteurRepositoryJdbi3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bestaande_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bestaande_boer.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/MainDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/MainDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeBoerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeBoerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/KlantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/KlantRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/PakketRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/PakketRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/VerkooptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/VerkooptRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/KlantRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/KlantRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/VerkooptRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/VerkooptRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/begin_scherm.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/begin_scherm.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/bestaande_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bestaande_klant.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/klant_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/klant_main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/nieuwe_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nieuwe_klant.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +92,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -152,7 +185,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -164,7 +199,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -215,13 +250,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -234,60 +268,6 @@
     <MESSAGE value="wijzigPakket V1" />
     <option name="LAST_COMMIT_MESSAGE" value="wijzigPakket V1" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="677" y="183" width="580" height="683" key="#MainDatabase" timestamp="1609172578416">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="677" y="183" width="580" height="683" key="#MainDatabase/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609172578416" />
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1609174940955">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609174940955" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609178461257">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461257" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609178461256">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461256" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609178461256">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461256" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609178461257">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461257" />
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609172711271">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609172711271" />
-    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1609172711270">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609172711270" />
-    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1609172711270">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609172711270" />
-    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1609172711271">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609172711271" />
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1609164165427">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609164165427" />
-    <state x="616" y="243" key="run.anything.popup" timestamp="1609167690174">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="616" y="243" key="run.anything.popup/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609167690174" />
-    <state x="616" y="178" width="672" height="676" key="search.everywhere.popup" timestamp="1609171067468">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="616" y="178" width="672" height="676" key="search.everywhere.popup/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609171067468" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -299,6 +279,9 @@
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
+      <configuration name="GradleRunConfiguration">
+        <watch expression="klantenVanBoerLijst" />
+      </configuration>
       <configuration name="Remote">
         <watch expression="oudeVerkooptList.get(0)" />
       </configuration>

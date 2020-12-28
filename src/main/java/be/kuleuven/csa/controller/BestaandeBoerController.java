@@ -30,6 +30,7 @@ public class BestaandeBoerController {
     public String boerNaam;
     public Button nieuweWeekPakkettenToevoegenBoer_button;
     public Button klantenBekijkenBoer_button;
+    public Button klantenStatusUpdatenBoer_button;
 
     public Button productToevoegenBoer_button;
     public ChoiceBox<String> nieuwProductSoortBoer_choice;
@@ -49,11 +50,13 @@ public class BestaandeBoerController {
 
     public Text welkomTitel_boer;
 
+
     public void initialize() throws IOException {
         setUpRepo();
 
         productToevoegenBoer_button.setOnAction(e -> voegProductToe());
         pakketPrijsWijzingenBoer_button.setOnAction(e -> wijzigPakketVeldenJuist());
+        klantenBekijkenBoer_button.setOnAction(e -> showScherm("boer_bekijkt_klanten"));
 
         refreshItems();
     }
@@ -191,8 +194,8 @@ public class BestaandeBoerController {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
             Parent root = (AnchorPane) loader.load();
 
-            //NieuwPakketKlantController nieuwPakketKlantController = loader.getController();
-            //nieuwPakketKlantController.getKlantNaam(klantNaam);
+            BoerBekijktKlantenController boerBekijktKlantenController = loader.getController();
+            boerBekijktKlantenController.getBoerNaam(boerNaam);
 
             var scene = new Scene(root);
             stage.setScene(scene);

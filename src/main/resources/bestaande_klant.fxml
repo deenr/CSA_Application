@@ -2,21 +2,70 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.BestaandeKlantController">
-   <children>
-      <Text fx:id="title" layoutX="261.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mijn Pakketten" />
-      <Button fx:id="nieuwPakketBestellen_button" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" text="Nieuw Pakket" />
-      <TableView fx:id="bestaandeKlantPakketten_Tbl" layoutX="14.0" layoutY="54.0" prefHeight="282.0" prefWidth="572.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
-      <Button fx:id="verwijderPakket_button" layoutX="483.0" layoutY="355.0" mnemonicParsing="false" text="Verwijder Pakket" />
-      <Button fx:id="wijzigPakket_button" layoutX="257.0" layoutY="355.0" mnemonicParsing="false" text="Wijzig Pakket" />
-      <Button fx:id="afTeHalenPakketten_button" layoutX="456.0" layoutY="14.0" mnemonicParsing="false" text="Af te halen pakketten" />
-      <Text fx:id="teBetalenBedrag_text" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Te betalen bedrag: " />
-   </children>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.BestaandeKlantController">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE"
+                   strokeWidth="0.0" width="600.0">
+            <fill>
+                <LinearGradient endX="0.5238095238095238" startX="0.49523809523809526">
+                    <stops>
+                        <Stop color="#1370bc"/>
+                        <Stop color="#0f5586" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <Text fx:id="title" fill="WHITE" layoutX="236.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Mijn Pakketten">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Text>
+        <TableView fx:id="bestaandeKlantPakketten_Tbl" layoutX="14.0" layoutY="54.0" prefHeight="282.0"
+                   prefWidth="572.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1"/>
+                <TableColumn prefWidth="75.0" text="C2"/>
+            </columns>
+        </TableView>
+        <Button fx:id="nieuwPakketBestellen_button" alignment="CENTER" layoutX="14.0" layoutY="355.0"
+                mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0f406b;"
+                text="Nieuw Pakket" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Button fx:id="verwijderPakket_button" alignment="CENTER" layoutX="266.0" layoutY="355.0"
+                mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0f406b;"
+                text="Verwijder Pakket" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Button fx:id="wijzigPakket_button" alignment="CENTER" layoutX="140.0" layoutY="355.0" mnemonicParsing="false"
+                prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0f406b;" text="Wijzig Pakket"
+                textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Button fx:id="afTeHalenPakketten_button" alignment="CENTER" layoutX="437.0" layoutY="14.0"
+                mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #0f406b;"
+                text="Af te halen pakketten" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Text fx:id="teBetalenBedrag_text" fill="WHITE" layoutX="18.0" layoutY="31.0" strokeType="OUTSIDE"
+              strokeWidth="0.0" text="Te betalen bedrag: ">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Text>
+    </children>
 </AnchorPane>
