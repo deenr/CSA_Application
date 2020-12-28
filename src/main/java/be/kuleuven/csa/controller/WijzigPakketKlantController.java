@@ -132,6 +132,7 @@ public class WijzigPakketKlantController {
                 verkooptRepository.wijzigSchrijftIn(schrijftIn);
 
                 BestaandeKlantController.getInstance().refreshTable();
+                BestaandeKlantController.getInstance().updateTeBetalenBedragVanKlanten();
                 Stage stage = (Stage) wijzigPakket_button.getScene().getWindow();
                 stage.close();
             } else {

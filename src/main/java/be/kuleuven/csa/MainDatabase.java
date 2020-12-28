@@ -44,7 +44,7 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        System.out.println(pakketRepository.getDataForAbonnementenTableViewByKlantName("Dean"));
+        System.out.println(verkooptRepository.getVerkooptPrijzenByName("Dean"));
 
         //auteurRepository.saveNewAuteur(auteur);
 

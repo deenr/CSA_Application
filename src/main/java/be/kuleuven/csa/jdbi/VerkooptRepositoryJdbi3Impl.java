@@ -26,6 +26,18 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
+    public void wijzigVerkoopt(Verkoopt verkoopt) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("UPDATE Verkoopt SET verkoopt_prijs = ? WHERE auteur_id = ? AND pakket_id = ?")
+                    .bind(0, verkoopt.getVerkoopt_prijs())
+                    .bind(1, verkoopt.getAuteur_id())
+                    .bind(2, verkoopt.getPakket_id())
+                    .execute();
+        });
+
+    }
+
+    @Override
     public void wijzigSchrijftIn(SchrijftIn schrijftIn) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("UPDATE SchrijftIn SET verkoopt_id = ? WHERE auteur_id = ? AND schrijftIn_id = ?")
@@ -104,7 +116,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
         int pakket_weeknr = haaltAf.getPakket_weeknr();
         int pakket_afgehaald = haaltAf.getPakket_afgehaald();
         jdbi.useHandle(handle -> {
-            handle.createUpdate("DELETE FROM HaaltAf WHERE auteur_id = " + auteur_id + " AND verkoopt_id = " + verkoopt_id  + " ;")
+            handle.createUpdate("DELETE FROM HaaltAf WHERE auteur_id = " + auteur_id + " AND verkoopt_id = " + verkoopt_id + " ;")
                     .execute();
         });
     }
@@ -125,8 +137,18 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
             handle.createUpdate("INSERT INTO Verkoopt (auteur_id, pakket_id, verkoopt_prijs) VALUES (?,?,?);")
                     .bind(0, verkoopt.getAuteur_id())
                     .bind(1, verkoopt.getPakket_id())
-                    .bind(2,verkoopt.getVerkoopt_prijs())
+                    .bind(2, verkoopt.getVerkoopt_prijs())
                     .execute();
+        });
+    }
+
+    @Override
+    public List<Integer> getVerkooptPrijzenByName(String naam) {
+        var query = "SELECT v.verkoopt_prijs FROM Auteur a, Klant k, SchrijftIn s, Verkoopt v WHERE a.auteur_naam = '" + naam + "' AND a.auteur_id = k.auteur_id and k.auteur_id = s.auteur_id and s.verkoopt_id = v.verkoopt_id";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapTo(Integer.class)
+                    .list();
         });
     }
 }

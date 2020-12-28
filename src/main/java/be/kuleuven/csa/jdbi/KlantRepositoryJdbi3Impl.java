@@ -36,6 +36,16 @@ public class KlantRepositoryJdbi3Impl implements KlantRepository {
     }
 
     @Override
+    public List<Klant> getKlantByVerkooptID(int id) {
+        var query = "SELECT k.auteur_id, k.klant_teBetalenBedrag FROM SchrijftIn s, Klant k WHERE '" + id + "' = s.verkoopt_id and s.auteur_id = k.auteur_id";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(Klant.class)
+                    .list();
+        });
+    }
+
+    @Override
     public void saveNewKlant(Klant klant) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("INSERT INTO Klant(auteur_id, klant_teBetalenBedrag) VALUES (?, ?)")

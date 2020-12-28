@@ -35,7 +35,6 @@ public class NieuwPakketKlantController {
 
     public void initialize() throws IOException {
         nieuwPakket_button.setOnAction(e -> nieuwPakket());
-
         setUpRepo();
         refreshItems();
     }
@@ -133,14 +132,16 @@ public class NieuwPakketKlantController {
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
             int klant_id = klantList.get(0).getAuteur_id();
 
-            List<HaaltAf> controleerHaaltAfLijst = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
-            if (controleerHaaltAfLijst.isEmpty()) {
+            List<SchrijftIn> controleerSchrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
+            if (controleerSchrijftInList.isEmpty()) {
                 HaaltAf haaltAf = new HaaltAf(klant_id, nieuwVerkoopt_id, hoogsteWeeknr, 0);
                 verkooptRepository.voegHaaltAfToe(haaltAf);
                 SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
                 verkooptRepository.voegSchrijftInToe(schrijftIn);
 
+                updateTeBetalenBedragVanKlanten();
                 BestaandeKlantController.getInstance().refreshTable();
+                BestaandeKlantController.getInstance().updateTeBetalenBedragVanKlanten();
                 Stage stage = (Stage) nieuwPakket_button.getScene().getWindow();
                 stage.close();
             } else {
@@ -177,6 +178,20 @@ public class NieuwPakketKlantController {
     public void getKlantNaam(String klantNaam) {
         this.klantNaam = klantNaam;
         refreshItems();
+    }
+
+    public void updateTeBetalenBedragVanKlanten() {
+        List<Integer> verkooptPrijsList = verkooptRepository.getVerkooptPrijzenByName(klantNaam);
+        int nieuwTotaleTeBetalenBedrag = 0;
+        for (Integer prijs: verkooptPrijsList) {
+            nieuwTotaleTeBetalenBedrag = nieuwTotaleTeBetalenBedrag + prijs;
+        }
+        List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
+        Klant klant = klantList.get(0);
+
+        klant.setKlant_teBetalenBedrag(nieuwTotaleTeBetalenBedrag);
+
+        klantRepository.updateKlant(klant);
     }
 
 }

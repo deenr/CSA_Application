@@ -35,6 +35,16 @@ public class AuteurRepositoryJdbi3Impl implements AuteurRepository {
     }
 
     @Override
+    public List<Auteur> getAuteurByID(int id) {
+        var query = "SELECT * FROM Auteur WHERE auteur_id = '" + id + "'";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(Auteur.class)
+                    .list();
+        });
+    }
+
+    @Override
     public void saveNewAuteur(Auteur auteur) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("INSERT INTO Auteur(auteur_naam) VALUES (?)")

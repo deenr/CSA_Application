@@ -7,6 +7,7 @@ import java.util.List;
 public interface VerkooptRepository {
 
     List<Verkoopt> getVerkooptByBoerAndPakket(int auteur_id, int pakket_id);
+    void wijzigVerkoopt(Verkoopt verkoopt);
     void wijzigSchrijftIn(SchrijftIn schrijftIn);
     void wijzigHaaltAf(WijzigHaaltAf wijzigHaaltAf);
     List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
@@ -17,5 +18,6 @@ public interface VerkooptRepository {
     void verwijderHaaltAf(HaaltAf haaltAf);
     void verwijderSchrijftIn(SchrijftIn schrijftIn);
     void maakNieuweVerkooptAan(Verkoopt verkoopt);
+    List<Integer> getVerkooptPrijzenByName(String naam);
 
 }

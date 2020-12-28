@@ -41,6 +41,7 @@ public class BestaandeKlantController {
     private static BestaandeKlantController instance;
     public Text title;
     public Button afTeHalenPakketten_button;
+    public Text teBetalenBedrag_text;
 
     public BestaandeKlantController() {
         instance = this;
@@ -154,6 +155,8 @@ public class BestaandeKlantController {
                 System.out.println("Verwijderd uit database: " + teVerwijderenHaalftAf.toString());*/
                 verkooptRepository.verwijderSchrijftIn(teVerwijderenSchrijftIn);
                 System.out.println("Verwijderd uit database: " + teVerwijderenSchrijftIn.toString());
+
+                updateTeBetalenBedragVanKlanten();
                 refreshTable();
             } else {
                 showAlert("Error!", "Er is iets fout gegaan, probeer het opnieuw");
@@ -168,6 +171,7 @@ public class BestaandeKlantController {
     public void getNaamVanBestaandeKlant(String naam) {
         this.klantNaam = naam;
         refreshTable();
+        updateTeBetalenBedragVanKlanten();
     }
 
     private void showSchermNieuwPakket(String id) {
@@ -245,5 +249,21 @@ public class BestaandeKlantController {
             return;
         }
         showSchermWijzigPakket("wijzig_pakket_klant", bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedIndex());
+    }
+
+    public void updateTeBetalenBedragVanKlanten() {
+        List<Integer> verkooptPrijsList = verkooptRepository.getVerkooptPrijzenByName(klantNaam);
+        int nieuwTotaleTeBetalenBedrag = 0;
+        for (Integer prijs : verkooptPrijsList) {
+            nieuwTotaleTeBetalenBedrag = nieuwTotaleTeBetalenBedrag + prijs;
+        }
+        List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
+        Klant klant = klantList.get(0);
+
+        klant.setKlant_teBetalenBedrag(nieuwTotaleTeBetalenBedrag);
+
+        klantRepository.updateKlant(klant);
+
+        teBetalenBedrag_text.setText("Te betalen bedrag: "+ nieuwTotaleTeBetalenBedrag);
     }
 }
