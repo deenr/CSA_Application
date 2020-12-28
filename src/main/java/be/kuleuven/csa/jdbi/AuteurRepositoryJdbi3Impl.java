@@ -51,7 +51,6 @@ public class AuteurRepositoryJdbi3Impl implements AuteurRepository {
                     .bind(0, auteur.getAuteur_naam())
                     .execute();
         });
-
     }
 
     @Override
@@ -61,6 +60,5 @@ public class AuteurRepositoryJdbi3Impl implements AuteurRepository {
                     .bind(0, auteur.getAuteur_naam())
                     .execute();
         });
-
     }
 }

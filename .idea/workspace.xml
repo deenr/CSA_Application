@@ -5,40 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfd0d4ab-3c2c-49af-b5fd-806ab20879cc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/ProductRepositoryJdbi3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/MainDatabase.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/MainDatabase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeBoerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeBoerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuwPakketKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuwPakketKlantController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/WijzigPakketKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/WijzigPakketKlantController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/bestaande_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/bestaande_boer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/klant_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/klant_main.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/csa_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/csa_database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/MainDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/MainDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeBoerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeBoerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeKlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeKlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/NieuwPakketKlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/NieuwPakketKlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/WijzigPakketKlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/WijzigPakketKlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/AuteurRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/AuteurRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/KlantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/KlantRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/VerkooptRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/VerkooptRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/AuteurRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/AuteurRepositoryJdbi3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/KlantRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/KlantRepositoryJdbi3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/PakketRepositoryJdbi3Impl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/VerkooptRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/VerkooptRepositoryJdbi3Impl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/bestaande_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bestaande_boer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bestaande_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bestaande_klant.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/klant_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/klant_main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,22 +243,22 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609174940955" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609175036671">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609178461257">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609175036671" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609175036670">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461257" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609178461256">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609175036670" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609175036669">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461256" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609178461256">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609175036669" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609175036671">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461256" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609178461257">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609175036671" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609178461257" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609172711271">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
