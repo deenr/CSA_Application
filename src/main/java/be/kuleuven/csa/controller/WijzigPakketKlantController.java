@@ -2,14 +2,12 @@ package be.kuleuven.csa.controller;
 
 import be.kuleuven.csa.MainDatabase;
 import be.kuleuven.csa.domain.*;
+import be.kuleuven.csa.domain.helpdomain.WijzigHaaltAf;
 import be.kuleuven.csa.jdbi.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
@@ -125,7 +123,8 @@ public class WijzigPakketKlantController {
                 List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
                 HaaltAf haaltAf = haaltAfList.get(0);
                 haaltAf.setVerkoopt_id(nieuwVerkoopt_id);
-                verkooptRepository.wijzigHaaltAf(haaltAf);
+                WijzigHaaltAf nieuweHaaltAf = new WijzigHaaltAf(nieuwVerkoopt_id,klant_id,oudeVerkoopt_id);
+                verkooptRepository.wijzigHaaltAf(nieuweHaaltAf);
 
                 List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
                 SchrijftIn schrijftIn = schrijftInList.get(0);

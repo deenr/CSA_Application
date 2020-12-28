@@ -40,7 +40,7 @@ public class NieuweBoerController {
                 insertNieuweBoer_prijsM.getText().isEmpty() || insertNieuweBoer_prijsG.getText().isEmpty() ||
                 insertNieuweBoer_prijsF.getText().isEmpty()
         ){
-            showAlert("Warning","Gelieven beide velden in te vullen");
+            showAlert("Warning","Gelieven alle velden in te vullen");
         }
         else{
             try {

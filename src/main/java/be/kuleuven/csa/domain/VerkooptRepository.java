@@ -1,12 +1,14 @@
 package be.kuleuven.csa.domain;
 
+import be.kuleuven.csa.domain.helpdomain.WijzigHaaltAf;
+
 import java.util.List;
 
 public interface VerkooptRepository {
 
     List<Verkoopt> getVerkooptByBoerAndPakket(int auteur_id, int pakket_id);
     void wijzigSchrijftIn(SchrijftIn schrijftIn);
-    void wijzigHaaltAf(HaaltAf haaltAf);
+    void wijzigHaaltAf(WijzigHaaltAf wijzigHaaltAf);
     List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
     List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
     List<Verkoopt> getVerkooptByKlantName(String naam);

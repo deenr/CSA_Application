@@ -97,7 +97,10 @@ public class NieuwPakketKlantController {
 
         String selectedBoer = nieuwPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
         String selectedPakket = nieuwPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
-        if (selectedBoer != null && selectedPakket != null) {
+
+        if (selectedBoer == null || selectedPakket == null){
+            showAlert("Warning!", "Gelieve alle velden aan te duiden");
+        } else {
             System.out.println(selectedBoer + " " + selectedPakket);
             List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
             int boer_id = boerList.get(0).getAuteur_id();
@@ -120,6 +123,11 @@ public class NieuwPakketKlantController {
                 if (hoogsteWeeknr < zI.getZitIn_weeknr()) {
                     hoogsteWeeknr = zI.getZitIn_weeknr();
                 }
+            }
+
+            if (hoogsteWeeknr == 0){
+                showAlert("Warning!", "Deze boer heeft nog geen pakketten");
+                return;
             }
 
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);

@@ -75,14 +75,6 @@ public class BestaandeKlantController {
         colPrijs.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getVerkoopt_prijs()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colPrijs);
 
-        TableColumn<DataVoorKlantTableView, Integer> colWeeknr = new TableColumn<>("Weeknr");
-        colWeeknr.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_weeknr()));
-        bestaandeKlantPakketten_Tbl.getColumns().add(colWeeknr);
-
-        TableColumn<DataVoorKlantTableView, Integer> colAfgehaald = new TableColumn<>("Afgehaald");
-        colAfgehaald.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_afgehaald()));
-        bestaandeKlantPakketten_Tbl.getColumns().add(colAfgehaald);
-
         TableColumn<DataVoorKlantTableView, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
         colAantalVolwassenen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalVolwassenen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalVolwassenen);
@@ -145,7 +137,7 @@ public class BestaandeKlantController {
             List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, verkoopt_id);
             HaaltAf teVerwijderenHaalftAf = null;
             for (HaaltAf hA : haaltAfList) {
-                if (hA.getAuteur_id() == klant_id && hA.getVerkoopt_id() == verkoopt_id && hA.getPakket_weeknr() == pakketBoerVoorTable.getPakket_weeknr()) {
+                if (hA.getAuteur_id() == klant_id && hA.getVerkoopt_id() == verkoopt_id) {
                     teVerwijderenHaalftAf = hA;
                 }
             }

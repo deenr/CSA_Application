@@ -1,6 +1,7 @@
 package be.kuleuven.csa.jdbi;
 
 import be.kuleuven.csa.domain.*;
+import be.kuleuven.csa.domain.helpdomain.WijzigHaaltAf;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
@@ -36,14 +37,12 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public void wijzigHaaltAf(HaaltAf haaltAf) {
+    public void wijzigHaaltAf(WijzigHaaltAf wijzigHaaltAf) {
         jdbi.useHandle(handle -> {
-            handle.createUpdate("UPDATE HaaltAf SET verkoopt_id = ?, pakket_weeknr = ?, pakket_afgehaald = ? WHERE auteur_id = ? AND haaltAf_id = ?")
-                    .bind(0, haaltAf.getVerkoopt_id())
-                    .bind(1, haaltAf.getPakket_weeknr())
-                    .bind(2, haaltAf.getPakket_afgehaald())
-                    .bind(3, haaltAf.getAuteur_id())
-                    .bind(4, haaltAf.getHaaltAf_id())
+            handle.createUpdate("UPDATE HaaltAf SET verkoopt_id = ? WHERE auteur_id = ? AND verkoopt_id = ?")
+                    .bind(0, wijzigHaaltAf.getNieuweVerkoop_id())
+                    .bind(1, wijzigHaaltAf.getAuteur_id())
+                    .bind(2, wijzigHaaltAf.getOudeVerkoop_id())
                     .execute();
         });
     }
@@ -105,7 +104,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
         int pakket_weeknr = haaltAf.getPakket_weeknr();
         int pakket_afgehaald = haaltAf.getPakket_afgehaald();
         jdbi.useHandle(handle -> {
-            handle.createUpdate("DELETE FROM HaaltAf WHERE auteur_id = " + auteur_id + " AND verkoopt_id = " + verkoopt_id + " AND pakket_weeknr = " + pakket_weeknr + " AND pakket_afgehaald = " + pakket_afgehaald + " ;")
+            handle.createUpdate("DELETE FROM HaaltAf WHERE auteur_id = " + auteur_id + " AND verkoopt_id = " + verkoopt_id  + " ;")
                     .execute();
         });
     }

@@ -16,6 +16,9 @@ public class CSAMainController {
     public Button bekijkKooptips_button;
 
     public void initialize() {
+        System.out.println("java version: "+System.getProperty("java.version"));
+        System.out.println("javafx.version: " + System.getProperty("javafx.version"));
+
         ikBenEenKlant_button.setOnAction(e -> showScherm("klant_main"));
         ikBenEenBoer_button.setOnAction(e -> showScherm("boer_main"));
         ikBenEenAdmin_button.setOnAction(e -> showScherm("admin_main"));
