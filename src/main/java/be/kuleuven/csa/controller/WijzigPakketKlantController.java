@@ -118,13 +118,13 @@ public class WijzigPakketKlantController {
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
             int klant_id = klantList.get(0).getAuteur_id();
 
-            List<HaaltAf> controleerHaaltAfLijst = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
-            if (controleerHaaltAfLijst.isEmpty()) {
-                List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
+            List<SchrijftIn> controleerSchrijftInLijst = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
+            if (controleerSchrijftInLijst.isEmpty()) {
+                /*List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
                 HaaltAf haaltAf = haaltAfList.get(0);
                 haaltAf.setVerkoopt_id(nieuwVerkoopt_id);
                 WijzigHaaltAf nieuweHaaltAf = new WijzigHaaltAf(nieuwVerkoopt_id,klant_id,oudeVerkoopt_id);
-                verkooptRepository.wijzigHaaltAf(nieuweHaaltAf);
+                verkooptRepository.wijzigHaaltAf(nieuweHaaltAf);*/
 
                 List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
                 SchrijftIn schrijftIn = schrijftInList.get(0);

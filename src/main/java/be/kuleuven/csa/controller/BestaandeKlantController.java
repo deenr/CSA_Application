@@ -3,7 +3,7 @@ package be.kuleuven.csa.controller;
 import be.kuleuven.csa.CSAMain;
 import be.kuleuven.csa.MainDatabase;
 import be.kuleuven.csa.domain.*;
-import be.kuleuven.csa.domain.helpdomain.DataVoorKlantTableView;
+import be.kuleuven.csa.domain.helpdomain.DataVoorAbonnementenTableView;
 import be.kuleuven.csa.jdbi.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,6 @@ import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -30,7 +29,7 @@ public class BestaandeKlantController {
     public Button nieuwPakketBestellen_button;
     public Button wijzigPakket_button;
     public Button verwijderPakket_button;
-    public TableView<DataVoorKlantTableView> bestaandeKlantPakketten_Tbl;
+    public TableView<DataVoorAbonnementenTableView> bestaandeKlantPakketten_Tbl;
 
     public String klantNaam;
 
@@ -41,6 +40,7 @@ public class BestaandeKlantController {
 
     private static BestaandeKlantController instance;
     public Text title;
+    public Button afTeHalenPakketten_button;
 
     public BestaandeKlantController() {
         instance = this;
@@ -56,6 +56,7 @@ public class BestaandeKlantController {
         wijzigPakket_button.setOnAction(e -> isEenRijSelecteerd());
         nieuwPakketBestellen_button.setOnAction(e -> showSchermNieuwPakket("nieuw_pakket_klant"));
         verwijderPakket_button.setOnAction(e -> verwijderPakket());
+        afTeHalenPakketten_button.setOnAction(e -> showSchermAfTeHalenPakketten("aftehalen_pakketten_klant"));
 
         bestaandeKlantPakketten_Tbl.getColumns().clear();
 
@@ -63,23 +64,23 @@ public class BestaandeKlantController {
         colPakket_id.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_id()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);*/
 
-        TableColumn<DataVoorKlantTableView, String> colNaam = new TableColumn<>("Soort Pakket");
+        TableColumn<DataVoorAbonnementenTableView, String> colNaam = new TableColumn<>("Soort Pakket");
         colNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colNaam);
 
-        TableColumn<DataVoorKlantTableView, String> colBoer = new TableColumn<>("Boer");
+        TableColumn<DataVoorAbonnementenTableView, String> colBoer = new TableColumn<>("Boer");
         colBoer.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getAuteur_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colBoer);
 
-        TableColumn<DataVoorKlantTableView, Integer> colPrijs = new TableColumn<>("Prijs");
+        TableColumn<DataVoorAbonnementenTableView, Integer> colPrijs = new TableColumn<>("Prijs");
         colPrijs.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getVerkoopt_prijs()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colPrijs);
 
-        TableColumn<DataVoorKlantTableView, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
+        TableColumn<DataVoorAbonnementenTableView, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
         colAantalVolwassenen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalVolwassenen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalVolwassenen);
 
-        TableColumn<DataVoorKlantTableView, Integer> colAantalKinderen = new TableColumn<>("Aantal Kinderen");
+        TableColumn<DataVoorAbonnementenTableView, Integer> colAantalKinderen = new TableColumn<>("Aantal Kinderen");
         colAantalKinderen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalKinderen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalKinderen);
 
@@ -89,8 +90,8 @@ public class BestaandeKlantController {
     public void refreshTable() {
         bestaandeKlantPakketten_Tbl.getItems().clear();
 
-        List<DataVoorKlantTableView> pakketBoerVoorTableList = pakketRepository.getDataForKlantTableViewByKlantName(klantNaam);
-        for (DataVoorKlantTableView p : pakketBoerVoorTableList) {
+        List<DataVoorAbonnementenTableView> pakketBoerVoorTableList = pakketRepository.getDataForAbonnementenTableViewByKlantName(klantNaam);
+        for (DataVoorAbonnementenTableView p : pakketBoerVoorTableList) {
             bestaandeKlantPakketten_Tbl.getItems().add(p);
         }
     }
@@ -120,7 +121,7 @@ public class BestaandeKlantController {
 
     private void verwijderPakket() {
         System.out.println("verwijderknop");
-        DataVoorKlantTableView pakketBoerVoorTable = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem();
+        DataVoorAbonnementenTableView pakketBoerVoorTable = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem();
         if (pakketBoerVoorTable != null) {
             int pakket_id = pakketBoerVoorTable.getPakket_id();
             String boer_naam = pakketBoerVoorTable.getAuteur_naam();
@@ -134,13 +135,13 @@ public class BestaandeKlantController {
             List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
             int verkoopt_id = verkooptList.get(0).getVerkoopt_id();
 
-            List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, verkoopt_id);
+            /*List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, verkoopt_id);
             HaaltAf teVerwijderenHaalftAf = null;
             for (HaaltAf hA : haaltAfList) {
                 if (hA.getAuteur_id() == klant_id && hA.getVerkoopt_id() == verkoopt_id) {
                     teVerwijderenHaalftAf = hA;
                 }
-            }
+            }*/
             List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, verkoopt_id);
             SchrijftIn teVerwijderenSchrijftIn = null;
             for (SchrijftIn sI : schrijftInList) {
@@ -148,9 +149,9 @@ public class BestaandeKlantController {
                     teVerwijderenSchrijftIn = sI;
                 }
             }
-            if (teVerwijderenHaalftAf != null && teVerwijderenSchrijftIn != null) {
-                verkooptRepository.verwijderHaaltAf(teVerwijderenHaalftAf);
-                System.out.println("Verwijderd uit database: " + teVerwijderenHaalftAf.toString());
+            if (teVerwijderenSchrijftIn != null) {
+                /*verkooptRepository.verwijderHaaltAf(teVerwijderenHaalftAf);
+                System.out.println("Verwijderd uit database: " + teVerwijderenHaalftAf.toString());*/
                 verkooptRepository.verwijderSchrijftIn(teVerwijderenSchrijftIn);
                 System.out.println("Verwijderd uit database: " + teVerwijderenSchrijftIn.toString());
                 refreshTable();
@@ -179,6 +180,29 @@ public class BestaandeKlantController {
 
             NieuwPakketKlantController nieuwPakketKlantController = loader.getController();
             nieuwPakketKlantController.getKlantNaam(klantNaam);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
+    }
+
+    private void showSchermAfTeHalenPakketten(String id) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
+
+            AfTeHalenPakkettenKlantController afTeHalenPakkettenKlantController = loader.getController();
+            afTeHalenPakkettenKlantController.getKlantNaam(klantNaam);
 
             var scene = new Scene(root);
             stage.setScene(scene);

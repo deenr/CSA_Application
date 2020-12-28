@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.BestaandeBoerController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.BestaandeBoerController">
    <children>
-      <Text layoutX="289.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login gelukt" />
+      <Text layoutX="267.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login gelukt" />
+      <Button fx:id="nieuweWeekPakkettenToevoegenBoer_button" layoutX="81.0" layoutY="147.0" mnemonicParsing="false" text="Nieuw weekpakket aanmaken" />
+      <Button fx:id="productToevoegenBoer_button" layoutX="81.0" layoutY="242.0" mnemonicParsing="false" text="Product toevoegen" />
+      <Button fx:id="klantenBekijkenBoer_button" layoutX="388.0" layoutY="147.0" mnemonicParsing="false" text="Klanten bekijken" />
+      <Button fx:id="pakketPrijsWijzingenBoer_button" layoutX="388.0" layoutY="242.0" mnemonicParsing="false" text="Pakket prijs wijzigen" />
    </children>
 </AnchorPane>
