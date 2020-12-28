@@ -40,7 +40,6 @@ public class WijzigPakketKlantController {
         setUpRepo();
         refreshItems();
 
-
         wijzigPakket_button.setOnAction(e -> wijzigPakket());
     }
 

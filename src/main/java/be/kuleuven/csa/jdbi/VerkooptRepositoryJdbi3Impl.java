@@ -89,11 +89,33 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public void voegSchijftInToe(SchrijftIn schrijftIn) {
+    public void voegSchrijftInToe(SchrijftIn schrijftIn) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("INSERT INTO SchrijftIn(auteur_id,verkoopt_id) VALUES (?,?);")
                     .bind(0, schrijftIn.getAuteur_id())
                     .bind(1, schrijftIn.getVerkoopt_id())
+                    .execute();
+        });
+    }
+
+    @Override
+    public void verwijderHaaltAf(HaaltAf haaltAf) {
+        int auteur_id = haaltAf.getAuteur_id();
+        int verkoopt_id = haaltAf.getVerkoopt_id();
+        int pakket_weeknr = haaltAf.getPakket_weeknr();
+        int pakket_afgehaald = haaltAf.getPakket_afgehaald();
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("DELETE FROM HaaltAf WHERE auteur_id = " + auteur_id + " AND verkoopt_id = " + verkoopt_id + " AND pakket_weeknr = " + pakket_weeknr + " AND pakket_afgehaald = " + pakket_afgehaald + " ;")
+                    .execute();
+        });
+    }
+
+    @Override
+    public void verwijderSchrijftIn(SchrijftIn schrijftIn) {
+        int auteur_id = schrijftIn.getAuteur_id();
+        int verkoopt_id = schrijftIn.getVerkoopt_id();
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("DELETE FROM SchrijftIn WHERE auteur_id = " + auteur_id + " AND verkoopt_id = " + verkoopt_id + " ;")
                     .execute();
         });
     }

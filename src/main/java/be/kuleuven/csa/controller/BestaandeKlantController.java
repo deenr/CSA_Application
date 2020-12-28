@@ -2,15 +2,9 @@ package be.kuleuven.csa.controller;
 
 import be.kuleuven.csa.CSAMain;
 import be.kuleuven.csa.MainDatabase;
-import be.kuleuven.csa.domain.AuteurRepository;
-import be.kuleuven.csa.domain.KlantRepository;
-import be.kuleuven.csa.domain.Pakket;
-import be.kuleuven.csa.domain.PakketRepository;
-import be.kuleuven.csa.domain.helpdomain.PakketBoerVoorTable;
-import be.kuleuven.csa.jdbi.AuteurRepositoryJdbi3Impl;
-import be.kuleuven.csa.jdbi.ConnectionManager;
-import be.kuleuven.csa.jdbi.KlantRepositoryJdbi3Impl;
-import be.kuleuven.csa.jdbi.PakketRepositoryJdbi3Impl;
+import be.kuleuven.csa.domain.*;
+import be.kuleuven.csa.domain.helpdomain.DataVoorKlantTableView;
+import be.kuleuven.csa.jdbi.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +19,7 @@ import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -32,15 +27,16 @@ import java.util.List;
 
 public class BestaandeKlantController {
     public Button nieuwPakketBestellen_button;
-    public Button annuleerPakket_button;
     public Button wijzigPakket_button;
-    public TableView<PakketBoerVoorTable> bestaandeKlantPakketten_Tbl;
+    public Button verwijderPakket_button;
+    public TableView<DataVoorKlantTableView> bestaandeKlantPakketten_Tbl;
 
     public String klantNaam;
 
     private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
+    private static VerkooptRepository verkooptRepository;
 
     private static BestaandeKlantController instance;
 
@@ -57,26 +53,39 @@ public class BestaandeKlantController {
 
         wijzigPakket_button.setOnAction(e -> isEenRijSelecteerd());
         nieuwPakketBestellen_button.setOnAction(e -> showSchermNieuwPakket("nieuw_pakket_klant"));
+        verwijderPakket_button.setOnAction(e -> verwijderPakket());
 
         bestaandeKlantPakketten_Tbl.getColumns().clear();
 
-        TableColumn<PakketBoerVoorTable, Integer> colPakket_id = new TableColumn<>("Pakket_id");
+        TableColumn<DataVoorKlantTableView, Integer> colPakket_id = new TableColumn<>("Pakket_id");
         colPakket_id.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_id()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);
 
-        TableColumn<PakketBoerVoorTable, String> colNaam = new TableColumn<>("Naam");
+        TableColumn<DataVoorKlantTableView, String> colNaam = new TableColumn<>("Naam");
         colNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colNaam);
 
-        TableColumn<PakketBoerVoorTable, String> colBoer = new TableColumn<>("Boer");
+        TableColumn<DataVoorKlantTableView, String> colBoer = new TableColumn<>("Boer");
         colBoer.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getAuteur_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colBoer);
 
-        TableColumn<PakketBoerVoorTable, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
+        TableColumn<DataVoorKlantTableView, Integer> colPrijs = new TableColumn<>("Prijs");
+        colPrijs.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getVerkoopt_prijs()));
+        bestaandeKlantPakketten_Tbl.getColumns().add(colPrijs);
+
+        TableColumn<DataVoorKlantTableView, Integer> colWeeknr = new TableColumn<>("Weeknr");
+        colWeeknr.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_weeknr()));
+        bestaandeKlantPakketten_Tbl.getColumns().add(colWeeknr);
+
+        TableColumn<DataVoorKlantTableView, Integer> colAfgehaald = new TableColumn<>("Afgehaald");
+        colAfgehaald.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_afgehaald()));
+        bestaandeKlantPakketten_Tbl.getColumns().add(colAfgehaald);
+
+        TableColumn<DataVoorKlantTableView, Integer> colAantalVolwassenen = new TableColumn<>("Aantal Volwassenen");
         colAantalVolwassenen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalVolwassenen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalVolwassenen);
 
-        TableColumn<PakketBoerVoorTable, Integer> colAantalKinderen = new TableColumn<>("Aantal Kinderen");
+        TableColumn<DataVoorKlantTableView, Integer> colAantalKinderen = new TableColumn<>("Aantal Kinderen");
         colAantalKinderen.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_aantalKinderen()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colAantalKinderen);
 
@@ -86,8 +95,8 @@ public class BestaandeKlantController {
     public void refreshTable() {
         bestaandeKlantPakketten_Tbl.getItems().clear();
 
-        List<PakketBoerVoorTable> pakketBoerVoorTableList = pakketRepository.getPakketAndBoerByKlantName(klantNaam);
-        for (PakketBoerVoorTable p : pakketBoerVoorTableList) {
+        List<DataVoorKlantTableView> pakketBoerVoorTableList = pakketRepository.getDataForKlantTableViewByKlantName(klantNaam);
+        for (DataVoorKlantTableView p : pakketBoerVoorTableList) {
             bestaandeKlantPakketten_Tbl.getItems().add(p);
         }
     }
@@ -104,6 +113,7 @@ public class BestaandeKlantController {
         auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
+        verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
     public void showAlert(String title, String content) {
@@ -112,6 +122,52 @@ public class BestaandeKlantController {
         alert.setHeaderText(title);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    private void verwijderPakket() {
+        System.out.println("verwijderknop");
+        DataVoorKlantTableView pakketBoerVoorTable = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem();
+        if (pakketBoerVoorTable != null) {
+            int pakket_id = pakketBoerVoorTable.getPakket_id();
+            String boer_naam = pakketBoerVoorTable.getAuteur_naam();
+
+            List<Auteur> auteurList = auteurRepository.getAuteurByName(boer_naam);
+            int boer_id = auteurList.get(0).getAuteur_id();
+
+            List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
+            int klant_id = klantList.get(0).getAuteur_id();
+
+            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
+            int verkoopt_id = verkooptList.get(0).getVerkoopt_id();
+
+            List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, verkoopt_id);
+            HaaltAf teVerwijderenHaalftAf = null;
+            for (HaaltAf hA : haaltAfList) {
+                if (hA.getAuteur_id() == klant_id && hA.getVerkoopt_id() == verkoopt_id && hA.getPakket_weeknr() == pakketBoerVoorTable.getPakket_weeknr()) {
+                    teVerwijderenHaalftAf = hA;
+                }
+            }
+            List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, verkoopt_id);
+            SchrijftIn teVerwijderenSchrijftIn = null;
+            for (SchrijftIn sI : schrijftInList) {
+                if (sI.getAuteur_id() == klant_id && sI.getVerkoopt_id() == verkoopt_id) {
+                    teVerwijderenSchrijftIn = sI;
+                }
+            }
+            if (teVerwijderenHaalftAf != null && teVerwijderenSchrijftIn != null) {
+                verkooptRepository.verwijderHaaltAf(teVerwijderenHaalftAf);
+                System.out.println("Verwijderd uit database: " + teVerwijderenHaalftAf.toString());
+                verkooptRepository.verwijderSchrijftIn(teVerwijderenSchrijftIn);
+                System.out.println("Verwijderd uit database: " + teVerwijderenSchrijftIn.toString());
+                refreshTable();
+            } else {
+                showAlert("Error!", "Er is iets fout gegaan, probeer het opnieuw");
+            }
+
+        } else {
+            showAlert("Warning!", "Selecteer een pakket dat u wenst te wijzigen of te annuleren");
+        }
+
     }
 
     public void getNaamVanBestaandeKlant(String naam) {

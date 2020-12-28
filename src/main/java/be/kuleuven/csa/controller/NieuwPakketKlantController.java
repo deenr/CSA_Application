@@ -130,7 +130,7 @@ public class NieuwPakketKlantController {
                 HaaltAf haaltAf = new HaaltAf(klant_id, nieuwVerkoopt_id, hoogsteWeeknr, 0);
                 verkooptRepository.voegHaaltAfToe(haaltAf);
                 SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
-                verkooptRepository.voegSchijftInToe(schrijftIn);
+                verkooptRepository.voegSchrijftInToe(schrijftIn);
 
                 BestaandeKlantController.getInstance().refreshTable();
                 Stage stage = (Stage) nieuwPakket_button.getScene().getWindow();

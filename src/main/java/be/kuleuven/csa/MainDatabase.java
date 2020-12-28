@@ -1,19 +1,14 @@
 package be.kuleuven.csa;
 
 import be.kuleuven.csa.domain.*;
-import be.kuleuven.csa.domain.helpdomain.PakketBoerVoorTable;
 import be.kuleuven.csa.jdbi.*;
-import com.sun.tools.javac.Main;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
 public class MainDatabase {
     private static AuteurRepository auteurRepository;
@@ -49,7 +44,7 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        System.out.println(pakketRepository.getPakketAndBoerByKlantName("Dean"));
+        System.out.println(pakketRepository.getDataForKlantTableViewByKlantName("Dean"));
 
         //auteurRepository.saveNewAuteur(auteur);
 

@@ -11,5 +11,8 @@ public interface VerkooptRepository {
     List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
     List<Verkoopt> getVerkooptByKlantName(String naam);
     void voegHaaltAfToe(HaaltAf haaltAf);
-    void voegSchijftInToe(SchrijftIn schrijftIn);
+    void voegSchrijftInToe(SchrijftIn schrijftIn);
+    void verwijderHaaltAf(HaaltAf haaltAf);
+    void verwijderSchrijftIn(SchrijftIn schrijftIn);
+
 }
