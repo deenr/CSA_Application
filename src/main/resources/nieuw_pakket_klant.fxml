@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.NieuwPakketKlantController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.NieuwPakketKlantController">
     <children>
-        <Text layoutX="372.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs per jaar voor dit pakket" />
+        <Text layoutX="365.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs per jaar voor dit pakket" />
         <ChoiceBox fx:id="nieuwPakketKeuzeBoer_choice" layoutX="80.0" layoutY="137.0" prefWidth="150.0" />
         <Text layoutX="80.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boer" />
         <ChoiceBox fx:id="nieuwPakketKeuzePakket_choice" layoutX="80.0" layoutY="205.0" prefWidth="150.0" />
         <Text layoutX="81.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pakket type" />
-        <Text fx:id="nieuwPakketPrijsPakket_text" layoutX="372.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="€" />
+        <Text fx:id="nieuwPakketPrijsPakket_text" layoutX="365.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="..." />
         <Button fx:id="nieuwPakket_button" layoutX="268.0" layoutY="303.0" mnemonicParsing="false" text="Bevestig" />
         <Text layoutX="258.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nieuw pakket" />
     </children>

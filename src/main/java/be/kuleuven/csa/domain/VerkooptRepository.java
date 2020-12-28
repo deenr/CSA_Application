@@ -14,5 +14,6 @@ public interface VerkooptRepository {
     void voegSchrijftInToe(SchrijftIn schrijftIn);
     void verwijderHaaltAf(HaaltAf haaltAf);
     void verwijderSchrijftIn(SchrijftIn schrijftIn);
+    void maakNieuweVerkooptAan(Verkoopt verkoopt);
 
 }

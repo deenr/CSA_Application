@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
@@ -39,6 +40,7 @@ public class BestaandeKlantController {
     private static VerkooptRepository verkooptRepository;
 
     private static BestaandeKlantController instance;
+    public Text title;
 
     public BestaandeKlantController() {
         instance = this;
@@ -57,11 +59,11 @@ public class BestaandeKlantController {
 
         bestaandeKlantPakketten_Tbl.getColumns().clear();
 
-        TableColumn<DataVoorKlantTableView, Integer> colPakket_id = new TableColumn<>("Pakket_id");
+        /*TableColumn<DataVoorKlantTableView, Integer> colPakket_id = new TableColumn<>("Pakket_id");
         colPakket_id.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_id()));
-        bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);
+        bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);*/
 
-        TableColumn<DataVoorKlantTableView, String> colNaam = new TableColumn<>("Naam");
+        TableColumn<DataVoorKlantTableView, String> colNaam = new TableColumn<>("Soort Pakket");
         colNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colNaam);
 

@@ -119,4 +119,15 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
                     .execute();
         });
     }
+
+    @Override
+    public void maakNieuweVerkooptAan(Verkoopt verkoopt) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("INSERT INTO Verkoopt (auteur_id, pakket_id, verkoopt_prijs) VALUES (?,?,?);")
+                    .bind(0, verkoopt.getAuteur_id())
+                    .bind(1, verkoopt.getPakket_id())
+                    .bind(2,verkoopt.getVerkoopt_prijs())
+                    .execute();
+        });
+    }
 }

@@ -13,6 +13,7 @@ public class CSAMainController {
     public Button ikBenEenKlant_button;
     public Button ikBenEenBoer_button;
     public Button ikBenEenAdmin_button;
+    public Button bekijkKooptips_button;
 
     public void initialize() {
         ikBenEenKlant_button.setOnAction(e -> showScherm("klant_main"));
