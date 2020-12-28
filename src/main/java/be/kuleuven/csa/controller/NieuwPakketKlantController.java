@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
@@ -134,8 +135,8 @@ public class NieuwPakketKlantController {
 
             List<SchrijftIn> controleerSchrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
             if (controleerSchrijftInList.isEmpty()) {
-                HaaltAf haaltAf = new HaaltAf(klant_id, nieuwVerkoopt_id, hoogsteWeeknr, 0);
-                verkooptRepository.voegHaaltAfToe(haaltAf);
+                //HaaltAf haaltAf = new HaaltAf(klant_id, nieuwVerkoopt_id, hoogsteWeeknr, 0);
+                //verkooptRepository.voegHaaltAfToe(haaltAf);
                 SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
                 verkooptRepository.voegSchrijftInToe(schrijftIn);
 

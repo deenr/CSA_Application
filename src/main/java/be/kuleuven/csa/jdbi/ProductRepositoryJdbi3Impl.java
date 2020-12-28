@@ -34,4 +34,13 @@ public class ProductRepositoryJdbi3Impl implements ProductRepository {
                     .execute();
         });
     }
+
+    public List<String> getAlleProductenBySoort(String soort) {
+        var query = "SELECT product_naam FROM Product WHERE product_soort = '" + soort + "';";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapTo(String.class)
+                    .list();
+        });
+    }
 }

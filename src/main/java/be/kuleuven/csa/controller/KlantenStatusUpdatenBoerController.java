@@ -19,7 +19,7 @@ public class KlantenStatusUpdatenBoerController {
     public TextField statusPakketFormaatBoer_text;
     public TextField statusPakketWeeknummerBoer_text;
     public CheckBox statusPakketAfgehaaldBoer_checkBox;
-    public Button statusConfirmPakketAfgehaald_boer;
+    public Button statusConfirmPakketAfgehaaldBoer_button;
     public TableView<DataVoorVeranderdStatusPakket> afTeHalenPakkettenBoer_table;
     private String boerNaam;
 
@@ -32,7 +32,7 @@ public class KlantenStatusUpdatenBoerController {
     public void initialize() throws IOException {
         setUpRepo();
 
-        statusConfirmPakketAfgehaald_boer.setOnAction(e -> updateStatusVanPakket());
+        statusConfirmPakketAfgehaaldBoer_button.setOnAction(e -> updateStatusVanPakket());
         afTeHalenPakkettenBoer_table.setOnMouseClicked(e -> refreshSelectedData());
 
         afTeHalenPakkettenBoer_table.getColumns().clear();

@@ -123,7 +123,7 @@ INSERT INTO Product(product_naam, product_soort) VALUES ('Kipfilet', 'vlees');
 INSERT INTO Product(product_naam, product_soort) VALUES ('Buikspek', 'vlees');
 INSERT INTO Product(product_naam, product_soort) VALUES ('Biefstuk', 'vlees');
 INSERT INTO Product(product_naam, product_soort) VALUES ('Braadworst', 'vlees');
-INSERT INTO Product(product_naam, product_soort) VALUES ('Kipsaté', 'vlees');
+INSERT INTO Product(product_naam, product_soort) VALUES ('Kipsate', 'vlees');
 INSERT INTO Product(product_naam, product_soort) VALUES ('Paardenfilet', 'vlees');
 INSERT INTO Product(product_naam, product_soort) VALUES ('Lamskotelet', 'vlees');
 

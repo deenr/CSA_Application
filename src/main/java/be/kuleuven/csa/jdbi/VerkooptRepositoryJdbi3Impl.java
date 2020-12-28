@@ -26,6 +26,16 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
+    public List<Verkoopt> getVerkooptByBoer(int auteur_id) {
+        var query = "SELECT * FROM Verkoopt v WHERE v.auteur_id = " + auteur_id + ";";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(Verkoopt.class)
+                    .list();
+        });
+    }
+
+    @Override
     public void wijzigVerkoopt(Verkoopt verkoopt) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("UPDATE Verkoopt SET verkoopt_prijs = ? WHERE auteur_id = ? AND pakket_id = ?")

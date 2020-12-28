@@ -58,6 +58,7 @@ public class BestaandeBoerController {
         pakketPrijsWijzingenBoer_button.setOnAction(e -> wijzigPakketVeldenJuist());
         klantenBekijkenBoer_button.setOnAction(e -> showSchermBekijktKlanten("boer_bekijkt_klanten"));
         klantenStatusUpdatenBoer_button.setOnAction(e -> showSchermVeranderPakketStatus("klanten_status_updaten_boer"));
+        nieuweWeekPakkettenToevoegenBoer_button.setOnAction(e -> showSchermAanmaakWeekPakketten("nieuw_weekpakket_boer"));
 
         refreshItems();
     }
@@ -116,7 +117,7 @@ public class BestaandeBoerController {
 
     private void wijzigPakketVeldenJuist() {
         String selectedFormaat = wijzigenPakketFormaatBoer_choice.getSelectionModel().getSelectedItem();
-        if(selectedFormaat == null || wijzigenNieuwePrijsBoer_text.getText().isEmpty()) {
+        if (selectedFormaat == null || wijzigenNieuwePrijsBoer_text.getText().isEmpty()) {
             showWarning("Warning!", "Gelieve alle velden in te vullen bij pakket prijs wijziging");
         } else {
             try {
@@ -152,7 +153,7 @@ public class BestaandeBoerController {
         wijzingenOudePrijsBoer_text.setText("...");
         wijzigenNieuwePrijsBoer_text.setText("");
         showInformation("Succes!", "De prijs van het pakket is succesvol gewijzigd");
-}
+    }
 
     private static void setUpRepo() throws IOException {
         var databaseFile = new String(Files.readAllBytes(Paths.get(MainDatabase.DatabasePath)));
@@ -220,6 +221,29 @@ public class BestaandeBoerController {
 
             KlantenStatusUpdatenBoerController klantenStatusUpdatenBoerController = loader.getController();
             klantenStatusUpdatenBoerController.getBoerNaam(boerNaam);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
+    }
+
+    private void showSchermAanmaakWeekPakketten(String id) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
+
+            NieuwWeekpakketBoerController nieuwWeekpakketBoerController = loader.getController();
+            nieuwWeekpakketBoerController.getBoerNaam(boerNaam);
 
             var scene = new Scene(root);
             stage.setScene(scene);

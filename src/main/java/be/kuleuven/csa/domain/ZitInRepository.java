@@ -5,4 +5,5 @@ import java.util.List;
 public interface ZitInRepository {
 
     List<ZitIn> getAlleZitInByVerkoopID(int verkoop_id);
+    void voegZitInToe(ZitIn zitIn);
 }
