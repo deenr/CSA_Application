@@ -56,7 +56,8 @@ public class BestaandeBoerController {
 
         productToevoegenBoer_button.setOnAction(e -> voegProductToe());
         pakketPrijsWijzingenBoer_button.setOnAction(e -> wijzigPakketVeldenJuist());
-        klantenBekijkenBoer_button.setOnAction(e -> showScherm("boer_bekijkt_klanten"));
+        klantenBekijkenBoer_button.setOnAction(e -> showSchermBekijktKlanten("boer_bekijkt_klanten"));
+        klantenStatusUpdatenBoer_button.setOnAction(e -> showSchermVeranderPakketStatus("klanten_status_updaten_boer"));
 
         refreshItems();
     }
@@ -186,7 +187,7 @@ public class BestaandeBoerController {
         alert.showAndWait();
     }
 
-    private void showScherm(String id) {
+    private void showSchermBekijktKlanten(String id) {
         var resourceName = id + ".fxml";
         try {
             var stage = new Stage();
@@ -196,6 +197,29 @@ public class BestaandeBoerController {
 
             BoerBekijktKlantenController boerBekijktKlantenController = loader.getController();
             boerBekijktKlantenController.getBoerNaam(boerNaam);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
+    }
+
+    private void showSchermVeranderPakketStatus(String id) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
+
+            KlantenStatusUpdatenBoerController klantenStatusUpdatenBoerController = loader.getController();
+            klantenStatusUpdatenBoerController.getBoerNaam(boerNaam);
 
             var scene = new Scene(root);
             stage.setScene(scene);

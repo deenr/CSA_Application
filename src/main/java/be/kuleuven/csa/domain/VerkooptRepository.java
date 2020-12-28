@@ -9,7 +9,7 @@ public interface VerkooptRepository {
     List<Verkoopt> getVerkooptByBoerAndPakket(int auteur_id, int pakket_id);
     void wijzigVerkoopt(Verkoopt verkoopt);
     void wijzigSchrijftIn(SchrijftIn schrijftIn);
-    void wijzigHaaltAf(WijzigHaaltAf wijzigHaaltAf);
+    void wijzigHaaltAf(HaaltAf haaltAf);
     List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
     List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
     List<Verkoopt> getVerkooptByKlantName(String naam);

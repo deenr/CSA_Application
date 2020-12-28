@@ -49,12 +49,12 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public void wijzigHaaltAf(WijzigHaaltAf wijzigHaaltAf) {
+    public void wijzigHaaltAf(HaaltAf haaltAf) {
         jdbi.useHandle(handle -> {
-            handle.createUpdate("UPDATE HaaltAf SET verkoopt_id = ? WHERE auteur_id = ? AND verkoopt_id = ?")
-                    .bind(0, wijzigHaaltAf.getNieuweVerkoop_id())
-                    .bind(1, wijzigHaaltAf.getAuteur_id())
-                    .bind(2, wijzigHaaltAf.getOudeVerkoop_id())
+            handle.createUpdate("UPDATE HaaltAf SET pakket_afgehaald = ? WHERE auteur_id = ? AND verkoopt_id = ?")
+                    .bind(0, haaltAf.getPakket_afgehaald())
+                    .bind(1, haaltAf.getAuteur_id())
+                    .bind(2, haaltAf.getVerkoopt_id())
                     .execute();
         });
     }

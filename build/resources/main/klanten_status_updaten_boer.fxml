@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.KlantenStatusUpdatenBoerController">
+    <children>
+        <TableView fx:id="afTeHalenPakkettenBoer_table" layoutX="14.0" layoutY="14.0" prefHeight="283.0" prefWidth="574.0">
+            <columns>
+                <TableColumn prefWidth="287.0" text="C1" />
+                <TableColumn prefWidth="286.0" text="C2" />
+            </columns>
+        </TableView>
+        <TextField fx:id="statusKlantNaamBoer_text" editable="false" layoutX="14.0" layoutY="328.0" prefHeight="25.0" prefWidth="100.0" />
+        <TextField fx:id="statusPakketFormaatBoer_text" editable="false" layoutX="142.0" layoutY="328.0" prefHeight="25.0" prefWidth="100.0" />
+        <TextField fx:id="statusPakketWeeknummerBoer_text" editable="false" layoutX="265.0" layoutY="328.0" prefHeight="25.0" prefWidth="100.0" />
+        <CheckBox fx:id="statusPakketAfgehaaldBoer_checkBox" alignment="CENTER" contentDisplay="CENTER" layoutX="390.0" layoutY="328.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
+            <cursor>
+                <Cursor fx:constant="DEFAULT" />
+            </cursor>
+        </CheckBox>
+        <Text layoutX="14.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naam" />
+        <Text layoutX="142.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pakket formaat" />
+        <Text layoutX="265.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Weeknummer" />
+        <Text layoutX="391.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Afgehaald" />
+        <Button fx:id="statusConfirmPakketAfgehaaldBoer_button" layoutX="498.0" layoutY="328.0" mnemonicParsing="false" text="Confirm" />
+    </children>
+</AnchorPane>
