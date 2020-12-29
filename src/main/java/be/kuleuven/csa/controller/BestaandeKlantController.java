@@ -29,6 +29,8 @@ public class BestaandeKlantController {
     public Button nieuwPakketBestellen_button;
     public Button wijzigPakket_button;
     public Button verwijderPakket_button;
+    public Button afTeHalenPakketten_button;
+    public Button tipToevoegenKlant_button;
     public TableView<DataVoorAbonnementenTableView> bestaandeKlantPakketten_Tbl;
 
     public String klantNaam;
@@ -39,8 +41,6 @@ public class BestaandeKlantController {
     private static VerkooptRepository verkooptRepository;
 
     private static BestaandeKlantController instance;
-    public Text title;
-    public Button afTeHalenPakketten_button;
     public Text teBetalenBedrag_text;
 
     public BestaandeKlantController() {

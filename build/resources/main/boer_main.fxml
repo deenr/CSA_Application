@@ -6,17 +6,57 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.BoerMainController">
-
-
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.BoerMainController">
     <children>
-        <Text layoutX="213.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boer Menu" underline="true">
-         <font>
-            <Font size="36.0" />
-         </font></Text>
-      <Button fx:id="nieuweBoer_button" layoutX="128.0" layoutY="173.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="91.0" text="Nieuwe Boer" />
-      <Text layoutX="395.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bestaande boer" />
-      <TextField fx:id="bestaandeBoer_naam" layoutX="362.0" layoutY="206.0" promptText="Naam" />
-      <Button fx:id="bestaandeBoerLogin_button" layoutX="404.0" layoutY="245.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="66.0" text="Login" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE"
+                   strokeWidth="0.0" width="600.0">
+            <fill>
+                <LinearGradient endX="0.5238095238095238" startX="0.49523809523809526">
+                    <stops>
+                        <Stop color="#1370bc"/>
+                        <Stop color="#0f5586" offset="1.0"/>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+
+        <Text fill="WHITE" layoutX="118.0" layoutY="133.0" stroke="#ffffff00" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="BOER MENU" textAlignment="CENTER" wrappingWidth="365.8828125" AnchorPane.topAnchor="94.15234375">
+            <font>
+                <Font name="System Bold" size="36.0"/>
+            </font>
+        </Text>
+
+        <Button fx:id="nieuweBoer_button" alignment="CENTER" layoutX="51.0" layoutY="281.0" mnemonicParsing="false"
+                prefHeight="25.0" prefWidth="212.0" style="-fx-background-color: #0f406b;" text="REGISTREER"
+                textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Button fx:id="bestaandeBoerLogin_button" alignment="CENTER" layoutX="310.0" layoutY="281.0"
+                mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0" style="-fx-background-color: #0f406b;"
+                text="LOGIN" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Button>
+        <Text fill="WHITE" layoutX="312.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naam">
+            <font>
+                <Font name="System Bold" size="12.0"/>
+            </font>
+        </Text>
+        <TextField fx:id="bestaandeBoer_naam" layoutX="371.0" layoutY="232.0" prefWidth="149.0"/>
+        <Text fill="WHITE" layoutX="90.0" layoutY="251.0" stroke="#ffffff00" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="NIEUWE BOER" textAlignment="CENTER" AnchorPane.topAnchor="231.0">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Text>
+
     </children>
 </AnchorPane>

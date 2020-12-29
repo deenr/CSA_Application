@@ -31,6 +31,7 @@ public class BestaandeBoerController {
     public Button nieuweWeekPakkettenToevoegenBoer_button;
     public Button klantenBekijkenBoer_button;
     public Button klantenStatusUpdatenBoer_button;
+    public Button toevoegenTipBoer_button;
 
     public Button productToevoegenBoer_button;
     public ChoiceBox<String> nieuwProductSoortBoer_choice;
@@ -259,7 +260,7 @@ public class BestaandeBoerController {
 
     public void getNaamVanBestaandeBoer(String naam) {
         this.boerNaam = naam;
-        welkomTitel_boer.setText("Welkom " + boerNaam + "!");
+        welkomTitel_boer.setText("WELKOM " + boerNaam.toUpperCase() + "");
         refreshItems();
     }
 

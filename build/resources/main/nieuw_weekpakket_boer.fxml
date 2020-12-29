@@ -2,59 +2,198 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.NieuwWeekpakketBoerController">
-   <children>
-      <ChoiceBox fx:id="mediumGroenten1_choice" layoutX="53.0" layoutY="95.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="grootGroenten1_choice" layoutX="243.0" layoutY="95.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="mediumGroenten2_choice" layoutX="53.0" layoutY="145.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="mediumFruit_choice" layoutX="53.0" layoutY="195.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="mediumVlees_choice" layoutX="53.0" layoutY="245.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="mediumBloemen_choice" layoutX="53.0" layoutY="295.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="grootGroenten2_choice" layoutX="243.0" layoutY="145.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="grootFruit_choice" layoutX="243.0" layoutY="195.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="grootVlees_choice" layoutX="243.0" layoutY="245.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="grootBloemen_choice" layoutX="243.0" layoutY="295.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="famGroenten1_choice" layoutX="433.0" layoutY="95.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="famGroenten2_choice" layoutX="433.0" layoutY="145.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="famFruit_choice" layoutX="433.0" layoutY="195.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="famVlees_choice" layoutX="433.0" layoutY="245.0" prefHeight="25.0" prefWidth="110.0" />
-      <ChoiceBox fx:id="famBloemen_choice" layoutX="433.0" layoutY="295.0" prefHeight="25.0" prefWidth="110.0" />
-      <Text layoutX="53.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten" />
-      <Text layoutX="53.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten" />
-      <Text layoutX="53.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fruit" />
-      <Text layoutX="53.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vlees" />
-      <Text layoutX="53.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bloemen" />
-      <Text layoutX="243.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten" />
-      <Text layoutX="243.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten" />
-      <Text layoutX="243.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fruit" />
-      <Text layoutX="243.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vlees" />
-      <Text layoutX="243.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bloemen" />
-      <Text layoutX="433.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten" />
-      <Text layoutX="433.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten" />
-      <Text layoutX="433.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fruit" />
-      <Text layoutX="433.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vlees" />
-      <Text layoutX="433.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bloemen" />
-      <Text layoutX="84.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIUM" />
-      <Text layoutX="278.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GROOT" />
-      <Text layoutX="458.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FAMILIE" />
-      <TextField fx:id="mediumAantalGroenten1_text" layoutX="163.0" layoutY="95.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="mediumAantalGroenten2_text" layoutX="163.0" layoutY="145.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="mediumAantalFruit_text" layoutX="163.0" layoutY="195.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="mediumAantalVlees_text" layoutX="163.0" layoutY="245.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="mediumAantalBloemen_text" layoutX="163.0" layoutY="295.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="grootAantalGroenten1_text" layoutX="353.0" layoutY="95.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="grootAantalGroenten2_text" layoutX="353.0" layoutY="145.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="grootAantalFruit_text" layoutX="353.0" layoutY="195.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="grootAantalVlees_text" layoutX="353.0" layoutY="245.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="grootAantalBloemen_text" layoutX="353.0" layoutY="295.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="famAantalGroenten1_text" layoutX="543.0" layoutY="95.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="famAantalGroenten2_text" layoutX="543.0" layoutY="145.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="famAantalFruit_text" layoutX="543.0" layoutY="195.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="famAantalVlees_text" layoutX="543.0" layoutY="245.0" prefHeight="25.0" prefWidth="25.0" />
-      <TextField fx:id="famAantalBloemen_text" layoutX="543.0" layoutY="295.0" prefHeight="25.0" prefWidth="25.0" />
-      <Button fx:id="voegPakkettenVanDeWeekToe_button" layoutX="199.0" layoutY="344.0" mnemonicParsing="false" text="Voeg pakketten van deze week toe" />
-      <Text fx:id="titelAanmakenPakketten_text" layoutX="139.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hier kan je nieuwe pakketten voor weeknummer ? aanmaken" />
-   </children>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="600.0">
+            <fill>
+                <LinearGradient endX="0.5" startX="0.5">
+                    <stops>
+                        <Stop color="#1370bc" />
+                        <Stop color="#0f5586" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="273.0" layoutX="202.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="6.0">
+            <fill>
+                <LinearGradient endX="0.5" endY="1.0" startX="0.46190476190476193" startY="0.44285714285714284">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.0972222238779068" green="0.47800925374031067" blue="0.75" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.09265350550413132" green="0.3379477262496948" blue="0.5131579041481018" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="273.0" layoutX="392.0" layoutY="57.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="6.0">
+            <fill>
+                <LinearGradient endX="0.5" endY="1.0" startX="0.46190476190476193" startY="0.44285714285714284">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.0972222238779068" green="0.47800925374031067" blue="0.75" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.09265350550413132" green="0.3379477262496948" blue="0.5131579041481018" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+
+        <ChoiceBox fx:id="mediumGroenten1_choice" layoutX="30.0" layoutY="106.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="grootGroenten1_choice" layoutX="220.0" layoutY="106.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="mediumGroenten2_choice" layoutX="29.0" layoutY="154.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="mediumFruit_choice" layoutX="30.0" layoutY="206.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="mediumVlees_choice" layoutX="30.0" layoutY="256.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="mediumBloemen_choice" layoutX="30.0" layoutY="306.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="grootGroenten2_choice" layoutX="220.0" layoutY="156.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="grootFruit_choice" layoutX="220.0" layoutY="206.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="grootVlees_choice" layoutX="220.0" layoutY="256.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="grootBloemen_choice" layoutX="220.0" layoutY="306.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="famGroenten1_choice" layoutX="410.0" layoutY="106.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="famGroenten2_choice" layoutX="410.0" layoutY="154.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="famFruit_choice" layoutX="410.0" layoutY="206.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="famVlees_choice" layoutX="410.0" layoutY="256.0" prefHeight="25.0" prefWidth="110.0" />
+        <ChoiceBox fx:id="famBloemen_choice" layoutX="410.0" layoutY="306.0" prefHeight="25.0" prefWidth="110.0" />
+
+        <Text fill="WHITE" layoutX="75.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEDIUM">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+
+        <Text fill="WHITE" layoutX="270.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GROOT">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+
+        <Text fill="WHITE" layoutX="450.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FAMILIE">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </Text>
+
+        <TextField fx:id="mediumAantalGroenten1_text" layoutX="152.0" layoutY="106.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="mediumAantalGroenten2_text" layoutX="152.0" layoutY="156.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="mediumAantalFruit_text" layoutX="152.0" layoutY="206.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="mediumAantalVlees_text" layoutX="152.0" layoutY="256.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="mediumAantalBloemen_text" layoutX="152.0" layoutY="306.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="grootAantalGroenten1_text" layoutX="342.0" layoutY="106.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="grootAantalGroenten2_text" layoutX="342.0" layoutY="156.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="grootAantalFruit_text" layoutX="342.0" layoutY="206.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="grootAantalVlees_text" layoutX="342.0" layoutY="256.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="grootAantalBloemen_text" layoutX="342.0" layoutY="306.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="famAantalGroenten1_text" layoutX="532.0" layoutY="106.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="famAantalGroenten2_text" layoutX="532.0" layoutY="154.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="famAantalFruit_text" layoutX="532.0" layoutY="206.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="famAantalVlees_text" layoutX="532.0" layoutY="256.0" prefHeight="25.0" prefWidth="40.0" />
+        <TextField fx:id="famAantalBloemen_text" layoutX="532.0" layoutY="306.0" prefHeight="25.0" prefWidth="40.0" />
+
+       <Text fx:id="titelAanmakenPakketten_text" fill="WHITE" layoutX="99.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hier kan je nieuwe pakketten voor weeknummer ? aanmaken">
+          <font>
+             <Font name="System Bold" size="14.0" />
+          </font>
+       </Text>
+
+        <Text fill="WHITE" layoutX="221.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="31.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="31.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="221.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="410.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="411.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Groenten">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="411.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fruit">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="31.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fruit">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="221.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fruit">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="411.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vlees">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="221.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vlees">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="31.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vlees">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="410.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bloemen">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="221.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bloemen">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="31.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bloemen">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+
+        <Button fx:id="voegPakkettenVanDeWeekToe_button" alignment="CENTER" layoutX="192.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="219.0" style="-fx-background-color: #0f406b;" text="Voeg pakketten van deze week toe" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+
+    </children>
 </AnchorPane>
