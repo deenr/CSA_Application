@@ -18,43 +18,43 @@
                 </LinearGradient>
             </fill>
         </Rectangle>
-        <Text fill="WHITE" layoutX="236.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mijn Pakketten">
+        <Text fill="WHITE" layoutX="222.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mijn abonnementen">
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Text>
-        <TableView fx:id="bestaandeKlantPakketten_Tbl" layoutX="14.0" layoutY="54.0" prefHeight="282.0" prefWidth="572.0">
+        <TableView fx:id="bestaandeKlantPakketten_Tbl" layoutX="14.0" layoutY="54.0" prefHeight="252.0" prefWidth="572.0">
             <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
             </columns>
         </TableView>
-        <Button fx:id="nieuwPakketBestellen_button" alignment="CENTER" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0f406b;" text="Nieuw Pakket" textFill="WHITE">
+        <Button fx:id="nieuwPakketBestellen_button" alignment="CENTER" layoutX="14.0" layoutY="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: #0f406b;" text="Nieuw Abonnement" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="verwijderPakket_button" alignment="CENTER" layoutX="266.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0f406b;" text="Verwijder Pakket" textFill="WHITE">
+        <Button fx:id="verwijderPakket_button" alignment="CENTER" layoutX="405.0" layoutY="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: #0f406b;" text="Verwijder Abonnement" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="wijzigPakket_button" alignment="CENTER" layoutX="140.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="116.0" style="-fx-background-color: #0f406b;" text="Wijzig Pakket" textFill="WHITE">
+        <Button fx:id="wijzigPakket_button" alignment="CENTER" layoutX="210.0" layoutY="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="181.0" style="-fx-background-color: #0f406b;" text="Wijzig Abonnement" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="afTeHalenPakketten_button" alignment="CENTER" layoutX="437.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" style="-fx-background-color: #0f406b;" text="Af te halen pakketten" textFill="WHITE">
+        <Button fx:id="afTeHalenPakketten_button" alignment="CENTER" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="279.0" style="-fx-background-color: #0f406b;" text="Af te halen pakketten" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Button fx:id="tipToevoegenKlant_button" alignment="CENTER" layoutX="477.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" style="-fx-background-color: #0f406b;" text="Tip toevoegen" textFill="WHITE">
+        <Button fx:id="tipToevoegenKlant_button" alignment="CENTER" layoutX="308.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="278.0" style="-fx-background-color: #0f406b;" text="Tip toevoegen" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Button>
-        <Text fx:id="teBetalenBedrag_text" fill="WHITE" layoutX="18.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Te betalen bedrag: ">
+        <Text fx:id="teBetalenBedrag_text" fill="WHITE" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Te betalen bedrag: ">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

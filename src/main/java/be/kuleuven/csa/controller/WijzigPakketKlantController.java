@@ -22,6 +22,8 @@ import java.util.List;
 public class WijzigPakketKlantController {
     private String klantNaam;
     private int selectedRow;
+    private String teWijzigenBoerNaam;
+    private String teWijzigenPakketSoort;
 
     public ChoiceBox<String> wijzigPakketKeuzeBoer_choice;
     public ChoiceBox<String> wijzigPakketKeuzePakket_choice;
@@ -47,6 +49,9 @@ public class WijzigPakketKlantController {
 
         wijzigPakketKeuzeBoer_choice.setItems(FXCollections.observableArrayList(boerNamen));
         wijzigPakketKeuzePakket_choice.setItems(FXCollections.observableArrayList(pakketFormaten));
+
+        wijzigPakketKeuzeBoer_choice.setValue(teWijzigenBoerNaam);
+        wijzigPakketKeuzePakket_choice.setValue(teWijzigenPakketSoort);
 
         wijzigPakketKeuzeBoer_choice.setOnAction((event) -> {
             String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
@@ -167,10 +172,21 @@ public class WijzigPakketKlantController {
         alert.showAndWait();
     }
 
-    public void getNaamEnGeselecteerdPakket(String klantNaam, int selectedRow) {
+    public void getNaamEnGeselecteerdPakket(String klantNaam, int selectedRow, String teWijzigenBoerNaam, String aangeduidPakketNaam) {
         this.klantNaam = klantNaam;
         this.selectedRow = selectedRow;
-        System.out.println(selectedRow);
+        this.teWijzigenBoerNaam = teWijzigenBoerNaam;
+        switch (aangeduidPakketNaam) {
+            case "Mediumpakket":
+                this.teWijzigenPakketSoort = "Medium";
+                break;
+            case "Grootpakket":
+                this.teWijzigenPakketSoort = "Groot";
+                break;
+            case "Familiepakket":
+                this.teWijzigenPakketSoort = "Familie";
+                break;
+        }
         refreshItems();
     }
 

@@ -13,26 +13,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeBoerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeBoerController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/WijzigPakketKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/WijzigPakketKlantController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/bestaande_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/bestaande_boer.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/bestaande_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/bestaande_klant.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/klanten_status_updaten_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/klanten_status_updaten_boer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/nieuwe_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/nieuwe_klant.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csa_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/csa_database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeBoerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeBoerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeKlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeKlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/admin_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/admin_main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bestaande_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bestaande_boer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/bestaande_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/bestaande_klant.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/boer_bekijkt_klanten.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/boer_bekijkt_klanten.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/boer_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/boer_main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/klanten_status_updaten_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/klanten_status_updaten_boer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/nieuw_pakket_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nieuw_pakket_klant.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/nieuw_weekpakket_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nieuw_weekpakket_boer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/nieuwe_boer.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nieuwe_boer.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/nieuwe_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/nieuwe_klant.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/wijzig_pakket_klant.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/wijzig_pakket_klant.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/WijzigPakketKlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/WijzigPakketKlantController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,38 +248,38 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="382" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609188193644" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609202083988">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609204396076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609202083988" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609202083988">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204396076" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609204396076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609202083988" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609202083988">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204396076" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609204396076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609202083988" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609202083988">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204396076" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609204396076">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609202083988" />
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609196313638">
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204396076" />
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609204208054">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609196313638" />
-    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1609196313637">
+    <state width="1877" height="352" key="GridCell.Tab.1.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204208054" />
+    <state width="1877" height="352" key="GridCell.Tab.1.center" timestamp="1609204208054">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609196313637" />
-    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1609196313637">
+    <state width="1877" height="352" key="GridCell.Tab.1.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204208054" />
+    <state width="1877" height="352" key="GridCell.Tab.1.left" timestamp="1609204208054">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609196313637" />
-    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1609196313638">
+    <state width="1877" height="352" key="GridCell.Tab.1.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204208054" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right" timestamp="1609204208054">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609196313638" />
+    <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609204208054" />
     <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1609187591365">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -307,11 +293,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeKlantController.java</url>
-          <line>256</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/KlantenStatusUpdatenBoerController.java</url>
           <line>59</line>
           <option name="timeStamp" value="7" />
@@ -324,6 +305,8 @@
       </configuration>
       <configuration name="Remote">
         <watch expression="oudeVerkooptList.get(0)" />
+        <watch expression="chars[0]" />
+        <watch expression="teWijzigenBoerNaam" />
       </configuration>
     </watches-manager>
   </component>

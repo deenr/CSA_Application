@@ -220,7 +220,7 @@ public class BestaandeKlantController {
         }
     }
 
-    private void showSchermWijzigPakket(String id, int selectedRow) {
+    private void showSchermWijzigPakket(String id, int selectedRow, String teWijzigenBoerNaam, String teWijzigenPakketSoort) {
         var resourceName = id + ".fxml";
         try {
             var stage = new Stage();
@@ -229,7 +229,7 @@ public class BestaandeKlantController {
             Parent root = (AnchorPane) loader.load();
 
             WijzigPakketKlantController wijzigPakketKlantController = loader.getController();
-            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, selectedRow);
+            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, selectedRow, teWijzigenBoerNaam, teWijzigenPakketSoort);
 
             var scene = new Scene(root);
             stage.setScene(scene);
@@ -248,7 +248,10 @@ public class BestaandeKlantController {
             showAlert("Warning!", "Selecteer een pakket dat u wenst te wijzigen of te annuleren");
             return;
         }
-        showSchermWijzigPakket("wijzig_pakket_klant", bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedIndex());
+        int teWijzigenKolomNummer = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedIndex();
+        String teWijzigenBoerNaam = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem().getAuteur_naam();
+        String teWijzigenPakketSoort = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem().getPakket_naam();
+        showSchermWijzigPakket("wijzig_pakket_klant", teWijzigenKolomNummer, teWijzigenBoerNaam, teWijzigenPakketSoort);
     }
 
     public void updateTeBetalenBedragVanKlanten() {

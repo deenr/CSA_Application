@@ -18,7 +18,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="193.0" layoutX="58.0" layoutY="207.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="199.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="193.0" layoutX="64.0" layoutY="207.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="199.0">
          <fill>
             <LinearGradient endX="0.5" endY="1.0" startX="0.46190476190476193" startY="0.44285714285714284">
                <stops>
@@ -36,7 +36,7 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="193.0" layoutX="331.0" layoutY="206.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="0.0" width="199.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="193.0" layoutX="337.0" layoutY="206.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="0.0" width="199.0">
          <fill>
             <LinearGradient endX="0.5" endY="1.0" startX="0.46190476190476193" startY="0.44285714285714284">
                <stops>
@@ -62,68 +62,68 @@
       </Text>
 
 
-      <Button fx:id="nieuweWeekPakkettenToevoegenBoer_button" alignment="CENTER" layoutX="58.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: #0f406b;" text="Nieuw weekpakket aanmaken" textFill="WHITE">
+      <Button fx:id="nieuweWeekPakkettenToevoegenBoer_button" alignment="CENTER" layoutX="64.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: #0f406b;" text="Nieuw weekpakket aanmaken" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="productToevoegenBoer_button" alignment="CENTER" layoutX="83.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #0f406b;" text="Product toevoegen" textFill="WHITE">
+      <Button fx:id="productToevoegenBoer_button" alignment="CENTER" layoutX="89.0" layoutY="343.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #0f406b;" text="Product toevoegen" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="klantenBekijkenBoer_button" alignment="CENTER" layoutX="321.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="209.0" style="-fx-background-color: #0f406b;" text="Klanten bekijken" textFill="WHITE">
+      <Button fx:id="klantenBekijkenBoer_button" alignment="CENTER" layoutX="327.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="209.0" style="-fx-background-color: #0f406b;" text="Klanten bekijken" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="pakketPrijsWijzingenBoer_button" alignment="CENTER" layoutX="356.0" layoutY="342.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #0f406b;" text="Pakket prijs wijzigen" textFill="WHITE">
+      <Button fx:id="pakketPrijsWijzingenBoer_button" alignment="CENTER" layoutX="362.0" layoutY="342.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: #0f406b;" text="Pakket prijs wijzigen" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="klantenStatusUpdatenBoer_button" alignment="CENTER" layoutX="58.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #0f406b;" text="Klanten status updaten" textFill="WHITE">
+      <Button fx:id="klantenStatusUpdatenBoer_button" alignment="CENTER" layoutX="64.0" layoutY="151.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="253.0" style="-fx-background-color: #0f406b;" text="Klanten status updaten" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="toevoegenTipBoer_button" alignment="CENTER" layoutX="348.0" layoutY="117.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: #0f406b;" text="Toevoegen tip" textFill="WHITE">
+      <Button fx:id="toevoegenTipBoer_button" alignment="CENTER" layoutX="354.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: #0f406b;" text="Toevoegen tip" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
 
-      <ChoiceBox fx:id="nieuwProductSoortBoer_choice" layoutX="83.0" layoutY="290.0" prefWidth="150.0" />
-      <TextField fx:id="nieuwProductNaamBoer_text" layoutX="83.0" layoutY="241.0" />
-      <ChoiceBox fx:id="wijzigenPakketFormaatBoer_choice" layoutX="356.0" layoutY="241.0" prefWidth="150.0" />
-      <TextField fx:id="wijzigenNieuwePrijsBoer_text" layoutX="439.0" layoutY="290.0" prefHeight="25.0" prefWidth="66.0" promptText="euro" />
+      <ChoiceBox fx:id="nieuwProductSoortBoer_choice" layoutX="89.0" layoutY="290.0" prefWidth="150.0" />
+      <TextField fx:id="nieuwProductNaamBoer_text" layoutX="89.0" layoutY="241.0" />
+      <ChoiceBox fx:id="wijzigenPakketFormaatBoer_choice" layoutX="362.0" layoutY="241.0" prefWidth="150.0" />
+      <TextField fx:id="wijzigenNieuwePrijsBoer_text" layoutX="445.0" layoutY="290.0" prefHeight="25.0" prefWidth="66.0" promptText="euro" />
       
-      <Text fill="WHITE" layoutX="84.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product naam">
+      <Text fill="WHITE" layoutX="90.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product naam">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="84.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product soort">
+      <Text fill="WHITE" layoutX="90.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product soort">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="357.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pakket formaat">
+      <Text fill="WHITE" layoutX="363.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pakket formaat">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="440.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nieuwe prijs">
+      <Text fill="WHITE" layoutX="446.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nieuwe prijs">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="357.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oude prijs">
+      <Text fill="WHITE" layoutX="363.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oude prijs">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
-      <Text fx:id="wijzingenOudePrijsBoer_text" fill="WHITE" layoutX="357.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="....">
+      <Text fx:id="wijzingenOudePrijsBoer_text" fill="WHITE" layoutX="363.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="....">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
