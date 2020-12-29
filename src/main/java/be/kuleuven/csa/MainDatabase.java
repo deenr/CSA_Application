@@ -40,17 +40,10 @@ public class MainDatabase {
     }
 
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws IOException {
         //CouchDbClient couchDbClient = new CouchDbClient();
         setUpRepo();
-
-        //System.out.println(pakketRepository.getAllePakketten());
-
+        
         System.out.println(zitInRepository.getAlleZitVoorTableViewInByVerkoopAndWeeknr(8,1).toString());
-
-        //auteurRepository.saveNewAuteur(auteur);
-
-        //System.out.println(auteurRepository.getAllAuteurs().toString());
-
     }
 }

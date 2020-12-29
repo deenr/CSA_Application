@@ -23,17 +23,15 @@ public class BoerBekijktKlantenController {
     public TableView<KlantenBoer> klantenVanBoer_table;
     private String boerNaam;
 
-    private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
-    private static BoerRepository boerRepository;
     private static VerkooptRepository verkooptRepository;
 
     public void initialize() throws IOException {
         setUpRepo();
 
+        //TABEL
         klantenVanBoer_table.getColumns().clear();
-
         klantenVanBoer_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         TableColumn<KlantenBoer, String> colKlantenNaam = new TableColumn<>("Klant naam");
@@ -84,21 +82,12 @@ public class BoerBekijktKlantenController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
-        boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
-    public void showAlert(String title, String content) {
-        var alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
+    //Mee gegeven boernaam uit vorig scherm
     public void getBoerNaam(String boerNaam) {
         this.boerNaam = boerNaam;
         System.out.println(boerNaam);

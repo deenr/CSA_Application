@@ -34,10 +34,13 @@ public class BoerMainController {
 
     public void initialize() throws IOException {
         setUpRepo();
+
+        //BUTTON actions
         nieuweBoer_button.setOnAction(e -> showScherm("nieuwe_boer"));
         bestaandeBoerLogin_button.setOnAction(e -> controleerNaamInDatabase("bestaande_boer"));
     }
 
+    //Nieuw scherm aanmaken
     private void showScherm(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -55,6 +58,7 @@ public class BoerMainController {
         }
     }
 
+    //Kijk of de boer daadwerkelijk bestaat
     public void controleerNaamInDatabase(String id) {
         List<Auteur> auteurList = auteurRepository.getAllAuteurs();
         boolean naamBestaand = false;
@@ -78,6 +82,7 @@ public class BoerMainController {
         }
     }
 
+    //Nieuw scherm
     private void showSchermMetData(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -114,6 +119,7 @@ public class BoerMainController {
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showWarning(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -122,6 +128,7 @@ public class BoerMainController {
         alert.showAndWait();
     }
 
+    //Error pop-up
     public void showError(String title, String content) {
         var alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

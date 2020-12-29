@@ -44,7 +44,6 @@ public class BestaandeBoerController {
 
     private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
-    private static PakketRepository pakketRepository;
     private static BoerRepository boerRepository;
     private static VerkooptRepository verkooptRepository;
     private static ProductRepository productRepository;
@@ -55,12 +54,14 @@ public class BestaandeBoerController {
     public void initialize() throws IOException {
         setUpRepo();
 
+        //BUTTON actions
         productToevoegenBoer_button.setOnAction(e -> voegProductToe());
         pakketPrijsWijzingenBoer_button.setOnAction(e -> wijzigPakketVeldenJuist());
         klantenBekijkenBoer_button.setOnAction(e -> showSchermBekijktKlanten("boer_bekijkt_klanten"));
         klantenStatusUpdatenBoer_button.setOnAction(e -> showSchermVeranderPakketStatus("klanten_status_updaten_boer"));
         nieuweWeekPakkettenToevoegenBoer_button.setOnAction(e -> showSchermAanmaakWeekPakketten("nieuw_weekpakket_boer"));
         toevoegenTipBoer_button.setOnAction(e->showSchermTipToevoegen("tip_toevoegen"));
+
         refreshItems();
     }
 
@@ -95,6 +96,7 @@ public class BestaandeBoerController {
 
     }
 
+    //Nieuw product toevoegen aan database
     public void voegProductToe() {
         List<String> productSoorten = Arrays.asList("Groeten", "Fruit", "Vlees", "Bloemen");
         String selectedSoort = nieuwProductSoortBoer_choice.getSelectionModel().getSelectedItem();
@@ -116,6 +118,7 @@ public class BestaandeBoerController {
         }
     }
 
+    //Controleer of alle velden zijn ingevuld
     private void wijzigPakketVeldenJuist() {
         String selectedFormaat = wijzigenPakketFormaatBoer_choice.getSelectionModel().getSelectedItem();
         if (selectedFormaat == null || wijzigenNieuwePrijsBoer_text.getText().isEmpty()) {
@@ -130,6 +133,7 @@ public class BestaandeBoerController {
         }
     }
 
+    //Pakketprijs wijzigen
     private void wijzigPrijsPakket(String selectedFormaat, int nieuwePrijs) {
         List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
         int pakket_id = 0;
@@ -167,12 +171,12 @@ public class BestaandeBoerController {
 
         auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
-        pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
         productRepository = new ProductRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showWarning(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -181,6 +185,7 @@ public class BestaandeBoerController {
         alert.showAndWait();
     }
 
+    //Information pop-up
     public void showInformation(String title, String content) {
         var alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -189,6 +194,7 @@ public class BestaandeBoerController {
         alert.showAndWait();
     }
 
+    //Nieuw scherm maken
     private void showSchermBekijktKlanten(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -212,6 +218,7 @@ public class BestaandeBoerController {
         }
     }
 
+    //Nieuw scherm maken
     private void showSchermTipToevoegen(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -235,6 +242,7 @@ public class BestaandeBoerController {
         }
     }
 
+    //Nieuw scherm maken
     private void showSchermVeranderPakketStatus(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -258,6 +266,7 @@ public class BestaandeBoerController {
         }
     }
 
+    //Nieuw scherm maken
     private void showSchermAanmaakWeekPakketten(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -281,12 +290,14 @@ public class BestaandeBoerController {
         }
     }
 
+    //Mee gegeven boernaam vorig scherm
     public void getNaamVanBestaandeBoer(String naam) {
         this.boerNaam = naam;
         welkomTitel_boer.setText("WELKOM " + boerNaam.toUpperCase() + "");
         refreshItems();
     }
 
+    //Te betalen bedrag updaten voor alle klanten die ingeschreven zijn op deze verkoopt
     public void updateTeBetalenBedragVanKlanten(Verkoopt verkoopt) {
         List<Klant> klantenDieDitPakketHebben = klantRepository.getKlantByVerkooptID(verkoopt.getVerkoopt_id());
 

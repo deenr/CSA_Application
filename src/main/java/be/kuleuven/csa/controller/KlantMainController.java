@@ -37,10 +37,13 @@ public class KlantMainController {
 
     public void initialize() throws IOException {
         setUpRepo();
+
+        //BUTTON action
         nieuweKlant_button.setOnAction(e -> showScherm("nieuwe_klant"));
         bestaandeKlantLogin_button.setOnAction(e -> controleerNaamInDatabase("bestaande_klant"));
     }
 
+    //Nieuw scherm aanmaken
     private void showScherm(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -58,6 +61,7 @@ public class KlantMainController {
         }
     }
 
+    // Controleert of klant bestaat in database (voor login)
     public void controleerNaamInDatabase(String id) {
         List<Auteur> auteurList = auteurRepository.getAllAuteurs();
         boolean naamBestaand = false;
@@ -81,6 +85,7 @@ public class KlantMainController {
         }
     }
 
+    // Nieuw scherm aanmaken
     private void showSchermMetData(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -117,6 +122,7 @@ public class KlantMainController {
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showWarning(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -125,6 +131,7 @@ public class KlantMainController {
         alert.showAndWait();
     }
 
+    //Error pop-up
     public void showError(String title, String content) {
         var alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);

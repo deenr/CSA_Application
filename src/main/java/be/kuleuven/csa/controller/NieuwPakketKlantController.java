@@ -27,19 +27,21 @@ public class NieuwPakketKlantController {
     public Text nieuwPakketPrijsPakket_text;
     public Button nieuwPakket_button;
 
-    private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
-    private static PakketRepository pakketRepository;
     private static BoerRepository boerRepository;
     private static VerkooptRepository verkooptRepository;
     private static ZitInRepository zitInRepository;
 
     public void initialize() throws IOException {
-        nieuwPakket_button.setOnAction(e -> nieuwPakket());
         setUpRepo();
+
+        //BUTTON action
+        nieuwPakket_button.setOnAction(e -> nieuwPakket());
+
         refreshItems();
     }
 
+    //Choicebox set text en bereken prijs
     public void refreshItems() {
         List<String> boerNamen = boerRepository.getAlleBoerNamen();
         List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
@@ -91,8 +93,8 @@ public class NieuwPakketKlantController {
         });
     }
 
+    //Klant schrijft zich in op nieuw pakket
     public void nieuwPakket() {
-
         List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
 
         String selectedBoer = nieuwPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
@@ -135,8 +137,6 @@ public class NieuwPakketKlantController {
 
             List<SchrijftIn> controleerSchrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
             if (controleerSchrijftInList.isEmpty()) {
-                //HaaltAf haaltAf = new HaaltAf(klant_id, nieuwVerkoopt_id, hoogsteWeeknr, 0);
-                //verkooptRepository.voegHaaltAfToe(haaltAf);
                 SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
                 verkooptRepository.voegSchrijftInToe(schrijftIn);
 
@@ -160,14 +160,13 @@ public class NieuwPakketKlantController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
-        pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
         zitInRepository = new ZitInRepositoryJdbi3Impl(jdbi);
     }
 
+    // Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -176,11 +175,13 @@ public class NieuwPakketKlantController {
         alert.showAndWait();
     }
 
+    //Mee gegeven klantnaam vorig scherm
     public void getKlantNaam(String klantNaam) {
         this.klantNaam = klantNaam;
         refreshItems();
     }
 
+    //Totaal te betalen bedrag van de klant aanpassen bij klant
     public void updateTeBetalenBedragVanKlanten() {
         List<Integer> verkooptPrijsList = verkooptRepository.getVerkooptPrijzenByName(klantNaam);
         int nieuwTotaleTeBetalenBedrag = 0;

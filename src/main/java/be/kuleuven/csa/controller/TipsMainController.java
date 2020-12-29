@@ -23,11 +23,13 @@ public class TipsMainController {
 
     public void initialize() {
         loadDb();
+
+        //BUTTON action
         applyFilterProductSoort_button.setOnAction(e -> applyFilterProductSoort());
         resetFilterProductSoort_button.setOnAction(e -> resetFilterProductSoort());
 
+        //TABEL
         tips_table.getColumns().clear();
-
         tips_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         TableColumn<Tip, String> colAuteurNaam = new TableColumn<>("Auteur naam");
@@ -47,6 +49,7 @@ public class TipsMainController {
         tips_table.getColumns().add(colURL);
     }
 
+    //Filter
     private void applyFilterProductSoort() {
         tips_table.getItems().clear();
         for (Tip tip : tipList) {
@@ -73,6 +76,7 @@ public class TipsMainController {
         insertInToTable();
     }
 
+    //Toevoeging tabel items afhankelijk van filter
     private void insertInToTable() {
         tips_table.getItems().clear();
 
@@ -87,6 +91,7 @@ public class TipsMainController {
         }
     }
 
+    //Database inladen
     private void loadDb() {
         CouchDbClient dbClient = new CouchDbClient();
         this.tipList = dbClient.view("_all_docs").includeDocs(true).query(Tip.class);

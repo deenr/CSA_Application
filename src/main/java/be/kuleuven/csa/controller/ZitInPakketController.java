@@ -21,16 +21,14 @@ public class ZitInPakketController {
     public DataVoorAfhalingenTableView pakket;
     public TableView<DataVoorZitInTableView> productZinInPakket_table;
 
-    private static AuteurRepository auteurRepository;
-    private static KlantRepository klantRepository;
-    private static PakketRepository pakketRepository;
     private static VerkooptRepository verkooptRepository;
     private static BoerRepository boerRepository;
     private static ZitInRepository zitInRepository;
 
     public void initialize() throws IOException {
         setUpRepo();
-        //productZinInPakket_table.setOnMouseClicked(e->refreshItems());
+
+        //TABEL
         productZinInPakket_table.getColumns().clear();
         productZinInPakket_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
@@ -42,7 +40,6 @@ public class ZitInPakketController {
         colProductHoeveelheid.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getZitIn_hoeveelheid()));
         productZinInPakket_table.getColumns().add(colProductHoeveelheid);
 
-        //refreshItems();
     }
 
     public void refreshItems() {
@@ -77,18 +74,14 @@ public class ZitInPakketController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
-        klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
-        pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         zitInRepository = new ZitInRepositoryJdbi3Impl(jdbi);
     }
 
+    //Mee gegeven pakket vorig scherm
     public void getGeselecteerdPakket(DataVoorAfhalingenTableView pakket) {
         this.pakket = pakket;
-        System.out.println(pakket.toString());
-
         refreshItems();
     }
 }

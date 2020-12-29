@@ -31,15 +31,16 @@ public class NieuweBoerController {
 
     public void initialize() throws IOException {
         setUpRepo();
+
+        //BUTTON action
         registreerNieuweBoer_button.setOnAction(e -> alleVeldenIngevuld());
     }
 
+    //Kijken of alle velden zijn ingevuld en of er geen text in prijs is ingevuld
     public void alleVeldenIngevuld() {
-
         if(insertNieuweBoer_naam.getText().isEmpty() || insertNieuweBoer_adres.getText().isEmpty() ||
                 insertNieuweBoer_prijsM.getText().isEmpty() || insertNieuweBoer_prijsG.getText().isEmpty() ||
-                insertNieuweBoer_prijsF.getText().isEmpty()
-        ){
+                insertNieuweBoer_prijsF.getText().isEmpty()){
             showAlert("Warning","Gelieven alle velden in te vullen");
         }
         else{
@@ -54,6 +55,7 @@ public class NieuweBoerController {
         }
     }
 
+    // Nieuwe boer aanmaken in database men prijs per pakketsoort, maar eerst controleren of deze al bestaat
     public void registreerNieuweBoer(int prijsMedium, int prijsGroot, int prijsFamilie) {
         String naam = insertNieuweBoer_naam.getText();
         String adres = insertNieuweBoer_adres.getText();
@@ -106,6 +108,7 @@ public class NieuweBoerController {
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);

@@ -28,19 +28,14 @@ public class AfTeHalenPakkettenKlantController {
     public TableView<DataVoorAfhalingenTableView> afTeHalenPakkettenKlant_table;
     private String klantNaam;
 
-    private static AuteurRepository auteurRepository;
-    private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
-    private static BoerRepository boerRepository;
-    private static VerkooptRepository verkooptRepository;
 
     public void initialize() throws IOException {
         setUpRepo();
 
+        // Tabel
         afTeHalenPakkettenKlant_table.getColumns().clear();
-
         afTeHalenPakkettenKlant_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
         afTeHalenPakkettenKlant_table.setOnMouseClicked(e -> {
             if (e.getClickCount() == 2 && afTeHalenPakkettenKlant_table.getSelectionModel().getSelectedItem() != null) {
                 DataVoorAfhalingenTableView afTeHalenPakket = afTeHalenPakkettenKlant_table.getSelectionModel().getSelectedItem();
@@ -85,26 +80,16 @@ public class AfTeHalenPakkettenKlantController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
-        klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
-        boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
-        verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
-    public void showAlert(String title, String content) {
-        var alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
+    // Meegegeven klantnaam vorig scherm
     public void getKlantNaam(String klantNaam) {
         this.klantNaam = klantNaam;
         refreshTable();
     }
 
+    //Nieuw scherm openen
     private void showSchermToonInhoudPakket(String id, DataVoorAfhalingenTableView afTeHalenPakket) {
         var resourceName = id + ".fxml";
         try {

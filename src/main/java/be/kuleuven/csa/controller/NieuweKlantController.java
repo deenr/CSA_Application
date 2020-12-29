@@ -29,9 +29,12 @@ public class NieuweKlantController {
 
     public void initialize() throws IOException {
         setUpRepo();
+
+        //BUTTON action
         registreerNieuweKlant_button.setOnAction(e -> registreerNieuweKlant(insertNieuweKlant_naam.getText()));
     }
 
+    //Nieuwe klant aanmaken in database, maar eerst controleren of deze al bestaat
     public void registreerNieuweKlant(String naam) {
         List<Auteur> auteurList = auteurRepository.getAllAuteurs();
         for (Auteur a: auteurList
@@ -75,6 +78,7 @@ public class NieuweKlantController {
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
     }
 
+    // Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);

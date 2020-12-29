@@ -23,7 +23,6 @@ public class KlantenStatusUpdatenBoerController {
     public TableView<DataVoorVeranderdStatusPakket> afTeHalenPakkettenBoer_table;
     private String boerNaam;
 
-    private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
     private static BoerRepository boerRepository;
@@ -32,11 +31,12 @@ public class KlantenStatusUpdatenBoerController {
     public void initialize() throws IOException {
         setUpRepo();
 
+        //BUTTON & MOUSE actions
         statusConfirmPakketAfgehaaldBoer_button.setOnAction(e -> updateStatusVanPakket());
         afTeHalenPakkettenBoer_table.setOnMouseClicked(e -> refreshSelectedData());
 
+        //TABEL
         afTeHalenPakkettenBoer_table.getColumns().clear();
-
         afTeHalenPakkettenBoer_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         TableColumn<DataVoorVeranderdStatusPakket, String> colNaam = new TableColumn<>("Klant naam");
@@ -58,6 +58,7 @@ public class KlantenStatusUpdatenBoerController {
         refreshTable();
     }
 
+    // Aanduiding van afgehaald voor pakket
     private void updateStatusVanPakket() {
         DataVoorVeranderdStatusPakket dataVoorVeranderdStatusPakket = afTeHalenPakkettenBoer_table.getSelectionModel().getSelectedItem();
         if (dataVoorVeranderdStatusPakket == null) {
@@ -103,6 +104,7 @@ public class KlantenStatusUpdatenBoerController {
         }
     }
 
+    // Textboxen aanpassen afhankelijk van geklikte rij in tableview
     private void refreshSelectedData() {
         DataVoorVeranderdStatusPakket dataVoorVeranderdStatusPakket = afTeHalenPakkettenBoer_table.getSelectionModel().getSelectedItem();
         if (dataVoorVeranderdStatusPakket != null) {
@@ -130,13 +132,13 @@ public class KlantenStatusUpdatenBoerController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -145,6 +147,7 @@ public class KlantenStatusUpdatenBoerController {
         alert.showAndWait();
     }
 
+    // Mee gegeven boernaam vorig scherm
     public void getBoerNaam(String boerNaam) {
         this.boerNaam = boerNaam;
         refreshTable();

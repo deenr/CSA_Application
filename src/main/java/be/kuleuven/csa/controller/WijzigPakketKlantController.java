@@ -31,18 +31,18 @@ public class WijzigPakketKlantController {
     public Text wijzigPakketPrijsPakket_text;
     public Button wijzigPakket_button;
 
-    private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
-    private static PakketRepository pakketRepository;
     private static BoerRepository boerRepository;
     private static VerkooptRepository verkooptRepository;
 
     public void initialize() throws IOException {
         setUpRepo();
 
+        //BUTTON actons
         wijzigPakket_button.setOnAction(e -> wijzigPakket());
     }
 
+    //Choicebox instellen en prijs bepalen/weergeven
     public void refreshItems() {
         List<String> boerNamen = boerRepository.getAlleBoerNamen();
         List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
@@ -100,6 +100,7 @@ public class WijzigPakketKlantController {
         });
     }
 
+    //Schrijft in aanpassen naar nieuw pakket (oude nog niet afgehaalde pakketten kunnen nog steeds afgehaald worden)
     public void wijzigPakket() {
         List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
 
@@ -128,11 +129,6 @@ public class WijzigPakketKlantController {
 
             List<SchrijftIn> controleerSchrijftInLijst = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
             if (controleerSchrijftInLijst.isEmpty()) {
-                /*List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
-                HaaltAf haaltAf = haaltAfList.get(0);
-                haaltAf.setVerkoopt_id(nieuwVerkoopt_id);
-                WijzigHaaltAf nieuweHaaltAf = new WijzigHaaltAf(nieuwVerkoopt_id,klant_id,oudeVerkoopt_id);
-                verkooptRepository.wijzigHaaltAf(nieuweHaaltAf);*/
 
                 List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
                 SchrijftIn schrijftIn = schrijftInList.get(0);
@@ -160,13 +156,12 @@ public class WijzigPakketKlantController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
-        pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -175,6 +170,7 @@ public class WijzigPakketKlantController {
         alert.showAndWait();
     }
 
+    //Meegegeven data vorig scherm
     public void getNaamEnGeselecteerdPakket(String klantNaam, int selectedRow, String aangeduideBoerNaam, String aangeduidPakketNaam, int aangeduidPakketPrijs) {
         this.klantNaam = klantNaam;
         this.selectedRow = selectedRow;

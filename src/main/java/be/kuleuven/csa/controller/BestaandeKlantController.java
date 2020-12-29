@@ -54,17 +54,15 @@ public class BestaandeKlantController {
     public void initialize() throws IOException {
         setUpRepo();
 
+        //BUTTON actions
         wijzigPakket_button.setOnAction(e -> isEenRijSelecteerd());
         nieuwPakketBestellen_button.setOnAction(e -> showSchermNieuwPakket("nieuw_pakket_klant"));
         verwijderPakket_button.setOnAction(e -> verwijderPakket());
         afTeHalenPakketten_button.setOnAction(e -> showSchermAfTeHalenPakketten("aftehalen_pakketten_klant"));
         tipToevoegenKlant_button.setOnAction(e->showSchermTipToevoegen("tip_toevoegen"));
 
+        //TABEL:
         bestaandeKlantPakketten_Tbl.getColumns().clear();
-
-        /*TableColumn<DataVoorKlantTableView, Integer> colPakket_id = new TableColumn<>("Pakket_id");
-        colPakket_id.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_id()));
-        bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);*/
 
         bestaandeKlantPakketten_Tbl.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         TableColumn<DataVoorAbonnementenTableView, String> colNaam = new TableColumn<>("Soort Pakket");
@@ -114,6 +112,7 @@ public class BestaandeKlantController {
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -122,6 +121,7 @@ public class BestaandeKlantController {
         alert.showAndWait();
     }
 
+    //Uitschrijven van klant op geselecteerd pakket
     private void verwijderPakket() {
         System.out.println("verwijderknop");
         DataVoorAbonnementenTableView pakketBoerVoorTable = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem();
@@ -138,13 +138,6 @@ public class BestaandeKlantController {
             List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
             int verkoopt_id = verkooptList.get(0).getVerkoopt_id();
 
-            /*List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, verkoopt_id);
-            HaaltAf teVerwijderenHaalftAf = null;
-            for (HaaltAf hA : haaltAfList) {
-                if (hA.getAuteur_id() == klant_id && hA.getVerkoopt_id() == verkoopt_id) {
-                    teVerwijderenHaalftAf = hA;
-                }
-            }*/
             List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, verkoopt_id);
             SchrijftIn teVerwijderenSchrijftIn = null;
             for (SchrijftIn sI : schrijftInList) {
@@ -153,8 +146,6 @@ public class BestaandeKlantController {
                 }
             }
             if (teVerwijderenSchrijftIn != null) {
-                /*verkooptRepository.verwijderHaaltAf(teVerwijderenHaalftAf);
-                System.out.println("Verwijderd uit database: " + teVerwijderenHaalftAf.toString());*/
                 verkooptRepository.verwijderSchrijftIn(teVerwijderenSchrijftIn);
                 System.out.println("Verwijderd uit database: " + teVerwijderenSchrijftIn.toString());
 
@@ -170,12 +161,14 @@ public class BestaandeKlantController {
 
     }
 
+    //Mee gegeven naam uit vorig scherm
     public void getNaamVanBestaandeKlant(String naam) {
         this.klantNaam = naam;
         refreshTable();
         updateTeBetalenBedragVanKlanten();
     }
 
+    //Nieuw scherm openen
     private void showSchermNieuwPakket(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -199,6 +192,7 @@ public class BestaandeKlantController {
         }
     }
 
+    //Nieuw scherm openen
     private void showSchermAfTeHalenPakketten(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -222,6 +216,7 @@ public class BestaandeKlantController {
         }
     }
 
+    //Nieuw scherm openen
     private void showSchermWijzigPakket(String id, int selectedRow, String teWijzigenBoerNaam, String teWijzigenPakketSoort, int teWijzigenPakketPrijs) {
         var resourceName = id + ".fxml";
         try {
@@ -245,6 +240,7 @@ public class BestaandeKlantController {
         }
     }
 
+    //Nieuw scherm openen
     private void showSchermTipToevoegen(String id) {
         var resourceName = id + ".fxml";
         try {
@@ -268,6 +264,7 @@ public class BestaandeKlantController {
         }
     }
 
+    //Controleer of er een rij is geselecteerd
     private void isEenRijSelecteerd() {
         if (bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedCells().size() == 0) {
             showAlert("Warning!", "Selecteer een pakket dat u wenst te wijzigen of te annuleren");
@@ -280,6 +277,7 @@ public class BestaandeKlantController {
         showSchermWijzigPakket("wijzig_pakket_klant", teWijzigenKolomNummer, teWijzigenBoerNaam, teWijzigenPakketSoort, teWijzigenPakketPrijs);
     }
 
+    //Te betalen bedrag van de klant berekenen
     public void updateTeBetalenBedragVanKlanten() {
         List<Integer> verkooptPrijsList = verkooptRepository.getVerkooptPrijzenByName(klantNaam);
         int nieuwTotaleTeBetalenBedrag = 0;

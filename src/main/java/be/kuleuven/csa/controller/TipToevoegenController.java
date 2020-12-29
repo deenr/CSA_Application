@@ -39,18 +39,18 @@ public class TipToevoegenController {
     public void initialize() throws IOException {
         setUpRepo();
         beginLayout();
-        tipToevoegen_button.setOnAction(e -> tipToevoegen());
 
+        //BUTTON action
+        tipToevoegen_button.setOnAction(e -> tipToevoegen());
         selecteerProductSoortVanTip_choice.setOnAction(event -> eindLayout());
+
         refreshData();
     }
 
     public void beginLayout() {
         productSoort_text.setLayoutY(176);
         selecteerProductSoortVanTip_choice.setLayoutY(159);
-        //product_text.setLayoutY(214);
         product_text.setVisible(false);
-        //selecteerProductVanTip_choice.setLayoutY(196);
         selecteerProductVanTip_choice.setVisible(false);
         tip_text.setLayoutY(226);
         tipURL_text.setLayoutY(209);
@@ -73,6 +73,7 @@ public class TipToevoegenController {
         selecteerProductVanTip_choice.setItems(FXCollections.observableArrayList(productList));
     }
 
+    //Tip toevoegen aan NoSQL databas
     public void tipToevoegen() {
         String selectedProductSoort = selecteerProductSoortVanTip_choice.getSelectionModel().getSelectedItem();
         String selectedProduct = selecteerProductVanTip_choice.getSelectionModel().getSelectedItem();
@@ -109,6 +110,7 @@ public class TipToevoegenController {
         productRepository = new ProductRepositoryJdbi3Impl(jdbi);
     }
 
+    //Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -117,6 +119,7 @@ public class TipToevoegenController {
         alert.showAndWait();
     }
 
+    //Mee gegeven auteurnaam vorig scherm
     public void getAuteurNaam(String auteurNaam) {
         this.auteurNaam = auteurNaam;
     }

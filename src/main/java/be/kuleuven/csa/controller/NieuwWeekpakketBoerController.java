@@ -57,7 +57,6 @@ public class NieuwWeekpakketBoerController {
 
     private String boerNaam;
 
-    private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
     private static BoerRepository boerRepository;
@@ -67,10 +66,12 @@ public class NieuwWeekpakketBoerController {
 
     public void initialize() throws IOException {
         setUpRepo();
+
+        //BUTTON action
         voegPakkettenVanDeWeekToe_button.setOnAction(e->voegWeekPakkettenToe());
-        //refreshData();
     }
 
+    //Choicebox instellen en weeknummer bepalen
     public void refreshData() {
         int boer_id = boerRepository.getBoerByName(boerNaam).get(0).getAuteur_id();
         int verkoopt_id = verkooptRepository.getVerkooptByBoer(boer_id).get(0).getVerkoopt_id();
@@ -110,8 +111,8 @@ public class NieuwWeekpakketBoerController {
         famBloemen_choice.setItems(FXCollections.observableArrayList(bloemenList));
     }
 
+    // Controleer of alle velden zijn ingevulde en er geen text in aantal staat
     public void voegWeekPakkettenToe() {
-        //String selectedBoer = nieuwPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
         if (mediumGroenten1_choice.getSelectionModel().getSelectedItem() == null ||
                 mediumGroenten2_choice.getSelectionModel().getSelectedItem() == null ||
                 grootGroenten1_choice.getSelectionModel().getSelectedItem() == null ||
@@ -244,7 +245,6 @@ public class NieuwWeekpakketBoerController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
-        auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
@@ -253,6 +253,7 @@ public class NieuwWeekpakketBoerController {
         productRepository = new ProductRepositoryJdbi3Impl(jdbi);
     }
 
+    // Warning pop-up
     public void showAlert(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -261,6 +262,7 @@ public class NieuwWeekpakketBoerController {
         alert.showAndWait();
     }
 
+    //Mee gegeven boernaam vorig scherm
     public void getBoerNaam(String boerNaam) {
         this.boerNaam = boerNaam;
         refreshData();

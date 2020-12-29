@@ -46,6 +46,7 @@ public class AdminMainController {
     public void initialize() throws IOException {
         setUpRepo();
 
+        //Button actions
         applyProductSoortAdmin_button.setOnAction(e -> refreshDataProducten());
         resetProductSoortAdmin_button.setOnAction(e -> resetFilterProductSoort());
 
@@ -55,17 +56,17 @@ public class AdminMainController {
         verwijderKlantAdmin_button.setOnAction(e->verwijderKlant());
         verwijderBoerAdmin_button.setOnAction(e->verwijderBoer());
 
+        //Load data
         getDataKlanten();
         getDataBoeren();
         getDataProducten();
         getDataPakketten();
 
+        //Refresh data
         refreshDataKlanten();
         refreshDataBoeren();
         refreshDataProducten();
         refreshDataPakketten();
-
-        //refreshTable();
     }
 
     private static void setUpRepo() throws IOException {
@@ -77,6 +78,7 @@ public class AdminMainController {
         var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
         jdbi.installPlugin(new SqlObjectPlugin());
 
+        //Repositories aanmaken
         auteurRepository = new AuteurRepositoryJdbi3Impl(jdbi);
         klantRepository = new KlantRepositoryJdbi3Impl(jdbi);
         pakketRepository = new PakketRepositoryJdbi3Impl(jdbi);
@@ -94,6 +96,7 @@ public class AdminMainController {
             String klant_naam = klant.getAuteur_naam();
             int klant_id = klantRepository.getKlantByName(klant_naam).get(0).getAuteur_id();
 
+            // In elke tabel waar deze klant_id staat rij verwijderen
             verkooptRepository.verwijderHaaltAfByAuteurID(klant_id);
             verkooptRepository.verwijderSchrijftInByAuteurID(klant_id);
             klantRepository.verwijderKlantByAuteurID(klant_id);
@@ -104,6 +107,7 @@ public class AdminMainController {
     }
 
     public void verwijderBoer() {
+        //Selected item
         DataVoorBoerTableView boer = boerenAdmin_table.getSelectionModel().getSelectedItem();
         if (boer == null) {
             showWarning("Warning", "Gelieve een boer te selecteren");
@@ -112,6 +116,7 @@ public class AdminMainController {
             int boer_id = boerRepository.getBoerByName(boer_naam).get(0).getAuteur_id();
             List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoer(boer_id);
 
+            // In elke tabel waar deze boer_id of zijn verkoopt_id staat rij verwijderen
             for(Verkoopt v : verkooptList) {
                 zitInRepository.verwijderZitInByVerkooptID(v.getVerkoopt_id());
             }
@@ -124,6 +129,7 @@ public class AdminMainController {
         }
     }
 
+    // DATA KLANTEN:
     private void getDataKlanten() {
         klantenAdmin_table.getColumns().clear();
         klantenAdmin_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -143,6 +149,7 @@ public class AdminMainController {
         }
     }
 
+    // DATA BOEREN:
     private void getDataBoeren() {
         boerenAdmin_table.getColumns().clear();
         boerenAdmin_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -162,6 +169,7 @@ public class AdminMainController {
         }
     }
 
+    // DATA PRODUCTEN:
     private void getDataProducten() {
         List<String> productSoorten = Arrays.asList("Alles", "Groenten", "Fruit", "Vlees", "Bloemen");
         filterProductSoortAdmin_choice.setItems(FXCollections.observableArrayList(productSoorten));
@@ -215,6 +223,7 @@ public class AdminMainController {
         refreshDataProducten();
     }
 
+    // DATA PAKKETTEN:
     private void getDataPakketten() {
         List<String> pakketSoort = Arrays.asList("Alles", "Medium", "Groot", "Familie");
         filterPakketSoortAdmin_choice.setItems(FXCollections.observableArrayList(pakketSoort));
@@ -272,24 +281,9 @@ public class AdminMainController {
         refreshDataPakketten();
     }
 
+    //Warning pop-up
     public void showWarning(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
-    public void showError(String title, String content) {
-        var alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(title);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
-
-    public void showMessage(String title, String content) {
-        var alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle(title);
         alert.setHeaderText(title);
         alert.setContentText(content);
