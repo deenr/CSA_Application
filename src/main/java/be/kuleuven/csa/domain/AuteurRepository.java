@@ -9,4 +9,5 @@ public interface AuteurRepository {
     List<Auteur> getAuteurByID(int id);
     void saveNewAuteur(Auteur auteur);
     void updateAuteur(Auteur auteur);
+    void verwijderAuteurByAuteurID(String auteur_id);
 }

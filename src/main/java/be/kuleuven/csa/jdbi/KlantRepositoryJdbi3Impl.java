@@ -76,4 +76,12 @@ public class KlantRepositoryJdbi3Impl implements KlantRepository {
                     .execute();
         });
     }
+
+    @Override
+    public void verwijderKlantByAuteurID(String auteur_id) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("DELETE FROM Klant WHERE auteur_id = " + auteur_id + ";")
+                    .execute();
+        });
+    }
 }

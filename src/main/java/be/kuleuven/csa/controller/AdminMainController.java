@@ -87,7 +87,21 @@ public class AdminMainController {
     }
 
     public void verwijderKlant() {
-        
+        DataVoorKlantTableView klant = klantenAdmin_table.getSelectionModel().getSelectedItem();
+        if (klant == null) {
+            showWarning("Warning", "Gelieve een klant te selecteren");
+        } else {
+            String klant_naam = klant.getAuteur_naam();
+            String klant_id = klantRepository.getKlantByName(klant_naam).get(0).getAuteur_id() + "";
+
+            verkooptRepository.verwijderHaaltAfByAuteurID(klant_id);
+            verkooptRepository.verwijderSchrijftInByAuteurID(klant_id);
+            klantRepository.verwijderKlantByAuteurID(klant_id);
+            auteurRepository.verwijderAuteurByAuteurID(klant_id);
+
+            refreshDataKlanten();
+        }
+
     }
 
     public void verwijderBoer() {
@@ -240,5 +254,21 @@ public class AdminMainController {
     private void resetFilterPakketSoort() {
         filterPakketSoortAdmin_choice.setValue("Alles");
         refreshDataPakketten();
+    }
+
+    public void showWarning(String title, String content) {
+        var alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    public void showError(String title, String content) {
+        var alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

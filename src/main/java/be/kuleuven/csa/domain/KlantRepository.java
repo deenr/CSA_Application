@@ -13,4 +13,5 @@ public interface KlantRepository {
     List<String> getKlantenByBoerName(String naam);
     void saveNewKlant(Klant klant);
     void updateKlant(Klant klant);
+    void verwijderKlantByAuteurID(String auteur_id);
 }
