@@ -77,13 +77,13 @@ public class KlantenStatusUpdatenBoerController {
                     pakket_id = 3;
                 }
 
-                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakket_id);
                 int verkoopt_id = verkooptList.get(0).getVerkoopt_id();
 
                 List<Klant> klantList = klantRepository.getKlantByName(statusKlantNaamBoer_text.getText());
                 int klant_id = klantList.get(0).getAuteur_id();
 
-                List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantEnVerkoopt(klant_id, verkoopt_id);
+                List<HaaltAf> haaltAfList = verkooptRepository.getHaaltAfByKlantIDEnVerkooptID(klant_id, verkoopt_id);
                 if (haaltAfList.isEmpty()) {
                     showAlert("Warning", "Er is iets mis gegaan in de database");
                 } else {

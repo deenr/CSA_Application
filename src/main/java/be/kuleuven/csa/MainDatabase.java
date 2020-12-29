@@ -44,6 +44,6 @@ public class MainDatabase {
         //CouchDbClient couchDbClient = new CouchDbClient();
         setUpRepo();
         
-        System.out.println(zitInRepository.getAlleZitVoorTableViewInByVerkoopAndWeeknr(8,1).toString());
+        System.out.println(zitInRepository.getAlleZitVoorTableViewInByVerkoopIDAndWeeknr(8,1).toString());
     }
 }

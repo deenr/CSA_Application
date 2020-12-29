@@ -16,7 +16,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
 
 
     @Override
-    public List<Verkoopt> getVerkooptByBoerAndPakket(int auteur_id, int pakket_id) {
+    public List<Verkoopt> getVerkooptByBoerIDAndPakketID(int auteur_id, int pakket_id) {
         var query = "SELECT * FROM Verkoopt v WHERE v.auteur_id = " + auteur_id + " AND v.pakket_id = " + pakket_id + ";";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
@@ -26,7 +26,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public List<Verkoopt> getVerkooptByBoer(int auteur_id) {
+    public List<Verkoopt> getVerkooptByBoerID(int auteur_id) {
         var query = "SELECT * FROM Verkoopt v WHERE v.auteur_id = " + auteur_id + ";";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
@@ -70,7 +70,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id) {
+    public List<HaaltAf> getHaaltAfByKlantIDEnVerkooptID(int auteur_id, int verkoopt_id) {
         var query = "SELECT * FROM HaaltAf h WHERE h.verkoopt_id = " + verkoopt_id + " AND h.auteur_id = " + auteur_id + ";";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
@@ -80,7 +80,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id) {
+    public List<SchrijftIn> getSchrijftInByKlantIDEnVerkooptID(int auteur_id, int verkoopt_id) {
         var query = "SELECT * FROM SchrijftIn s WHERE s.verkoopt_id = " + verkoopt_id + " AND s.auteur_id = " + auteur_id + ";";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
@@ -189,7 +189,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public List<Integer> getVerkooptPrijzenByKlantAndByBoer(String klantNaam, String boerNaam) {
+    public List<Integer> getVerkooptPrijzenByKlantNameAndByBoerName(String klantNaam, String boerNaam) {
         var query = "SELECT v.verkoopt_prijs FROM Auteur a1, Auteur a2, SchrijftIn s, Verkoopt v, Pakket p WHERE a1.auteur_naam = '" + klantNaam + "' and a1.auteur_id = s.auteur_id and s.verkoopt_id = v.verkoopt_id and v.pakket_id = p.pakket_id and a2.auteur_naam = '" + boerNaam + "' and a2.auteur_id = v.auteur_id";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)

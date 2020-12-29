@@ -134,10 +134,10 @@ public class BestaandeKlantController {
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
             int klant_id = klantList.get(0).getAuteur_id();
 
-            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
+            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakket_id);
             int verkoopt_id = verkooptList.get(0).getVerkoopt_id();
 
-            List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, verkoopt_id);
+            List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantIDEnVerkooptID(klant_id, verkoopt_id);
             SchrijftIn teVerwijderenSchrijftIn = null;
             for (SchrijftIn sI : schrijftInList) {
                 if (sI.getAuteur_id() == klant_id && sI.getVerkoopt_id() == verkoopt_id) {

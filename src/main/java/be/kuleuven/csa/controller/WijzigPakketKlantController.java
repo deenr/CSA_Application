@@ -71,7 +71,7 @@ public class WijzigPakketKlantController {
                     pakket_id = 3;
                 }
 
-                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(auteur_id, pakket_id);
 
                 int prijs = verkooptList.get(0).getVerkoopt_prijs();
                 wijzigPakketPrijsPakket_text.setText(prijs + " euro");
@@ -92,7 +92,7 @@ public class WijzigPakketKlantController {
                     pakket_id = 3;
                 }
 
-                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(auteur_id, pakket_id);
 
                 int prijs = verkooptList.get(0).getVerkoopt_prijs();
                 wijzigPakketPrijsPakket_text.setText(prijs + " euro");
@@ -118,7 +118,7 @@ public class WijzigPakketKlantController {
                 pakket_id = 3;
             }
 
-            List<Verkoopt> nieuweVerkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
+            List<Verkoopt> nieuweVerkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakket_id);
             int nieuwVerkoopt_id = nieuweVerkooptList.get(0).getVerkoopt_id();
 
             List<Verkoopt> oudeVerkooptList = verkooptRepository.getVerkooptByKlantName(klantNaam);
@@ -127,10 +127,10 @@ public class WijzigPakketKlantController {
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
             int klant_id = klantList.get(0).getAuteur_id();
 
-            List<SchrijftIn> controleerSchrijftInLijst = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
+            List<SchrijftIn> controleerSchrijftInLijst = verkooptRepository.getSchrijftInByKlantIDEnVerkooptID(klant_id, nieuwVerkoopt_id);
             if (controleerSchrijftInLijst.isEmpty()) {
 
-                List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, oudeVerkoopt_id);
+                List<SchrijftIn> schrijftInList = verkooptRepository.getSchrijftInByKlantIDEnVerkooptID(klant_id, oudeVerkoopt_id);
                 SchrijftIn schrijftIn = schrijftInList.get(0);
                 schrijftIn.setVerkoopt_id(nieuwVerkoopt_id);
                 verkooptRepository.wijzigSchrijftIn(schrijftIn);

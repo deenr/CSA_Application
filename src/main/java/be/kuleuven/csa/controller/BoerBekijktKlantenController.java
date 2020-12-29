@@ -57,7 +57,7 @@ public class BoerBekijktKlantenController {
 
         for (String klantNaam : klantenVanBoerLijst){
             List<String> pakkettenVanDeKlant = pakketRepository.getPakkettenListByBoerNameAndKlantName(boerNaam,klantNaam);
-            List<Integer> prijzenVanDePakketten= verkooptRepository.getVerkooptPrijzenByKlantAndByBoer(klantNaam, boerNaam);
+            List<Integer> prijzenVanDePakketten= verkooptRepository.getVerkooptPrijzenByKlantNameAndByBoerName(klantNaam, boerNaam);
             int totaleBedrag = 0;
             for (Integer prijs : prijzenVanDePakketten) {
                 totaleBedrag = totaleBedrag + prijs;

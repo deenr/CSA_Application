@@ -114,7 +114,7 @@ public class AdminMainController {
         } else {
             String boer_naam = boer.getAuteur_naam();
             int boer_id = boerRepository.getBoerByName(boer_naam).get(0).getAuteur_id();
-            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoer(boer_id);
+            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerID(boer_id);
 
             // In elke tabel waar deze boer_id of zijn verkoopt_id staat rij verwijderen
             for(Verkoopt v : verkooptList) {

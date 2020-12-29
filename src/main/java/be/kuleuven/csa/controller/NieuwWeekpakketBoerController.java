@@ -74,7 +74,7 @@ public class NieuwWeekpakketBoerController {
     //Choicebox instellen en weeknummer bepalen
     public void refreshData() {
         int boer_id = boerRepository.getBoerByName(boerNaam).get(0).getAuteur_id();
-        int verkoopt_id = verkooptRepository.getVerkooptByBoer(boer_id).get(0).getVerkoopt_id();
+        int verkoopt_id = verkooptRepository.getVerkooptByBoerID(boer_id).get(0).getVerkoopt_id();
         List<ZitIn> zitInList = zitInRepository.getAlleZitInByVerkoopID(verkoopt_id);
 
         int hoogsteWeeknr = 0;
@@ -165,11 +165,11 @@ public class NieuwWeekpakketBoerController {
 
                 int boer_id = boerRepository.getBoerByName(boerNaam).get(0).getAuteur_id();
                 int pakketMediumID = 1;
-                int verkooptMedium_id = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakketMediumID).get(0).getVerkoopt_id();
+                int verkooptMedium_id = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakketMediumID).get(0).getVerkoopt_id();
                 int pakketGrootID = 2;
-                int verkooptGroot_id = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakketGrootID).get(0).getVerkoopt_id();
+                int verkooptGroot_id = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakketGrootID).get(0).getVerkoopt_id();
                 int pakketFamilieID = 3;
-                int verkooptFamilie_id = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakketFamilieID).get(0).getVerkoopt_id();
+                int verkooptFamilie_id = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakketFamilieID).get(0).getVerkoopt_id();
 
                 List<ZitIn> zitInList = zitInRepository.getAlleZitInByVerkoopID(verkooptFamilie_id);
                 int hoogsteWeeknr = 0;
@@ -216,7 +216,7 @@ public class NieuwWeekpakketBoerController {
                 ZitIn zitIn15 = new ZitIn(productRepository.getProductByName(famBloemen_choice.getSelectionModel().getSelectedItem()).get(0).getProduct_id(), verkooptFamilie_id, famAantalBloemen, weeknr);
                 zitInRepository.voegZitInToe(zitIn15);
 
-                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoer(boer_id);
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerID(boer_id);
                 for (Verkoopt v : verkooptList) {
                     int verkooptID = v.getVerkoopt_id();
                     List<Klant> klantList = klantRepository.getKlantByVerkooptID(verkooptID);

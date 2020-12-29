@@ -87,7 +87,7 @@ public class BestaandeBoerController {
                     pakket_id = 3;
                 }
 
-                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(auteur_id, pakket_id);
 
                 int prijs = verkooptList.get(0).getVerkoopt_prijs();
                 wijzingenOudePrijsBoer_text.setText(prijs + " euro");
@@ -147,7 +147,7 @@ public class BestaandeBoerController {
         List<Boer> boerList = boerRepository.getBoerByName(boerNaam);
         int auteur_id = boerList.get(0).getAuteur_id();
 
-        List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+        List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(auteur_id, pakket_id);
         Verkoopt verkoopt = verkooptList.get(0);
         verkoopt.setVerkoopt_prijs(nieuwePrijs);
         verkooptRepository.wijzigVerkoopt(verkoopt);

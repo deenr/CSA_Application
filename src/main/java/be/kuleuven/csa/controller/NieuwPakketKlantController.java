@@ -64,7 +64,7 @@ public class NieuwPakketKlantController {
                     pakket_id = 3;
                 }
 
-                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(auteur_id, pakket_id);
 
                 int prijs = verkooptList.get(0).getVerkoopt_prijs();
                 nieuwPakketPrijsPakket_text.setText(prijs + " euro");
@@ -85,7 +85,7 @@ public class NieuwPakketKlantController {
                     pakket_id = 3;
                 }
 
-                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerAndPakket(auteur_id, pakket_id);
+                List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(auteur_id, pakket_id);
 
                 int prijs = verkooptList.get(0).getVerkoopt_prijs();
                 nieuwPakketPrijsPakket_text.setText(prijs + " euro");
@@ -115,7 +115,7 @@ public class NieuwPakketKlantController {
                 pakket_id = 3;
             }
 
-            List<Verkoopt> nieuweVerkooptList = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id);
+            List<Verkoopt> nieuweVerkooptList = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakket_id);
             int nieuwVerkoopt_id = nieuweVerkooptList.get(0).getVerkoopt_id();
 
             List<ZitIn> zitInList = zitInRepository.getAlleZitInByVerkoopID(nieuwVerkoopt_id);
@@ -135,7 +135,7 @@ public class NieuwPakketKlantController {
             List<Klant> klantList = klantRepository.getKlantByName(klantNaam);
             int klant_id = klantList.get(0).getAuteur_id();
 
-            List<SchrijftIn> controleerSchrijftInList = verkooptRepository.getSchrijftInByKlantEnVerkoopt(klant_id, nieuwVerkoopt_id);
+            List<SchrijftIn> controleerSchrijftInList = verkooptRepository.getSchrijftInByKlantIDEnVerkooptID(klant_id, nieuwVerkoopt_id);
             if (controleerSchrijftInList.isEmpty()) {
                 SchrijftIn schrijftIn = new SchrijftIn(klant_id, nieuwVerkoopt_id);
                 verkooptRepository.voegSchrijftInToe(schrijftIn);

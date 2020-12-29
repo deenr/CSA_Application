@@ -56,10 +56,10 @@ public class ZitInPakketController {
                 break;
         }
         int boer_id = boerRepository.getBoerByName(pakket.getAuteur_naam()).get(0).getAuteur_id();
-        int verkoopt_id = verkooptRepository.getVerkooptByBoerAndPakket(boer_id, pakket_id).get(0).getVerkoopt_id();
+        int verkoopt_id = verkooptRepository.getVerkooptByBoerIDAndPakketID(boer_id, pakket_id).get(0).getVerkoopt_id();
         int weeknr = pakket.getPakket_weeknr();
 
-        List<DataVoorZitInTableView> zitInTableViewList = zitInRepository.getAlleZitVoorTableViewInByVerkoopAndWeeknr(verkoopt_id, weeknr);
+        List<DataVoorZitInTableView> zitInTableViewList = zitInRepository.getAlleZitVoorTableViewInByVerkoopIDAndWeeknr(verkoopt_id, weeknr);
         for (DataVoorZitInTableView dataVoorZitInTableView : zitInTableViewList) {
             productZinInPakket_table.getItems().add(dataVoorZitInTableView);
         }

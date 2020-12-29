@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface VerkooptRepository {
 
-    List<Verkoopt> getVerkooptByBoerAndPakket(int auteur_id, int pakket_id);
+    List<Verkoopt> getVerkooptByBoerIDAndPakketID(int auteur_id, int pakket_id);
 
     void wijzigVerkoopt(Verkoopt verkoopt);
 
@@ -14,9 +14,9 @@ public interface VerkooptRepository {
 
     void wijzigHaaltAf(HaaltAf haaltAf);
 
-    List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
+    List<HaaltAf> getHaaltAfByKlantIDEnVerkooptID(int auteur_id, int verkoopt_id);
 
-    List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id);
+    List<SchrijftIn> getSchrijftInByKlantIDEnVerkooptID(int auteur_id, int verkoopt_id);
 
     List<Verkoopt> getVerkooptByKlantName(String naam);
 
@@ -32,9 +32,9 @@ public interface VerkooptRepository {
 
     List<Integer> getVerkooptPrijzenByName(String naam);
 
-    List<Integer> getVerkooptPrijzenByKlantAndByBoer(String klantNaam, String boerNaam);
+    List<Integer> getVerkooptPrijzenByKlantNameAndByBoerName(String klantNaam, String boerNaam);
 
-    List<Verkoopt> getVerkooptByBoer(int auteur_id);
+    List<Verkoopt> getVerkooptByBoerID(int auteur_id);
 
     void verwijderHaaltAfByAuteurID(int auteur_id);
 

@@ -7,7 +7,7 @@ import java.util.List;
 public interface ZitInRepository {
 
     List<ZitIn> getAlleZitInByVerkoopID(int verkoop_id);
-    List<DataVoorZitInTableView> getAlleZitVoorTableViewInByVerkoopAndWeeknr(int verkoop_id, int weeknr);
+    List<DataVoorZitInTableView> getAlleZitVoorTableViewInByVerkoopIDAndWeeknr(int verkoop_id, int weeknr);
     void voegZitInToe(ZitIn zitIn);
     void verwijderZitInByVerkooptID(int verkoopt_id);
 }
