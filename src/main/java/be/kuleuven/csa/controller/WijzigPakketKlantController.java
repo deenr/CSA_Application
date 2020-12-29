@@ -45,7 +45,7 @@ public class WijzigPakketKlantController {
     //Choicebox instellen en prijs bepalen/weergeven
     public void refreshItems() {
         List<String> boerNamen = boerRepository.getAlleBoerNamen();
-        List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
+        List<String> pakketFormaten = Arrays.asList("Medium (2 volwassenen, 0 kinderen)", "Groot (2 volwassenen, 2 kinderen)", "Familie (2 volwassenen, 4 kinderen)");
 
         wijzigPakketKeuzeBoer_choice.setItems(FXCollections.observableArrayList(boerNamen));
         wijzigPakketKeuzePakket_choice.setItems(FXCollections.observableArrayList(pakketFormaten));
@@ -102,7 +102,7 @@ public class WijzigPakketKlantController {
 
     //Schrijft in aanpassen naar nieuw pakket (oude nog niet afgehaalde pakketten kunnen nog steeds afgehaald worden)
     public void wijzigPakket() {
-        List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
+        List<String> pakketFormaten = Arrays.asList("Medium (2 volwassenen, 0 kinderen)", "Groot (2 volwassenen, 2 kinderen)", "Familie (2 volwassenen, 4 kinderen)");
 
         String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
         String selectedPakket = wijzigPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
@@ -177,13 +177,13 @@ public class WijzigPakketKlantController {
         this.teWijzigenBoerNaam = aangeduideBoerNaam;
         switch (aangeduidPakketNaam) {
             case "Mediumpakket":
-                this.teWijzigenPakketSoort = "Medium";
+                this.teWijzigenPakketSoort = "Medium (2 volwassenen, 0 kinderen)";
                 break;
             case "Grootpakket":
-                this.teWijzigenPakketSoort = "Groot";
+                this.teWijzigenPakketSoort = "Groot (2 volwassenen, 2 kinderen)";
                 break;
             case "Familiepakket":
-                this.teWijzigenPakketSoort = "Familie";
+                this.teWijzigenPakketSoort = "Familie (2 volwassenen, 4 kinderen)";
                 break;
         }
         this.aangeduidPakketPrijs = aangeduidPakketPrijs;

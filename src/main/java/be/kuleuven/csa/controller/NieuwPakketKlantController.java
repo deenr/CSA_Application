@@ -44,7 +44,7 @@ public class NieuwPakketKlantController {
     //Choicebox set text en bereken prijs
     public void refreshItems() {
         List<String> boerNamen = boerRepository.getAlleBoerNamen();
-        List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
+        List<String> pakketFormaten = Arrays.asList("Medium (2 volwassenen, 0 kinderen)", "Groot (2 volwassenen, 2 kinderen)", "Familie (2 volwassenen, 4 kinderen)");
 
         nieuwPakketKeuzeBoer_choice.setItems(FXCollections.observableArrayList(boerNamen));
         nieuwPakketKeuzePakket_choice.setItems(FXCollections.observableArrayList(pakketFormaten));
@@ -95,7 +95,7 @@ public class NieuwPakketKlantController {
 
     //Klant schrijft zich in op nieuw pakket
     public void nieuwPakket() {
-        List<String> pakketFormaten = Arrays.asList("Medium", "Groot", "Familie");
+        List<String> pakketFormaten = Arrays.asList("Medium (2 volwassenen, 0 kinderen)", "Groot (2 volwassenen, 2 kinderen)", "Familie (2 volwassenen, 4 kinderen)");
 
         String selectedBoer = nieuwPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
         String selectedPakket = nieuwPakketKeuzePakket_choice.getSelectionModel().getSelectedItem();
