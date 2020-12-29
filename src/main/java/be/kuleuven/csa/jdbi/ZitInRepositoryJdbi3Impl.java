@@ -38,5 +38,13 @@ public class ZitInRepositoryJdbi3Impl implements ZitInRepository {
         });
     }
 
+    @Override
+    public void verwijderZitInByVerkooptID(int verkoopt_id) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("DELETE FROM ZitIn WHERE verkoopt_id = " + verkoopt_id + ";")
+                    .execute();
+        });
+    }
+
 
 }

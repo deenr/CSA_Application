@@ -11,4 +11,5 @@ public interface BoerRepository {
     void saveNewBoer(Boer boer);
     void updateBoer(Boer boer);
     List<String> getAlleBoerNamen();
+    void verwijderKlantByAuteurID(int auteur_id);
 }

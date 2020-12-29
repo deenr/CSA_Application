@@ -132,7 +132,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public void verwijderHaaltAfByAuteurID(String auteur_id) {
+    public void verwijderHaaltAfByAuteurID(int auteur_id) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("DELETE FROM HaaltAf WHERE auteur_id = " + auteur_id + ";")
                     .execute();
@@ -150,9 +150,17 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
     }
 
     @Override
-    public void verwijderSchrijftInByAuteurID(String auteur_id) {
+    public void verwijderSchrijftInByAuteurID(int auteur_id) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("DELETE FROM SchrijftIn WHERE auteur_id = " + auteur_id + ";")
+                    .execute();
+        });
+    }
+
+    @Override
+    public void verwijderVerkooptByAuteurID(int auteur_id) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("DELETE FROM Verkoopt WHERE auteur_id = " + auteur_id + ";")
                     .execute();
         });
     }

@@ -63,7 +63,7 @@ public class AuteurRepositoryJdbi3Impl implements AuteurRepository {
     }
 
     @Override
-    public void verwijderAuteurByAuteurID(String auteur_id) {
+    public void verwijderAuteurByAuteurID(int auteur_id) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("DELETE FROM Auteur WHERE auteur_id = " + auteur_id + ";")
                     .execute();

@@ -65,4 +65,12 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
                     .execute();
         });
     }
+
+    @Override
+    public void verwijderKlantByAuteurID(int auteur_id) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("DELETE FROM Boer WHERE auteur_id = " + auteur_id + ";")
+                    .execute();
+        });
+    }
 }

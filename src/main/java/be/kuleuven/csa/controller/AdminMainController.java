@@ -92,7 +92,7 @@ public class AdminMainController {
             showWarning("Warning", "Gelieve een klant te selecteren");
         } else {
             String klant_naam = klant.getAuteur_naam();
-            String klant_id = klantRepository.getKlantByName(klant_naam).get(0).getAuteur_id() + "";
+            int klant_id = klantRepository.getKlantByName(klant_naam).get(0).getAuteur_id();
 
             verkooptRepository.verwijderHaaltAfByAuteurID(klant_id);
             verkooptRepository.verwijderSchrijftInByAuteurID(klant_id);
@@ -100,12 +100,30 @@ public class AdminMainController {
             auteurRepository.verwijderAuteurByAuteurID(klant_id);
 
             refreshDataKlanten();
+            showMessage("Success", "De klant is correct uit de database verwijderd");
         }
-
     }
 
     public void verwijderBoer() {
+        DataVoorBoerTableView boer = boerenAdmin_table.getSelectionModel().getSelectedItem();
+        if (boer == null) {
+            showWarning("Warning", "Gelieve een boer te selecteren");
+        } else {
+            String boer_naam = boer.getAuteur_naam();
+            int boer_id = boerRepository.getBoerByName(boer_naam).get(0).getAuteur_id();
+            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoer(boer_id);
 
+            for(Verkoopt v : verkooptList) {
+                zitInRepository.verwijderZitInByVerkooptID(v.getVerkoopt_id());
+            }
+            verkooptRepository.verwijderSchrijftInByAuteurID(boer_id);
+            verkooptRepository.verwijderVerkooptByAuteurID(boer_id);
+            boerRepository.verwijderKlantByAuteurID(boer_id);
+            auteurRepository.verwijderAuteurByAuteurID(boer_id);
+
+            refreshDataBoeren();
+            showMessage("Success", "De boer is correct uit de database verwijderd");
+        }
     }
 
     private void getDataKlanten() {
@@ -266,6 +284,14 @@ public class AdminMainController {
 
     public void showError(String title, String content) {
         var alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    public void showMessage(String title, String content) {
+        var alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle(title);
         alert.setHeaderText(title);
         alert.setContentText(content);

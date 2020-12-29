@@ -36,7 +36,9 @@ public interface VerkooptRepository {
 
     List<Verkoopt> getVerkooptByBoer(int auteur_id);
 
-    void verwijderHaaltAfByAuteurID(String auteur_id);
+    void verwijderHaaltAfByAuteurID(int auteur_id);
 
-    void verwijderSchrijftInByAuteurID(String auteur_id);
+    void verwijderSchrijftInByAuteurID(int auteur_id);
+
+    void verwijderVerkooptByAuteurID(int auteur_id);
 }
