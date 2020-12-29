@@ -17,6 +17,7 @@ public class MainDatabase {
     private static BoerRepository boerRepository;
     private static VerkooptRepository verkooptRepository;
     private static ZitInRepository zitInRepository;
+    private static ProductRepository productRepository;
 
     public final static String DatabasePath = "D:\\Coding\\DAB\\CSA_Application\\csa_database.db";
 
@@ -35,6 +36,7 @@ public class MainDatabase {
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
         zitInRepository = new ZitInRepositoryJdbi3Impl(jdbi);
+        productRepository = new ProductRepositoryJdbi3Impl(jdbi);
     }
 
 
@@ -44,7 +46,7 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        System.out.println(verkooptRepository.getVerkooptPrijzenByName("Dean"));
+        System.out.println(productRepository.getAlleProducten().toString());
 
         //auteurRepository.saveNewAuteur(auteur);
 

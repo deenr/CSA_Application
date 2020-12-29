@@ -58,6 +58,7 @@ public class BestaandeKlantController {
         nieuwPakketBestellen_button.setOnAction(e -> showSchermNieuwPakket("nieuw_pakket_klant"));
         verwijderPakket_button.setOnAction(e -> verwijderPakket());
         afTeHalenPakketten_button.setOnAction(e -> showSchermAfTeHalenPakketten("aftehalen_pakketten_klant"));
+        tipToevoegenKlant_button.setOnAction(e->showSchermTipToevoegen("tip_toevoegen"));
 
         bestaandeKlantPakketten_Tbl.getColumns().clear();
 
@@ -230,6 +231,29 @@ public class BestaandeKlantController {
 
             WijzigPakketKlantController wijzigPakketKlantController = loader.getController();
             wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, selectedRow, teWijzigenBoerNaam, teWijzigenPakketSoort);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
+    }
+
+    private void showSchermTipToevoegen(String id) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
+
+            TipToevoegenController tipToevoegenController = loader.getController();
+            tipToevoegenController.getAuteurNaam(klantNaam);
 
             var scene = new Scene(root);
             stage.setScene(scene);

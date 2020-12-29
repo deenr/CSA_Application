@@ -60,7 +60,7 @@ public class BestaandeBoerController {
         klantenBekijkenBoer_button.setOnAction(e -> showSchermBekijktKlanten("boer_bekijkt_klanten"));
         klantenStatusUpdatenBoer_button.setOnAction(e -> showSchermVeranderPakketStatus("klanten_status_updaten_boer"));
         nieuweWeekPakkettenToevoegenBoer_button.setOnAction(e -> showSchermAanmaakWeekPakketten("nieuw_weekpakket_boer"));
-
+        toevoegenTipBoer_button.setOnAction(e->showSchermTipToevoegen("tip_toevoegen"));
         refreshItems();
     }
 
@@ -199,6 +199,29 @@ public class BestaandeBoerController {
 
             BoerBekijktKlantenController boerBekijktKlantenController = loader.getController();
             boerBekijktKlantenController.getBoerNaam(boerNaam);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
+    }
+
+    private void showSchermTipToevoegen(String id) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
+
+            TipToevoegenController tipToevoegenController = loader.getController();
+            tipToevoegenController.getAuteurNaam(boerNaam);
 
             var scene = new Scene(root);
             stage.setScene(scene);

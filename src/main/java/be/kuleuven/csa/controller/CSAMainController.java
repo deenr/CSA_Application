@@ -22,6 +22,7 @@ public class CSAMainController {
         ikBenEenKlant_button.setOnAction(e -> showScherm("klant_main"));
         ikBenEenBoer_button.setOnAction(e -> showScherm("boer_main"));
         ikBenEenAdmin_button.setOnAction(e -> showScherm("admin_main"));
+        bekijkKooptips_button.setOnAction(e -> showScherm("tips_main"));
     }
 
     private void showScherm(String id) {

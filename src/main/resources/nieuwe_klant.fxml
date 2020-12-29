@@ -18,7 +18,7 @@
                 </LinearGradient>
             </fill>
         </Rectangle>
-        <Button fx:id="registreerNieuweKlant_button" alignment="CENTER" layoutX="194.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0" style="-fx-background-color: #0f406b;" text="REGISTREER" textFill="WHITE">
+        <Button fx:id="registreerNieuweKlant_button" alignment="CENTER" layoutX="194.0" layoutY="212.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="212.0" style="-fx-background-color: #0f406b;" text="Registreer" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

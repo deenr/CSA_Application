@@ -87,7 +87,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="toevoegenTipBoer_button" alignment="CENTER" layoutX="354.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: #0f406b;" text="Toevoegen tip" textFill="WHITE">
+      <Button fx:id="toevoegenTipBoer_button" alignment="CENTER" layoutX="354.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: #0f406b;" text="Tip toevoegen" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

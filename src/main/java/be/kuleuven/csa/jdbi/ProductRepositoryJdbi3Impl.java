@@ -43,4 +43,14 @@ public class ProductRepositoryJdbi3Impl implements ProductRepository {
                     .list();
         });
     }
+
+    @Override
+    public List<String> getAlleProducten() {
+        var query = "SELECT product_naam FROM Product;";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapTo(String.class)
+                    .list();
+        });
+    }
 }
