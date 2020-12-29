@@ -58,16 +58,22 @@ public class BoerMainController {
     public void controleerNaamInDatabase(String id) {
         List<Auteur> auteurList = auteurRepository.getAllAuteurs();
         boolean naamBestaand = false;
+        String naam="";
         for (Auteur a: auteurList
         ) {
             if (a.getAuteur_naam().equals(bestaandeBoer_naam.getText())) {
                 naamBestaand = true;
+                naam = a.getAuteur_naam();
             }
         }
         if (naamBestaand) {
-            showSchermMetData(id);
+            if(naam.contains("Boer")) {
+                showSchermMetData(id);
+            } else {
+                showError("Error", "De ingegeven naam is niet geregistreerd als boer");
+            }
         } else {
-            showAlert("Warning", "Deze naam is niet in gebruik, gelieve u te registreren");
+            showWarning("Warning", "Deze naam is niet in gebruik, gelieve u te registreren");
         }
     }
 
@@ -107,8 +113,16 @@ public class BoerMainController {
         boerRepository = new BoerRepositoryJdbi3Impl(jdbi);
     }
 
-    public void showAlert(String title, String content) {
+    public void showWarning(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    public void showError(String title, String content) {
+        var alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(title);
         alert.setContentText(content);
