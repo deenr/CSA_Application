@@ -100,7 +100,6 @@ public class AdminMainController {
             auteurRepository.verwijderAuteurByAuteurID(klant_id);
 
             refreshDataKlanten();
-            showMessage("Success", "De klant is correct uit de database verwijderd");
         }
     }
 
@@ -122,7 +121,6 @@ public class AdminMainController {
             auteurRepository.verwijderAuteurByAuteurID(boer_id);
 
             refreshDataBoeren();
-            showMessage("Success", "De boer is correct uit de database verwijderd");
         }
     }
 

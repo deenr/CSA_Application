@@ -46,7 +46,7 @@ public class MainDatabase {
 
         //System.out.println(pakketRepository.getAllePakketten());
 
-        System.out.println(productRepository.getAlleProducten().toString());
+        System.out.println(zitInRepository.getAlleZitVoorTableViewInByVerkoopAndWeeknr(8,1).toString());
 
         //auteurRepository.saveNewAuteur(auteur);
 

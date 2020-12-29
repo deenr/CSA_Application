@@ -36,19 +36,19 @@
             </font>
         </Text>
 
-        <Text fill="WHITE" layoutX="349.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs grootpakket">
+        <Text fill="WHITE" layoutX="348.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs grootpakket">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Text>
 
-        <Text fill="WHITE" layoutX="334.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs mediumpakket">
+        <Text fill="WHITE" layoutX="333.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs mediumpakket">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>
         </Text>
 
-        <Text fill="WHITE" layoutX="341.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs Familiepakket">
+        <Text fill="WHITE" layoutX="341.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prijs familiepakket">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font>

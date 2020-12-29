@@ -69,6 +69,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
         });
     }
 
+    @Override
     public List<HaaltAf> getHaaltAfByKlantEnVerkoopt(int auteur_id, int verkoopt_id) {
         var query = "SELECT * FROM HaaltAf h WHERE h.verkoopt_id = " + verkoopt_id + " AND h.auteur_id = " + auteur_id + ";";
         return jdbi.withHandle(handle -> {
@@ -78,6 +79,7 @@ public class VerkooptRepositoryJdbi3Impl implements VerkooptRepository {
         });
     }
 
+    @Override
     public List<SchrijftIn> getSchrijftInByKlantEnVerkoopt(int auteur_id, int verkoopt_id) {
         var query = "SELECT * FROM SchrijftIn s WHERE s.verkoopt_id = " + verkoopt_id + " AND s.auteur_id = " + auteur_id + ";";
         return jdbi.withHandle(handle -> {

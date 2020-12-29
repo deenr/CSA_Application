@@ -1,14 +1,21 @@
 package be.kuleuven.csa.controller;
 
+import be.kuleuven.csa.CSAMain;
 import be.kuleuven.csa.MainDatabase;
 import be.kuleuven.csa.domain.*;
 import be.kuleuven.csa.domain.helpdomain.DataVoorAbonnementenTableView;
 import be.kuleuven.csa.domain.helpdomain.DataVoorAfhalingenTableView;
 import be.kuleuven.csa.jdbi.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
@@ -33,6 +40,13 @@ public class AfTeHalenPakkettenKlantController {
         afTeHalenPakkettenKlant_table.getColumns().clear();
 
         afTeHalenPakkettenKlant_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        afTeHalenPakkettenKlant_table.setOnMouseClicked(e -> {
+            if (e.getClickCount() == 2 && afTeHalenPakkettenKlant_table.getSelectionModel().getSelectedItem() != null) {
+                DataVoorAfhalingenTableView afTeHalenPakket = afTeHalenPakkettenKlant_table.getSelectionModel().getSelectedItem();
+                showSchermToonInhoudPakket("pakket_zitIn", afTeHalenPakket);
+            }
+        });
 
         TableColumn<DataVoorAfhalingenTableView, String> colPakketNaam = new TableColumn<>("Soort Pakket");
         colPakketNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
@@ -89,5 +103,28 @@ public class AfTeHalenPakkettenKlantController {
     public void getKlantNaam(String klantNaam) {
         this.klantNaam = klantNaam;
         refreshTable();
+    }
+
+    private void showSchermToonInhoudPakket(String id, DataVoorAfhalingenTableView afTeHalenPakket) {
+        var resourceName = id + ".fxml";
+        try {
+            var stage = new Stage();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(resourceName));
+            Parent root = (AnchorPane) loader.load();
+
+            ZitInPakketController zitInPakketController = loader.getController();
+            zitInPakketController.getGeselecteerdPakket(afTeHalenPakket);
+
+            var scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle(id);
+            stage.initOwner(CSAMain.getRootStage());
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.show();
+
+        } catch (Exception e) {
+            throw new RuntimeException("Kan beheerscherm " + resourceName + " niet vinden", e);
+        }
     }
 }

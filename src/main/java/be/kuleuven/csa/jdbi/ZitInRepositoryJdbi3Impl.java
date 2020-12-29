@@ -4,6 +4,7 @@ import be.kuleuven.csa.domain.HaaltAf;
 import be.kuleuven.csa.domain.Pakket;
 import be.kuleuven.csa.domain.ZitIn;
 import be.kuleuven.csa.domain.ZitInRepository;
+import be.kuleuven.csa.domain.helpdomain.DataVoorZitInTableView;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
@@ -22,6 +23,16 @@ public class ZitInRepositoryJdbi3Impl implements ZitInRepository {
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
                     .mapToBean(ZitIn.class)
+                    .list();
+        });
+    }
+
+    @Override
+    public List<DataVoorZitInTableView> getAlleZitVoorTableViewInByVerkoopAndWeeknr(int verkoop_id, int weeknr) {
+        var query = "SELECT p.product_naam, z.zitIn_hoeveelheid FROM Product p, ZitIn z WHERE z.verkoopt_id = " + verkoop_id + " AND z.product_id = p.product_id AND z.zitIn_weeknr = " + weeknr + ";";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(DataVoorZitInTableView.class)
                     .list();
         });
     }
