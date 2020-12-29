@@ -2,30 +2,43 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.kuleuven.csa.controller.TipsMainController">
-   <children>
-       <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE"
-                  strokeWidth="0.0" width="600.0">
-           <fill>
-               <LinearGradient endX="0.5238095238095238" startX="0.49523809523809526">
-                   <stops>
-                       <Stop color="#1370bc"/>
-                       <Stop color="#0f5586" offset="1.0"/>
-                   </stops>
-               </LinearGradient>
-           </fill>
-       </Rectangle>
-       <TableView fx:id="tips_table" layoutX="14.0" layoutY="14.0" prefHeight="369.0"
-                  prefWidth="568.0">
-           <columns>
-               <TableColumn prefWidth="75.0" text="C1"/>
-               <TableColumn prefWidth="75.0" text="C2"/>
-           </columns>
-       </TableView>
-   </children>
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" strokeWidth="0.0" width="600.0">
+            <fill>
+                <LinearGradient endX="0.5238095238095238" startX="0.49523809523809526">
+                    <stops>
+                        <Stop color="#1370bc" />
+                        <Stop color="#0f5586" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <TableView fx:id="tips_table" layoutX="14.0" layoutY="72.0" prefHeight="314.0" prefWidth="572.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+            </columns>
+        </TableView>
+        <Text fill="WHITE" layoutX="15.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product soort">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <ChoiceBox fx:id="filterProductSoort_choice" layoutX="14.0" layoutY="30.0" prefHeight="25.0" prefWidth="128.0" />
+        <Button fx:id="applyFilterProductSoort_button" alignment="CENTER" layoutX="151.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #0f406b;" text="Filter" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+        <Button fx:id="resetFilterProductSoort_button" alignment="CENTER" layoutX="534.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #0f406b;" text="Reset" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Button>
+    </children>
 </AnchorPane>
