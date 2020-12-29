@@ -1,10 +1,12 @@
 package be.kuleuven.csa.domain;
 
+import be.kuleuven.csa.domain.helpdomain.DataVoorBoerTableView;
+
 import java.util.List;
 
 public interface BoerRepository {
 
-    List<Boer> getAlleBoeren();
+    List<DataVoorBoerTableView> getAlleBoerenVoorDataView();
     List<Boer> getBoerByName(String naam);
     void saveNewBoer(Boer boer);
     void updateBoer(Boer boer);

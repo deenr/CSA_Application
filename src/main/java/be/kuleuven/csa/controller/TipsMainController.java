@@ -28,6 +28,8 @@ public class TipsMainController {
 
         tips_table.getColumns().clear();
 
+        tips_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         TableColumn<Tip, String> colAuteurNaam = new TableColumn<>("Auteur naam");
         colAuteurNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getAuteur_naam()));
         tips_table.getColumns().add(colAuteurNaam);

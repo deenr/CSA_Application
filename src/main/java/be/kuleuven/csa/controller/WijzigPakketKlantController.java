@@ -24,6 +24,7 @@ public class WijzigPakketKlantController {
     private int selectedRow;
     private String teWijzigenBoerNaam;
     private String teWijzigenPakketSoort;
+    private int aangeduidPakketPrijs;
 
     public ChoiceBox<String> wijzigPakketKeuzeBoer_choice;
     public ChoiceBox<String> wijzigPakketKeuzePakket_choice;
@@ -38,7 +39,6 @@ public class WijzigPakketKlantController {
 
     public void initialize() throws IOException {
         setUpRepo();
-        refreshItems();
 
         wijzigPakket_button.setOnAction(e -> wijzigPakket());
     }
@@ -52,6 +52,9 @@ public class WijzigPakketKlantController {
 
         wijzigPakketKeuzeBoer_choice.setValue(teWijzigenBoerNaam);
         wijzigPakketKeuzePakket_choice.setValue(teWijzigenPakketSoort);
+        if (wijzigPakketPrijsPakket_text.getText().equals("....")){
+            wijzigPakketPrijsPakket_text.setText(aangeduidPakketPrijs + " euro");
+        }
 
         wijzigPakketKeuzeBoer_choice.setOnAction((event) -> {
             String selectedBoer = wijzigPakketKeuzeBoer_choice.getSelectionModel().getSelectedItem();
@@ -172,10 +175,10 @@ public class WijzigPakketKlantController {
         alert.showAndWait();
     }
 
-    public void getNaamEnGeselecteerdPakket(String klantNaam, int selectedRow, String teWijzigenBoerNaam, String aangeduidPakketNaam) {
+    public void getNaamEnGeselecteerdPakket(String klantNaam, int selectedRow, String aangeduideBoerNaam, String aangeduidPakketNaam, int aangeduidPakketPrijs) {
         this.klantNaam = klantNaam;
         this.selectedRow = selectedRow;
-        this.teWijzigenBoerNaam = teWijzigenBoerNaam;
+        this.teWijzigenBoerNaam = aangeduideBoerNaam;
         switch (aangeduidPakketNaam) {
             case "Mediumpakket":
                 this.teWijzigenPakketSoort = "Medium";
@@ -187,6 +190,7 @@ public class WijzigPakketKlantController {
                 this.teWijzigenPakketSoort = "Familie";
                 break;
         }
+        this.aangeduidPakketPrijs = aangeduidPakketPrijs;
         refreshItems();
     }
 

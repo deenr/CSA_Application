@@ -66,6 +66,7 @@ public class BestaandeKlantController {
         colPakket_id.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_id()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colPakket_id);*/
 
+        bestaandeKlantPakketten_Tbl.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         TableColumn<DataVoorAbonnementenTableView, String> colNaam = new TableColumn<>("Soort Pakket");
         colNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
         bestaandeKlantPakketten_Tbl.getColumns().add(colNaam);
@@ -221,7 +222,7 @@ public class BestaandeKlantController {
         }
     }
 
-    private void showSchermWijzigPakket(String id, int selectedRow, String teWijzigenBoerNaam, String teWijzigenPakketSoort) {
+    private void showSchermWijzigPakket(String id, int selectedRow, String teWijzigenBoerNaam, String teWijzigenPakketSoort, int teWijzigenPakketPrijs) {
         var resourceName = id + ".fxml";
         try {
             var stage = new Stage();
@@ -230,7 +231,7 @@ public class BestaandeKlantController {
             Parent root = (AnchorPane) loader.load();
 
             WijzigPakketKlantController wijzigPakketKlantController = loader.getController();
-            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, selectedRow, teWijzigenBoerNaam, teWijzigenPakketSoort);
+            wijzigPakketKlantController.getNaamEnGeselecteerdPakket(klantNaam, selectedRow, teWijzigenBoerNaam, teWijzigenPakketSoort, teWijzigenPakketPrijs);
 
             var scene = new Scene(root);
             stage.setScene(scene);
@@ -275,7 +276,8 @@ public class BestaandeKlantController {
         int teWijzigenKolomNummer = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedIndex();
         String teWijzigenBoerNaam = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem().getAuteur_naam();
         String teWijzigenPakketSoort = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem().getPakket_naam();
-        showSchermWijzigPakket("wijzig_pakket_klant", teWijzigenKolomNummer, teWijzigenBoerNaam, teWijzigenPakketSoort);
+        int teWijzigenPakketPrijs = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem().getVerkoopt_prijs();
+        showSchermWijzigPakket("wijzig_pakket_klant", teWijzigenKolomNummer, teWijzigenBoerNaam, teWijzigenPakketSoort, teWijzigenPakketPrijs);
     }
 
     public void updateTeBetalenBedragVanKlanten() {

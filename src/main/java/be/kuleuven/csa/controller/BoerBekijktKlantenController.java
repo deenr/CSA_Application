@@ -34,6 +34,8 @@ public class BoerBekijktKlantenController {
 
         klantenVanBoer_table.getColumns().clear();
 
+        klantenVanBoer_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         TableColumn<KlantenBoer, String> colKlantenNaam = new TableColumn<>("Klant naam");
         colKlantenNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getNaam()));
         klantenVanBoer_table.getColumns().add(colKlantenNaam);

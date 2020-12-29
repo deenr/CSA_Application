@@ -37,6 +37,8 @@ public class KlantenStatusUpdatenBoerController {
 
         afTeHalenPakkettenBoer_table.getColumns().clear();
 
+        afTeHalenPakkettenBoer_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         TableColumn<DataVoorVeranderdStatusPakket, String> colNaam = new TableColumn<>("Klant naam");
         colNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getAuteur_naam()));
         afTeHalenPakkettenBoer_table.getColumns().add(colNaam);

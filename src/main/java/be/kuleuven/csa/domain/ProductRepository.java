@@ -8,4 +8,5 @@ public interface ProductRepository {
     void saveNewProduct(Product product);
     List<String> getAlleProductenBySoort(String soort);
     List<String> getAlleProducten();
+    List<Product> getAlleProductenVoorDataView();
 }

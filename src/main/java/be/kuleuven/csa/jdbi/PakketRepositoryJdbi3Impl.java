@@ -4,6 +4,7 @@ import be.kuleuven.csa.domain.Pakket;
 import be.kuleuven.csa.domain.PakketRepository;
 import be.kuleuven.csa.domain.helpdomain.DataVoorAbonnementenTableView;
 import be.kuleuven.csa.domain.helpdomain.DataVoorAfhalingenTableView;
+import be.kuleuven.csa.domain.helpdomain.DataVoorPakketTableView;
 import be.kuleuven.csa.domain.helpdomain.DataVoorVeranderdStatusPakket;
 import org.jdbi.v3.core.Jdbi;
 
@@ -23,6 +24,16 @@ public class PakketRepositoryJdbi3Impl implements PakketRepository {
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
                     .mapToBean(Pakket.class)
+                    .list();
+        });
+    }
+
+    @Override
+    public List<DataVoorPakketTableView> getAllePakkettenVoorDataView() {
+        var query = "SELECT a1.auteur_naam as boer_naam, p.pakket_naam, a2.auteur_naam as klant_naam, h.pakket_weeknr, h.pakket_afgehaald FROM Auteur a1, Auteur a2, Pakket p, HaaltAf h, Verkoopt v WHERE a1.auteur_id = v.auteur_id AND v.verkoopt_id = h.verkoopt_id AND v.pakket_id = p.pakket_id AND h.auteur_id = a2.auteur_id";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(DataVoorPakketTableView.class)
                     .list();
         });
     }

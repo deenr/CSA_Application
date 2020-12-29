@@ -58,8 +58,8 @@ public class BoerMainController {
     public void controleerNaamInDatabase(String id) {
         List<Auteur> auteurList = auteurRepository.getAllAuteurs();
         boolean naamBestaand = false;
-        String naam="";
-        for (Auteur a: auteurList
+        String naam = "";
+        for (Auteur a : auteurList
         ) {
             if (a.getAuteur_naam().equals(bestaandeBoer_naam.getText())) {
                 naamBestaand = true;
@@ -67,10 +67,11 @@ public class BoerMainController {
             }
         }
         if (naamBestaand) {
-            if(naam.contains("Boer")) {
-                showSchermMetData(id);
-            } else {
+            List<Boer> boerList = boerRepository.getBoerByName(naam);
+            if (boerList.isEmpty()) {
                 showError("Error", "De ingegeven naam is niet geregistreerd als boer");
+            } else {
+                showSchermMetData(id);
             }
         } else {
             showWarning("Warning", "Deze naam is niet in gebruik, gelieve u te registreren");

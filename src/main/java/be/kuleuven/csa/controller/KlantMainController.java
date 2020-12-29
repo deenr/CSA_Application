@@ -4,6 +4,7 @@ import be.kuleuven.csa.CSAMain;
 import be.kuleuven.csa.MainDatabase;
 import be.kuleuven.csa.domain.Auteur;
 import be.kuleuven.csa.domain.AuteurRepository;
+import be.kuleuven.csa.domain.Klant;
 import be.kuleuven.csa.domain.KlantRepository;
 import be.kuleuven.csa.jdbi.AuteurRepositoryJdbi3Impl;
 import be.kuleuven.csa.jdbi.ConnectionManager;
@@ -61,7 +62,7 @@ public class KlantMainController {
         List<Auteur> auteurList = auteurRepository.getAllAuteurs();
         boolean naamBestaand = false;
         String naam = "";
-        for (Auteur a: auteurList
+        for (Auteur a : auteurList
         ) {
             if (a.getAuteur_naam().equals(bestaandeKlant_naam.getText())) {
                 naamBestaand = true;
@@ -69,7 +70,8 @@ public class KlantMainController {
             }
         }
         if (naamBestaand) {
-            if(naam.contains("Boer")) {
+            List<Klant> klantList = klantRepository.getKlantByName(naam);
+            if (klantList.isEmpty()) {
                 showError("Error", "De ingegeven naam is niet geregistreerd als klant");
             } else {
                 showSchermMetData(id);

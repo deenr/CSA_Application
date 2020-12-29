@@ -3,6 +3,7 @@ package be.kuleuven.csa.jdbi;
 import be.kuleuven.csa.domain.Boer;
 import be.kuleuven.csa.domain.Klant;
 import be.kuleuven.csa.domain.KlantRepository;
+import be.kuleuven.csa.domain.helpdomain.DataVoorKlantTableView;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
@@ -16,11 +17,11 @@ public class KlantRepositoryJdbi3Impl implements KlantRepository {
     }
 
     @Override
-    public List<Klant> getAlleKlanten() {
-        var query = "SELECT * FROM Klant";
+    public List<DataVoorKlantTableView> getAlleKlantenVoorDataView() {
+        var query = "SELECT a.auteur_naam, k.klant_teBetalenBedrag FROM Auteur a JOIN Klant k ON a.auteur_id = k.auteur_id";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
-                    .mapToBean(Klant.class)
+                    .mapToBean(DataVoorKlantTableView.class)
                     .list();
         });
     }

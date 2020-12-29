@@ -32,6 +32,8 @@ public class AfTeHalenPakkettenKlantController {
 
         afTeHalenPakkettenKlant_table.getColumns().clear();
 
+        afTeHalenPakkettenKlant_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         TableColumn<DataVoorAfhalingenTableView, String> colPakketNaam = new TableColumn<>("Soort Pakket");
         colPakketNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getPakket_naam()));
         afTeHalenPakkettenKlant_table.getColumns().add(colPakketNaam);

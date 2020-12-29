@@ -3,6 +3,7 @@ package be.kuleuven.csa.jdbi;
 import be.kuleuven.csa.domain.Auteur;
 import be.kuleuven.csa.domain.Boer;
 import be.kuleuven.csa.domain.BoerRepository;
+import be.kuleuven.csa.domain.helpdomain.DataVoorBoerTableView;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.List;
@@ -16,11 +17,11 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
     }
 
     @Override
-    public List<Boer> getAlleBoeren() {
-        var query = "SELECT * FROM Boer";
+    public List<DataVoorBoerTableView> getAlleBoerenVoorDataView() {
+        var query = "SELECT a.auteur_naam, b.boer_adres FROM Auteur a JOIN Boer b ON a.auteur_id = b.auteur_id\n";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
-                    .mapToBean(Boer.class)
+                    .mapToBean(DataVoorBoerTableView.class)
                     .list();
         });
     }
