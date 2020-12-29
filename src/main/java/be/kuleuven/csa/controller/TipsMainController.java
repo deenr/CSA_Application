@@ -62,10 +62,6 @@ public class TipsMainController {
                 if (tip.getProduct_soort().equals("Vlees")) {
                     tips_table.getItems().add(tip);
                 }
-            } else if (filterProductSoort_choice.getSelectionModel().getSelectedItem().equals("Bloemen")) {
-                if (tip.getProduct_soort().equals("Bloemen")) {
-                    tips_table.getItems().add(tip);
-                }
             }
         }
     }
@@ -78,7 +74,7 @@ public class TipsMainController {
     private void insertInToTable() {
         tips_table.getItems().clear();
 
-        List<String> productSoorten = Arrays.asList("Alles", "Groenten", "Fruit", "Vlees", "Bloemen");
+        List<String> productSoorten = Arrays.asList("Alles", "Groenten", "Fruit", "Vlees");
         filterProductSoort_choice.setItems(FXCollections.observableArrayList(productSoorten));
         if (filterProductSoort_choice.getSelectionModel().getSelectedItem() == null) {
             filterProductSoort_choice.setValue("Alles");

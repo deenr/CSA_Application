@@ -93,7 +93,7 @@ public class TipToevoegenController {
     }
 
     public void refreshData() {
-        List<String> productSoorten = Arrays.asList("Groeten", "Fruit", "Vlees", "Bloemen");
+        List<String> productSoorten = Arrays.asList("Groenten", "Fruit", "Vlees");
         selecteerProductSoortVanTip_choice.setItems(FXCollections.observableArrayList(productSoorten));
     }
 
