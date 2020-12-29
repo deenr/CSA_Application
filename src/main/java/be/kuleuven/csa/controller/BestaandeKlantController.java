@@ -123,7 +123,6 @@ public class BestaandeKlantController {
 
     //Uitschrijven van klant op geselecteerd pakket
     private void verwijderPakket() {
-        System.out.println("verwijderknop");
         DataVoorAbonnementenTableView pakketBoerVoorTable = bestaandeKlantPakketten_Tbl.getSelectionModel().getSelectedItem();
         if (pakketBoerVoorTable != null) {
             int pakket_id = pakketBoerVoorTable.getPakket_id();

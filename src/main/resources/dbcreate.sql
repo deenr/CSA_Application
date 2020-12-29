@@ -95,10 +95,10 @@ INSERT INTO Boer(auteur_id, boer_adres) VALUES (1,'Wortelstraat 80');
 INSERT INTO Boer(auteur_id, boer_adres) VALUES (2,'Plattelandweg 7');
 INSERT INTO Boer(auteur_id, boer_adres) VALUES (3,'Graanlaan 981');
 
-INSERT INTO Klant(auteur_id) VALUES (4);
-INSERT INTO Klant(auteur_id) VALUES (5);
-INSERT INTO Klant(auteur_id) VALUES (6);
-INSERT INTO Klant(auteur_id) VALUES (7);
+INSERT INTO Klant(auteur_id, klant_teBetalenBedrag) VALUES (4, 1500);
+INSERT INTO Klant(auteur_id, klant_teBetalenBedrag) VALUES (5, 1600);
+INSERT INTO Klant(auteur_id, klant_teBetalenBedrag) VALUES (6, 900);
+INSERT INTO Klant(auteur_id, klant_teBetalenBedrag) VALUES (7, 1000);
 
 INSERT INTO Product(product_naam, product_soort) VALUES ('Aardappel', 'groenten');
 INSERT INTO Product(product_naam, product_soort) VALUES ('Prei', 'groenten');

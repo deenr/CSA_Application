@@ -5,6 +5,7 @@ import be.kuleuven.csa.domain.*;
 import be.kuleuven.csa.domain.helpdomain.Tip;
 import be.kuleuven.csa.jdbi.*;
 import javafx.collections.FXCollections;
+import javafx.css.Match;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -21,6 +22,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TipToevoegenController {
     public String auteurNaam;
