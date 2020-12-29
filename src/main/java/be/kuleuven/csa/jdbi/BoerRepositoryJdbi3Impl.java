@@ -18,7 +18,7 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
 
     @Override
     public List<DataVoorBoerTableView> getAlleBoerenVoorDataView() {
-        var query = "SELECT a.auteur_naam, b.boer_adres FROM Auteur a JOIN Boer b ON a.auteur_id = b.auteur_id\n";
+        var query = "SELECT a.auteur_naam, b.boer_adres FROM Auteur a JOIN Boer b ON a.auteur_id = b.auteur_id";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(query)
                     .mapToBean(DataVoorBoerTableView.class)

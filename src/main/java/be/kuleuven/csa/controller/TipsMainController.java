@@ -1,12 +1,18 @@
 package be.kuleuven.csa.controller;
 
-import be.kuleuven.csa.domain.helpdomain.DataVoorAbonnementenTableView;
-import be.kuleuven.csa.domain.helpdomain.DataVoorAfhalingenTableView;
-import be.kuleuven.csa.domain.helpdomain.Tip;
+import be.kuleuven.csa.MainDatabase;
+import be.kuleuven.csa.domain.*;
+import be.kuleuven.csa.domain.helpdomain.DataVoorTipTableView;
+import be.kuleuven.csa.jdbi.AuteurRepositoryJdbi3Impl;
+import be.kuleuven.csa.jdbi.BoerRepositoryJdbi3Impl;
+import be.kuleuven.csa.jdbi.ConnectionManager;
+import be.kuleuven.csa.jdbi.ProductRepositoryJdbi3Impl;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.Response;
 
@@ -14,6 +20,9 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -21,13 +30,17 @@ import java.util.regex.Pattern;
 
 public class TipsMainController {
     public List<Tip> tipList;
+    public List<DataVoorTipTableView> dataVoorTipTableViews;
 
-    public TableView<Tip> tips_table;
+    public TableView<DataVoorTipTableView> tips_table;
     public ChoiceBox<String> filterProductSoort_choice;
     public Button applyFilterProductSoort_button;
     public Button resetFilterProductSoort_button;
 
-    public void initialize() {
+    private static ProductRepository productRepository;
+
+    public void initialize() throws IOException {
+        setUpRepo();
         loadDb();
 
         //BUTTON action
@@ -45,19 +58,19 @@ public class TipsMainController {
         tips_table.getColumns().clear();
         tips_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        TableColumn<Tip, String> colAuteurNaam = new TableColumn<>("Auteur naam");
+        TableColumn<DataVoorTipTableView, String> colAuteurNaam = new TableColumn<>("Auteur naam");
         colAuteurNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getAuteur_naam()));
         tips_table.getColumns().add(colAuteurNaam);
 
-        TableColumn<Tip, String> colProduct = new TableColumn<>("Product naam");
+        TableColumn<DataVoorTipTableView, String> colProduct = new TableColumn<>("Product naam");
         colProduct.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getProduct_naam()));
         tips_table.getColumns().add(colProduct);
 
-        TableColumn<Tip, String> colProductSoort = new TableColumn<>("Product soort");
+        TableColumn<DataVoorTipTableView, String> colProductSoort = new TableColumn<>("Product soort");
         colProductSoort.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getProduct_soort()));
         tips_table.getColumns().add(colProductSoort);
 
-        TableColumn<Tip, String> colURL = new TableColumn<>("Tip");
+        TableColumn<DataVoorTipTableView, String> colURL = new TableColumn<>("Tip");
         colURL.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getTip_url()));
         tips_table.getColumns().add(colURL);
     }
@@ -65,19 +78,19 @@ public class TipsMainController {
     //Filter
     private void applyFilterProductSoort() {
         tips_table.getItems().clear();
-        for (Tip tip : tipList) {
+        for (DataVoorTipTableView tip : dataVoorTipTableViews) {
             if (filterProductSoort_choice.getSelectionModel().getSelectedItem().equals("Alles")) {
                 tips_table.getItems().add(tip);
             } else if (filterProductSoort_choice.getSelectionModel().getSelectedItem().equals("Groenten")) {
-                if (tip.getProduct_soort().equals("Groenten")) {
+                if (tip.getProduct_soort().equals("groenten")) {
                     tips_table.getItems().add(tip);
                 }
             } else if (filterProductSoort_choice.getSelectionModel().getSelectedItem().equals("Fruit")) {
-                if (tip.getProduct_soort().equals("Fruit")) {
+                if (tip.getProduct_soort().equals("fruit")) {
                     tips_table.getItems().add(tip);
                 }
             } else if (filterProductSoort_choice.getSelectionModel().getSelectedItem().equals("Vlees")) {
-                if (tip.getProduct_soort().equals("Vlees")) {
+                if (tip.getProduct_soort().equals("vlees")) {
                     tips_table.getItems().add(tip);
                 }
             }
@@ -99,7 +112,7 @@ public class TipsMainController {
             filterProductSoort_choice.setValue("Alles");
         }
 
-        for (Tip tip : tipList) {
+        for (DataVoorTipTableView tip : dataVoorTipTableViews) {
             tips_table.getItems().add(tip);
         }
     }
@@ -107,23 +120,53 @@ public class TipsMainController {
     //Database inladen in tips toevoegen als deze leeg is (puur voor functionaliteit weer te geven)
     private void loadDb() {
         CouchDbClient dbClient = new CouchDbClient();
-        this.tipList = dbClient.view("_all_docs").includeDocs(true).query(Tip.class);
+        dataVoorTipTableViews = new ArrayList<>();
+
+        this.tipList = dbClient.view("_all_docs")
+                .includeDocs(true)
+                .query(Tip.class);
         if (tipList.isEmpty()) {
-            Tip tip1 = new Tip("Dean", "Schorseneren", "Groenten", "https://dagelijksekost.een.be/gerechten/kotelet-met-schorseneren-in-witte-saus");
+            DataVoorTipTableView dataVoorTip1 = new DataVoorTipTableView("Dean", "Schorseneren", "Groenten", "https://dagelijksekost.een.be/gerechten/kotelet-met-schorseneren-in-witte-saus");
+            Tip tip1 = new Tip(6, "Dean", "https://dagelijksekost.een.be/gerechten/kotelet-met-schorseneren-in-witte-saus");
+            dataVoorTipTableViews.add(dataVoorTip1);
             Response reponse1 = dbClient.save(tip1);
-            tipList.add(tip1);
             if (reponse1.getError() != null) {
                 showAlert("Warning", "De tip is niet toegevoegd, probeer het opnieuw");
             }
-            Tip tip2 = new Tip("Jonas", "Pastinaak", "Groenten", "https://groentegroente.nl/groentes/pastinaak-bereiden");
+            DataVoorTipTableView dataVoorTip2 = new DataVoorTipTableView("Jonas", "Pastinaak", "Groenten", "https://groentegroente.nl/groentes/pastinaak-bereiden");
+            Tip tip2 = new Tip(4, "Jonas", "https://groentegroente.nl/groentes/pastinaak-bereiden");
+            dataVoorTipTableViews.add(dataVoorTip2);
             Response reponse2 = dbClient.save(tip2);
-            tipList.add(tip2);
             if (reponse2.getError() != null) {
                 showAlert("Warning", "De tip is niet toegevoegd, probeer het opnieuw");
+            }
+        } else {
+            for (Tip tip : tipList) {
+                String auteur_naam = tip.getAuteur_naam();
+                String tip_file = tip.getTip_file();
+
+                int product_id = tip.getProduct_id();
+                Product product = productRepository.getProductByProductID(product_id).get(0);
+                String product_naam = product.getProduct_naam();
+                String product_soort = product.getProduct_soort();
+
+                dataVoorTipTableViews.add(new DataVoorTipTableView(auteur_naam, product_naam, product_soort, tip_file));
             }
         }
         dbClient.shutdown();
         insertInToTable();
+    }
+
+    private static void setUpRepo() throws IOException {
+        var databaseFile = new String(Files.readAllBytes(Paths.get(MainDatabase.DatabasePath)));
+        if (databaseFile.isEmpty()) {
+            ConnectionManager connectionManager = new ConnectionManager();
+            connectionManager.flushConnection();
+        }
+        var jdbi = Jdbi.create(ConnectionManager.ConnectionString);
+        jdbi.installPlugin(new SqlObjectPlugin());
+
+        productRepository = new ProductRepositoryJdbi3Impl(jdbi);
     }
 
     // Open URL in browser

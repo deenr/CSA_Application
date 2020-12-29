@@ -2,10 +2,9 @@ package be.kuleuven.csa.controller;
 
 import be.kuleuven.csa.MainDatabase;
 import be.kuleuven.csa.domain.*;
-import be.kuleuven.csa.domain.helpdomain.Tip;
+import be.kuleuven.csa.domain.helpdomain.DataVoorTipTableView;
 import be.kuleuven.csa.jdbi.*;
 import javafx.collections.FXCollections;
-import javafx.css.Match;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -22,8 +21,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TipToevoegenController {
     public String auteurNaam;
@@ -84,8 +81,10 @@ public class TipToevoegenController {
             showAlert("Warning", "Gelieve alle velden in te vullen");
         } else {
             CouchDbClient dbClient = new CouchDbClient();
-            Tip toetevoegenTip = new Tip(auteurNaam, selectedProduct, selectedProductSoort, tipURL_text.getText());
-            Response response = dbClient.save(toetevoegenTip);
+            int product_id = productRepository.getProductByName(selectedProduct).get(0).getProduct_id();
+            Tip toeTeVoegenTip = new Tip(product_id, auteurNaam, tipURL_text.getText());
+            Response response = dbClient.save(toeTeVoegenTip);
+
             if (response.getError() == null) {
                 dbClient.shutdown();
                 Stage stage = (Stage) selecteerProductVanTip_choice.getScene().getWindow();

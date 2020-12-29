@@ -26,6 +26,16 @@ public class ProductRepositoryJdbi3Impl implements ProductRepository {
     }
 
     @Override
+    public List<Product> getProductByProductID(int product_id) {
+        var query = "SELECT * FROM Product WHERE product_id = '" + product_id + "';";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(Product.class)
+                    .list();
+        });
+    }
+
+    @Override
     public void saveNewProduct(Product product) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("INSERT INTO Product(product_naam, product_soort) VALUES (?,?);")
