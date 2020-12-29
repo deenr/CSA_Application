@@ -67,7 +67,7 @@ public class BestaandeBoerController {
 
     public void refreshItems() {
         //inladen product soort array in choiceBox voor nieuw product
-        List<String> productSoorten = Arrays.asList("Groeten", "Fruit", "Vlees", "Bloemen");
+        List<String> productSoorten = Arrays.asList("Groenten", "Fruit", "Vlees", "Bloemen");
         nieuwProductSoortBoer_choice.setItems(FXCollections.observableArrayList(productSoorten));
 
         //inladen pakket formaat array in choiceBox voor verandering prijs
@@ -98,7 +98,7 @@ public class BestaandeBoerController {
 
     //Nieuw product toevoegen aan database
     public void voegProductToe() {
-        List<String> productSoorten = Arrays.asList("Groeten", "Fruit", "Vlees", "Bloemen");
+        List<String> productSoorten = Arrays.asList("Groenten", "Fruit", "Vlees", "Bloemen");
         String selectedSoort = nieuwProductSoortBoer_choice.getSelectionModel().getSelectedItem();
 
         if (nieuwProductNaamBoer_text.getText() == null || selectedSoort == null) {
@@ -106,7 +106,7 @@ public class BestaandeBoerController {
         } else {
             List<Product> productList = productRepository.getProductByName(nieuwProductNaamBoer_text.getText());
             if (productList.isEmpty()) {
-                Product nieuwProduct = new Product(nieuwProductNaamBoer_text.getText(), selectedSoort);
+                Product nieuwProduct = new Product(nieuwProductNaamBoer_text.getText(), selectedSoort.toLowerCase());
                 productRepository.saveNewProduct(nieuwProduct);
 
                 nieuwProductNaamBoer_text.setText("");
