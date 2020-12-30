@@ -103,7 +103,6 @@ public class NieuwPakketKlantController {
         if (selectedBoer == null || selectedPakket == null){
             showAlert("Warning!", "Gelieve alle velden aan te duiden");
         } else {
-            System.out.println(selectedBoer + " " + selectedPakket);
             List<Boer> boerList = boerRepository.getBoerByName(selectedBoer);
             int boer_id = boerList.get(0).getAuteur_id();
             int pakket_id = 0;

@@ -1,5 +1,8 @@
 package be.kuleuven.csa.domain;
 
+import java.nio.charset.Charset;
+import java.util.Random;
+
 public class Tip {
     private String _id;
     private int product_id;
@@ -10,7 +13,7 @@ public class Tip {
     }
 
     public Tip(int product_id, String auteur_naam, String tip_file) {
-        this._id = product_id + "";
+        this._id = product_id + tip_file;
         this.product_id = product_id;
         this.auteur_naam = auteur_naam;
         this.tip_file = tip_file;

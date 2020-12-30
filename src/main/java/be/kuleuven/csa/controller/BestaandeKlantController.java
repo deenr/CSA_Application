@@ -146,8 +146,6 @@ public class BestaandeKlantController {
             }
             if (teVerwijderenSchrijftIn != null) {
                 verkooptRepository.verwijderSchrijftIn(teVerwijderenSchrijftIn);
-                System.out.println("Verwijderd uit database: " + teVerwijderenSchrijftIn.toString());
-
                 updateTeBetalenBedragVanKlanten();
                 refreshTable();
             } else {

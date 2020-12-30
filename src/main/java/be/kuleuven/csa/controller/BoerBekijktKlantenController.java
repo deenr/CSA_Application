@@ -66,8 +66,6 @@ public class BoerBekijktKlantenController {
             alleKlantenBoerenList.add(nieuweKlantenBoer);
         }
 
-        System.out.println(alleKlantenBoerenList.toString());
-
         for (KlantenBoer klantenBoer : alleKlantenBoerenList) {
             klantenVanBoer_table.getItems().add(klantenBoer);
         }
@@ -90,7 +88,6 @@ public class BoerBekijktKlantenController {
     //Mee gegeven boernaam uit vorig scherm
     public void getBoerNaam(String boerNaam) {
         this.boerNaam = boerNaam;
-        System.out.println(boerNaam);
         refreshTable();
     }
 }

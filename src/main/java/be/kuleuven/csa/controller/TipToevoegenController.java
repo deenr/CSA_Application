@@ -16,7 +16,9 @@ import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 import org.lightcouch.CouchDbClient;
 import org.lightcouch.Response;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
@@ -41,7 +43,13 @@ public class TipToevoegenController {
         beginLayout();
 
         //BUTTON action
-        tipToevoegen_button.setOnAction(e -> tipToevoegen());
+        tipToevoegen_button.setOnAction(e -> {
+            try {
+                tipToevoegen();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         selecteerProductSoortVanTip_choice.setOnAction(event -> eindLayout());
 
         refreshData();
@@ -74,7 +82,7 @@ public class TipToevoegenController {
     }
 
     //Tip toevoegen aan NoSQL databas
-    public void tipToevoegen() {
+    public void tipToevoegen() throws IOException {
         String selectedProductSoort = selecteerProductSoortVanTip_choice.getSelectionModel().getSelectedItem();
         String selectedProduct = selecteerProductVanTip_choice.getSelectionModel().getSelectedItem();
         if (tipURL_text.getText().isEmpty() || selectedProductSoort == null || selectedProduct == null) {
@@ -83,16 +91,32 @@ public class TipToevoegenController {
             CouchDbClient dbClient = new CouchDbClient();
             int product_id = productRepository.getProductByName(selectedProduct).get(0).getProduct_id();
             Tip toeTeVoegenTip = new Tip(product_id, auteurNaam, tipURL_text.getText());
-            Response response = dbClient.save(toeTeVoegenTip);
-
-            if (response.getError() == null) {
-                Stage stage = (Stage) selecteerProductVanTip_choice.getScene().getWindow();
-                stage.close();
+            String rev_id = getRevID(product_id, tipURL_text.getText());
+            if (rev_id == null) {
+                Response response = dbClient.save(toeTeVoegenTip);
+                if (response.getError() == null) {
+                    Stage stage = (Stage) selecteerProductVanTip_choice.getScene().getWindow();
+                    stage.close();
+                } else {
+                    showAlert("Warning", "De tip is niet toegevoegd, probeer het opnieuw");
+                }
             } else {
-                showAlert("Warning", "De tip is niet toegevoegd, probeer het opnieuw");
+                showAlert("Warning", "Deze tip is al toegevoegd aan de database");
             }
             dbClient.shutdown();
         }
+    }
+
+    private String getRevID(int product_id, String url) throws IOException {
+        Process p = Runtime.getRuntime().exec("cmd /c curl -X GET http://127.0.0.1:5984/" + MainDatabase.CouchDB + "/_all_docs -u "+MainDatabase.CouchDBUsername+":"+MainDatabase.CouchDBPassword);
+        String s;
+        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        while ((s = stdInput.readLine()) != null) {
+            if (s.contains("\"id\":\"" + product_id + url +"\"")) {
+                return s.substring(s.indexOf(":{\"rev\":\"") + 9, s.indexOf("\"}}"));
+            }
+        }
+        return null;
     }
 
     public void refreshData() {

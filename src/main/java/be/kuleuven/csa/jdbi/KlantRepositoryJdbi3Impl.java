@@ -64,7 +64,6 @@ public class KlantRepositoryJdbi3Impl implements KlantRepository {
                     .bind(1, klant.getKlant_teBetalenBedrag())
                     .execute();
         });
-        System.out.println("Klant is met id " + klant.getAuteur_id() + " is in de database geplaatst.");
     }
 
     @Override

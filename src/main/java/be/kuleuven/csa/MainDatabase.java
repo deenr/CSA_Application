@@ -21,6 +21,8 @@ public class MainDatabase {
 
     public final static String DatabasePath = "D:\\Coding\\DAB\\CSA_Application\\csa_database.db";
     public final static String CouchDB = "csa_tipjes";
+    public final static String CouchDBUsername = "admin";
+    public final static String CouchDBPassword = "admin";
 
     private static void setUpRepo() throws IOException {
         var databaseFile = new String(Files.readAllBytes(Paths.get(MainDatabase.DatabasePath)));

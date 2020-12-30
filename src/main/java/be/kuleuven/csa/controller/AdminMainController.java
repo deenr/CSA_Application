@@ -352,7 +352,6 @@ public class AdminMainController {
 
     // Verwijder geselecteerde klant
     public void verwijderTip() throws IOException {
-
         DataVoorTipTableView tipTableView = tipsAdmin_table.getSelectionModel().getSelectedItem();
         if (tipTableView == null) {
             showWarning("Warning", "Gelieve een tip te selecteren");
@@ -360,11 +359,11 @@ public class AdminMainController {
             CouchDbClient dbClient = new CouchDbClient();
             String product_naam = tipTableView.getProduct_naam();
             int product_id = productRepository.getProductByName(product_naam).get(0).getProduct_id();
-            String rev_id = getRevID(product_id);
+            String rev_id = getRevID(product_id, tipTableView.getTip_url());
             if (rev_id == null) {
                 showWarning("Warning", "De tip is niet verwijderd, probeer het opnieuw");
             } else {
-                Response response = dbClient.remove(product_id + "", rev_id);
+                Response response = dbClient.remove(product_id + tipTableView.getTip_url(), rev_id);
                 if (response.getError() == null) {
                     dbClient.shutdown();
                 } else {
@@ -376,12 +375,13 @@ public class AdminMainController {
         }
     }
 
-    private String getRevID(int product_id) throws IOException {
-        Process p = Runtime.getRuntime().exec("cmd /c curl -X GET http://127.0.0.1:5984/" + MainDatabase.CouchDB + "/_all_docs -u admin:admin");
+    // _rev_id zoeken van de tip in couchdb aan de hand van commandline en de output hiervan in een string plaatsen (https://www.youtube.com/watch?v=moeoyqpS4KI)
+    private String getRevID(int product_id, String url) throws IOException {
+        Process p = Runtime.getRuntime().exec("cmd /c curl -X GET http://127.0.0.1:5984/" + MainDatabase.CouchDB + "/_all_docs -u "+MainDatabase.CouchDBUsername+":"+MainDatabase.CouchDBPassword);
         String s;
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
         while ((s = stdInput.readLine()) != null) {
-            if (s.contains("\"id\":\"" + product_id + "\"")) {
+            if (s.contains("\"id\":\"" + product_id + url +"\"")) {
                 return s.substring(s.indexOf(":{\"rev\":\"") + 9, s.indexOf("\"}}"));
             }
         }
