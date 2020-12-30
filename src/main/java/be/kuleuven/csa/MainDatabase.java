@@ -20,6 +20,7 @@ public class MainDatabase {
     private static ProductRepository productRepository;
 
     public final static String DatabasePath = "D:\\Coding\\DAB\\CSA_Application\\csa_database.db";
+    public final static String CouchDB = "csa_tipjes";
 
     private static void setUpRepo() throws IOException {
         var databaseFile = new String(Files.readAllBytes(Paths.get(MainDatabase.DatabasePath)));

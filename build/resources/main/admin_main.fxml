@@ -113,6 +113,21 @@
                         </AnchorPane>
                     </content>
                 </Tab>
+                <Tab text="Tips">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                        <TableView fx:id="tipsAdmin_table" layoutY="-1.0" prefHeight="311.0" prefWidth="574.0">
+                            <columns>
+                                <TableColumn prefWidth="75.0" text="C1" />
+                                <TableColumn prefWidth="75.0" text="C2" />
+                            </columns>
+                        </TableView>
+                        <Button fx:id="verwijderTipAdmin_button" alignment="CENTER" layoutX="214.0" layoutY="319.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #0f406b;" text="Verwijder tip" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                    </AnchorPane>
+                </Tab>
             </tabs>
         </TabPane>
     </children>

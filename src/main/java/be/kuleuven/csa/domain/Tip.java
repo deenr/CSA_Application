@@ -1,6 +1,7 @@
 package be.kuleuven.csa.domain;
 
 public class Tip {
+    private String _id;
     private int product_id;
     private String auteur_naam;
     private String tip_file;
@@ -9,6 +10,7 @@ public class Tip {
     }
 
     public Tip(int product_id, String auteur_naam, String tip_file) {
+        this._id = product_id + "";
         this.product_id = product_id;
         this.auteur_naam = auteur_naam;
         this.tip_file = tip_file;
@@ -36,6 +38,14 @@ public class Tip {
 
     public void setTip_file(String tip_file) {
         this.tip_file = tip_file;
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     @Override

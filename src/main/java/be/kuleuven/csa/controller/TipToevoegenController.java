@@ -86,12 +86,12 @@ public class TipToevoegenController {
             Response response = dbClient.save(toeTeVoegenTip);
 
             if (response.getError() == null) {
-                dbClient.shutdown();
                 Stage stage = (Stage) selecteerProductVanTip_choice.getScene().getWindow();
                 stage.close();
             } else {
                 showAlert("Warning", "De tip is niet toegevoegd, probeer het opnieuw");
             }
+            dbClient.shutdown();
         }
     }
 

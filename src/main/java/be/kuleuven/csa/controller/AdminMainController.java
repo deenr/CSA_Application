@@ -6,13 +6,23 @@ import be.kuleuven.csa.domain.helpdomain.*;
 import be.kuleuven.csa.jdbi.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
+import javafx.scene.SubScene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import org.apache.commons.codec.binary.StringUtils;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import org.lightcouch.CouchDbClient;
+import org.lightcouch.Document;
+import org.lightcouch.ReplicatorDocument;
+import org.lightcouch.Response;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +45,9 @@ public class AdminMainController {
     public Button applyFilterPakketSoortAdmin_button;
     public Button resetFilterPakketSoortAdmin_button;
 
+    public TableView<DataVoorTipTableView> tipsAdmin_table;
+    public Button verwijderTipAdmin_button;
+
     private static AuteurRepository auteurRepository;
     private static KlantRepository klantRepository;
     private static PakketRepository pakketRepository;
@@ -53,20 +66,29 @@ public class AdminMainController {
         applyFilterPakketSoortAdmin_button.setOnAction(e -> refreshDataPakketten());
         resetFilterPakketSoortAdmin_button.setOnAction(e -> resetFilterPakketSoort());
 
-        verwijderKlantAdmin_button.setOnAction(e->verwijderKlant());
-        verwijderBoerAdmin_button.setOnAction(e->verwijderBoer());
+        verwijderKlantAdmin_button.setOnAction(e -> verwijderKlant());
+        verwijderBoerAdmin_button.setOnAction(e -> verwijderBoer());
+        verwijderTipAdmin_button.setOnAction(e -> {
+            try {
+                verwijderTip();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         //Load data
         getDataKlanten();
         getDataBoeren();
         getDataProducten();
         getDataPakketten();
+        getDataTips();
 
         //Refresh data
         refreshDataKlanten();
         refreshDataBoeren();
         refreshDataProducten();
         refreshDataPakketten();
+        refreshDataTips();
     }
 
     private static void setUpRepo() throws IOException {
@@ -86,47 +108,6 @@ public class AdminMainController {
         verkooptRepository = new VerkooptRepositoryJdbi3Impl(jdbi);
         zitInRepository = new ZitInRepositoryJdbi3Impl(jdbi);
         productRepository = new ProductRepositoryJdbi3Impl(jdbi);
-    }
-
-    public void verwijderKlant() {
-        DataVoorKlantTableView klant = klantenAdmin_table.getSelectionModel().getSelectedItem();
-        if (klant == null) {
-            showWarning("Warning", "Gelieve een klant te selecteren");
-        } else {
-            String klant_naam = klant.getAuteur_naam();
-            int klant_id = klantRepository.getKlantByName(klant_naam).get(0).getAuteur_id();
-
-            // In elke tabel waar deze klant_id staat rij verwijderen
-            verkooptRepository.verwijderHaaltAfByAuteurID(klant_id);
-            verkooptRepository.verwijderSchrijftInByAuteurID(klant_id);
-            klantRepository.verwijderKlantByAuteurID(klant_id);
-            auteurRepository.verwijderAuteurByAuteurID(klant_id);
-
-            refreshDataKlanten();
-        }
-    }
-
-    public void verwijderBoer() {
-        //Selected item
-        DataVoorBoerTableView boer = boerenAdmin_table.getSelectionModel().getSelectedItem();
-        if (boer == null) {
-            showWarning("Warning", "Gelieve een boer te selecteren");
-        } else {
-            String boer_naam = boer.getAuteur_naam();
-            int boer_id = boerRepository.getBoerByName(boer_naam).get(0).getAuteur_id();
-            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerID(boer_id);
-
-            // In elke tabel waar deze boer_id of zijn verkoopt_id staat rij verwijderen
-            for(Verkoopt v : verkooptList) {
-                zitInRepository.verwijderZitInByVerkooptID(v.getVerkoopt_id());
-            }
-            verkooptRepository.verwijderSchrijftInByAuteurID(boer_id);
-            verkooptRepository.verwijderVerkooptByAuteurID(boer_id);
-            boerRepository.verwijderKlantByAuteurID(boer_id);
-            auteurRepository.verwijderAuteurByAuteurID(boer_id);
-
-            refreshDataBoeren();
-        }
     }
 
     // DATA KLANTEN:
@@ -149,6 +130,25 @@ public class AdminMainController {
         }
     }
 
+    // Verwijder geselecteerde klant
+    public void verwijderKlant() {
+        DataVoorKlantTableView klant = klantenAdmin_table.getSelectionModel().getSelectedItem();
+        if (klant == null) {
+            showWarning("Warning", "Gelieve een klant te selecteren");
+        } else {
+            String klant_naam = klant.getAuteur_naam();
+            int klant_id = klantRepository.getKlantByName(klant_naam).get(0).getAuteur_id();
+
+            // In elke tabel waar deze klant_id staat rij verwijderen
+            verkooptRepository.verwijderHaaltAfByAuteurID(klant_id);
+            verkooptRepository.verwijderSchrijftInByAuteurID(klant_id);
+            klantRepository.verwijderKlantByAuteurID(klant_id);
+            auteurRepository.verwijderAuteurByAuteurID(klant_id);
+
+            refreshDataKlanten();
+        }
+    }
+
     // DATA BOEREN:
     private void getDataBoeren() {
         boerenAdmin_table.getColumns().clear();
@@ -166,6 +166,30 @@ public class AdminMainController {
         List<DataVoorBoerTableView> dataVoorKlantTableViewList = boerRepository.getAlleBoerenVoorDataView();
         for (DataVoorBoerTableView dataBoer : dataVoorKlantTableViewList) {
             boerenAdmin_table.getItems().add(dataBoer);
+        }
+    }
+
+    // Verwijder geselecteerde boer
+    public void verwijderBoer() {
+        //Selected item
+        DataVoorBoerTableView boer = boerenAdmin_table.getSelectionModel().getSelectedItem();
+        if (boer == null) {
+            showWarning("Warning", "Gelieve een boer te selecteren");
+        } else {
+            String boer_naam = boer.getAuteur_naam();
+            int boer_id = boerRepository.getBoerByName(boer_naam).get(0).getAuteur_id();
+            List<Verkoopt> verkooptList = verkooptRepository.getVerkooptByBoerID(boer_id);
+
+            // In elke tabel waar deze boer_id of zijn verkoopt_id staat rij verwijderen
+            for (Verkoopt v : verkooptList) {
+                zitInRepository.verwijderZitInByVerkooptID(v.getVerkoopt_id());
+            }
+            verkooptRepository.verwijderSchrijftInByAuteurID(boer_id);
+            verkooptRepository.verwijderVerkooptByAuteurID(boer_id);
+            boerRepository.verwijderKlantByAuteurID(boer_id);
+            auteurRepository.verwijderAuteurByAuteurID(boer_id);
+
+            refreshDataBoeren();
         }
     }
 
@@ -279,6 +303,89 @@ public class AdminMainController {
     private void resetFilterPakketSoort() {
         filterPakketSoortAdmin_choice.setValue("Alles");
         refreshDataPakketten();
+    }
+
+    // DATA KLANTEN:
+    private void getDataTips() {
+        tipsAdmin_table.getColumns().clear();
+        tipsAdmin_table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        TableColumn<DataVoorTipTableView, String> colAuteurNaam = new TableColumn<>("Auteur naam");
+        colAuteurNaam.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getAuteur_naam()));
+        tipsAdmin_table.getColumns().add(colAuteurNaam);
+        TableColumn<DataVoorTipTableView, String> colProduct = new TableColumn<>("Product naam");
+        colProduct.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getProduct_naam()));
+        tipsAdmin_table.getColumns().add(colProduct);
+        TableColumn<DataVoorTipTableView, String> colProductSoort = new TableColumn<>("Product soort");
+        colProductSoort.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getProduct_soort()));
+        tipsAdmin_table.getColumns().add(colProductSoort);
+        TableColumn<DataVoorTipTableView, String> colURL = new TableColumn<>("Tip");
+        colURL.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().getTip_url()));
+        tipsAdmin_table.getColumns().add(colURL);
+    }
+
+    private void refreshDataTips() {
+        tipsAdmin_table.getItems().clear();
+
+        CouchDbClient dbClient = new CouchDbClient();
+        List<DataVoorTipTableView> dataVoorTipTableViews = new ArrayList<>();
+
+        List<Tip> tipList = dbClient.view("_all_docs")
+                .includeDocs(true)
+                .query(Tip.class);
+        for (Tip tip : tipList) {
+            String auteur_naam = tip.getAuteur_naam();
+            String tip_file = tip.getTip_file();
+
+            int product_id = tip.getProduct_id();
+            Product product = productRepository.getProductByProductID(product_id).get(0);
+            String product_naam = product.getProduct_naam();
+            String product_soort = product.getProduct_soort();
+
+            dataVoorTipTableViews.add(new DataVoorTipTableView(auteur_naam, product_naam, product_soort, tip_file));
+        }
+        dbClient.shutdown();
+
+        for (DataVoorTipTableView tip : dataVoorTipTableViews) {
+            tipsAdmin_table.getItems().add(tip);
+        }
+    }
+
+    // Verwijder geselecteerde klant
+    public void verwijderTip() throws IOException {
+
+        DataVoorTipTableView tipTableView = tipsAdmin_table.getSelectionModel().getSelectedItem();
+        if (tipTableView == null) {
+            showWarning("Warning", "Gelieve een tip te selecteren");
+        } else {
+            CouchDbClient dbClient = new CouchDbClient();
+            String product_naam = tipTableView.getProduct_naam();
+            int product_id = productRepository.getProductByName(product_naam).get(0).getProduct_id();
+            String rev_id = getRevID(product_id);
+            if (rev_id == null) {
+                showWarning("Warning", "De tip is niet verwijderd, probeer het opnieuw");
+            } else {
+                Response response = dbClient.remove(product_id + "", rev_id);
+                if (response.getError() == null) {
+                    dbClient.shutdown();
+                } else {
+                    showWarning("Warning", "De tip is niet verwijderd, probeer het opnieuw");
+                }
+            }
+            dbClient.shutdown();
+            refreshDataTips();
+        }
+    }
+
+    private String getRevID(int product_id) throws IOException {
+        Process p = Runtime.getRuntime().exec("cmd /c curl -X GET http://127.0.0.1:5984/" + MainDatabase.CouchDB + "/_all_docs -u admin:admin");
+        String s;
+        BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        while ((s = stdInput.readLine()) != null) {
+            if (s.contains("\"id\":\"" + product_id + "\"")) {
+                return s.substring(s.indexOf(":{\"rev\":\"") + 9, s.indexOf("\"}}"));
+            }
+        }
+        return null;
     }
 
     //Warning pop-up

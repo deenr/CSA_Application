@@ -125,33 +125,16 @@ public class TipsMainController {
         this.tipList = dbClient.view("_all_docs")
                 .includeDocs(true)
                 .query(Tip.class);
-        if (tipList.isEmpty()) {
-            DataVoorTipTableView dataVoorTip1 = new DataVoorTipTableView("Dean", "Schorseneren", "Groenten", "https://dagelijksekost.een.be/gerechten/kotelet-met-schorseneren-in-witte-saus");
-            Tip tip1 = new Tip(6, "Dean", "https://dagelijksekost.een.be/gerechten/kotelet-met-schorseneren-in-witte-saus");
-            dataVoorTipTableViews.add(dataVoorTip1);
-            Response reponse1 = dbClient.save(tip1);
-            if (reponse1.getError() != null) {
-                showAlert("Warning", "De tip is niet toegevoegd, probeer het opnieuw");
-            }
-            DataVoorTipTableView dataVoorTip2 = new DataVoorTipTableView("Jonas", "Pastinaak", "Groenten", "https://groentegroente.nl/groentes/pastinaak-bereiden");
-            Tip tip2 = new Tip(4, "Jonas", "https://groentegroente.nl/groentes/pastinaak-bereiden");
-            dataVoorTipTableViews.add(dataVoorTip2);
-            Response reponse2 = dbClient.save(tip2);
-            if (reponse2.getError() != null) {
-                showAlert("Warning", "De tip is niet toegevoegd, probeer het opnieuw");
-            }
-        } else {
-            for (Tip tip : tipList) {
-                String auteur_naam = tip.getAuteur_naam();
-                String tip_file = tip.getTip_file();
+        for (Tip tip : tipList) {
+            String auteur_naam = tip.getAuteur_naam();
+            String tip_file = tip.getTip_file();
 
-                int product_id = tip.getProduct_id();
-                Product product = productRepository.getProductByProductID(product_id).get(0);
-                String product_naam = product.getProduct_naam();
-                String product_soort = product.getProduct_soort();
+            int product_id = tip.getProduct_id();
+            Product product = productRepository.getProductByProductID(product_id).get(0);
+            String product_naam = product.getProduct_naam();
+            String product_soort = product.getProduct_soort();
 
-                dataVoorTipTableViews.add(new DataVoorTipTableView(auteur_naam, product_naam, product_soort, tip_file));
-            }
+            dataVoorTipTableViews.add(new DataVoorTipTableView(auteur_naam, product_naam, product_soort, tip_file));
         }
         dbClient.shutdown();
         insertInToTable();
