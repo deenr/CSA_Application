@@ -31,14 +31,23 @@ public class AdminMainController {
 
     public TableView<DataVoorKlantTableView> klantenAdmin_table;
     public Button verwijderKlantAdmin_button;
+    public TextField wijzigKlantNaamAdmin_text;
+    public Button wijzigKlantAdmin_button;
 
     public TableView<DataVoorBoerTableView> boerenAdmin_table;
     public Button verwijderBoerAdmin_button;
+    public TextField wijzigBoerNaamAdmin_text;
+    public TextField wijzigBoerAdresAdmin_text;
+    public Button wijzigBoerAdmin_button;
 
     public TableView<Product> productenAdmin_table;
     public ChoiceBox<String> filterProductSoortAdmin_choice;
     public Button applyProductSoortAdmin_button;
     public Button resetProductSoortAdmin_button;
+    public ChoiceBox<String> wijzigProductSoortAdmin_choice;
+    public TextField wijzigProductNaamAdmin_text;
+    public Button wijzigProductAdmin_button;
+    public Button verwijderProductAdmin_button;
 
     public TableView<DataVoorPakketTableView> pakkettenAdmin_table;
     public ChoiceBox<String> filterPakketSoortAdmin_choice;
@@ -62,12 +71,21 @@ public class AdminMainController {
         //Button actions
         applyProductSoortAdmin_button.setOnAction(e -> refreshDataProducten());
         resetProductSoortAdmin_button.setOnAction(e -> resetFilterProductSoort());
+        verwijderProductAdmin_button.setOnAction(e -> verwijderProduct());
+        wijzigProductAdmin_button.setOnAction(e -> wijzigProduct());
+        productenAdmin_table.setOnMouseClicked(e -> setWijzigProductData());
 
         applyFilterPakketSoortAdmin_button.setOnAction(e -> refreshDataPakketten());
         resetFilterPakketSoortAdmin_button.setOnAction(e -> resetFilterPakketSoort());
 
         verwijderKlantAdmin_button.setOnAction(e -> verwijderKlant());
+        wijzigKlantAdmin_button.setOnAction(e -> wijzigKlant());
+        klantenAdmin_table.setOnMouseClicked(e -> setWijzigKlantData());
+
         verwijderBoerAdmin_button.setOnAction(e -> verwijderBoer());
+        wijzigBoerAdmin_button.setOnAction(e -> wijzigBoer());
+        boerenAdmin_table.setOnMouseClicked(e -> setWijzigBoerData());
+
         verwijderTipAdmin_button.setOnAction(e -> {
             try {
                 verwijderTip();
@@ -145,6 +163,30 @@ public class AdminMainController {
             klantRepository.verwijderKlantByAuteurID(klant_id);
             auteurRepository.verwijderAuteurByAuteurID(klant_id);
 
+            showInformation("Succes!", "De klant is succesvol verwijderd");
+
+            refreshDataKlanten();
+        }
+    }
+
+    private void setWijzigKlantData() {
+        DataVoorKlantTableView geselecteerdeKlant = klantenAdmin_table.getSelectionModel().getSelectedItem();
+        if (geselecteerdeKlant != null) {
+            wijzigKlantNaamAdmin_text.setText(geselecteerdeKlant.getAuteur_naam());
+        }
+    }
+
+    private void wijzigKlant() {
+        //Selected item
+        DataVoorKlantTableView geselecteerdeKlant = klantenAdmin_table.getSelectionModel().getSelectedItem();
+        if (geselecteerdeKlant == null) {
+            showWarning("Warning", "Gelieve een klant te selecteren");
+        } else {
+            Auteur teWijzigenAuteur = auteurRepository.getAuteurByName(geselecteerdeKlant.getAuteur_naam()).get(0);
+            teWijzigenAuteur.setAuteur_naam(wijzigKlantNaamAdmin_text.getText());
+            auteurRepository.wijzigAuteur(teWijzigenAuteur);
+
+            showInformation("Succes!", "De klant is succesvol gewijzigd");
             refreshDataKlanten();
         }
     }
@@ -186,9 +228,36 @@ public class AdminMainController {
             }
             verkooptRepository.verwijderSchrijftInByAuteurID(boer_id);
             verkooptRepository.verwijderVerkooptByAuteurID(boer_id);
-            boerRepository.verwijderKlantByAuteurID(boer_id);
+            boerRepository.verwijderBoerByAuteurID(boer_id);
             auteurRepository.verwijderAuteurByAuteurID(boer_id);
 
+            showInformation("Succes!", "De boer is succesvol verwijderd");
+            refreshDataBoeren();
+        }
+    }
+
+    private void setWijzigBoerData() {
+        DataVoorBoerTableView geselecteerdeBoer = boerenAdmin_table.getSelectionModel().getSelectedItem();
+        if (geselecteerdeBoer != null) {
+            wijzigBoerNaamAdmin_text.setText(geselecteerdeBoer.getAuteur_naam());
+            wijzigBoerAdresAdmin_text.setText(geselecteerdeBoer.getBoer_adres());
+        }
+    }
+
+    private void wijzigBoer() {
+        //Selected item
+        DataVoorBoerTableView geselecteerdeBoer = boerenAdmin_table.getSelectionModel().getSelectedItem();
+        if (geselecteerdeBoer == null) {
+            showWarning("Warning", "Gelieve een boer te selecteren");
+        } else {
+            Auteur teWijzigenAuteur = auteurRepository.getAuteurByName(geselecteerdeBoer.getAuteur_naam()).get(0);
+            Boer teWijzigenBoer = boerRepository.getBoerByName(geselecteerdeBoer.getAuteur_naam()).get(0);
+            teWijzigenAuteur.setAuteur_naam(wijzigBoerNaamAdmin_text.getText());
+            teWijzigenBoer.setBoer_adres(wijzigBoerAdresAdmin_text.getText());
+            auteurRepository.wijzigAuteur(teWijzigenAuteur);
+            boerRepository.wijzigBoer(teWijzigenBoer);
+
+            showInformation("Succes!", "De boer is succesvol gewijzigd");
             refreshDataBoeren();
         }
     }
@@ -196,7 +265,9 @@ public class AdminMainController {
     // DATA PRODUCTEN:
     private void getDataProducten() {
         List<String> productSoorten = Arrays.asList("Alles", "Groenten", "Fruit", "Vlees", "Bloemen");
+        List<String> productSoortenGeenHoofdletter = Arrays.asList("groenten", "fruit", "vlees", "bloemen");
         filterProductSoortAdmin_choice.setItems(FXCollections.observableArrayList(productSoorten));
+        wijzigProductSoortAdmin_choice.setItems(FXCollections.observableArrayList(productSoortenGeenHoofdletter));
         if (filterProductSoortAdmin_choice.getSelectionModel().getSelectedItem() == null) {
             filterProductSoortAdmin_choice.setValue("Alles");
         }
@@ -245,6 +316,51 @@ public class AdminMainController {
     private void resetFilterProductSoort() {
         filterProductSoortAdmin_choice.setValue("Alles");
         refreshDataProducten();
+    }
+
+    private void verwijderProduct() {
+        //Selected item
+        Product product = productenAdmin_table.getSelectionModel().getSelectedItem();
+        if (product == null) {
+            showWarning("Warning", "Gelieve een product te selecteren");
+        } else {
+            List<ZitIn> zitInList = zitInRepository.getAlleZitInByProductID(product.getProduct_id());
+            if (zitInList.isEmpty()) {
+                productRepository.verwijderProductByName(product.getProduct_naam());
+                showInformation("Succes!", "Het product is succesvol verwijderd");
+                refreshDataProducten();
+            } else {
+                showWarning("Warning", "Dit product kan niet verwijderd worden aangezien het nog gebruikt wordt in een pakket");
+            }
+        }
+    }
+
+    private void setWijzigProductData() {
+        Product product = productenAdmin_table.getSelectionModel().getSelectedItem();
+        if (product != null) {
+            wijzigProductSoortAdmin_choice.setValue(product.getProduct_soort());
+            wijzigProductNaamAdmin_text.setText(product.getProduct_naam());
+        }
+    }
+
+    private void wijzigProduct() {
+        //Selected item
+        Product geselecteerdProduct = productenAdmin_table.getSelectionModel().getSelectedItem();
+        if (geselecteerdProduct == null) {
+            showWarning("Warning", "Gelieve een product te selecteren");
+        } else {
+            Product teWijzigenProduct = productRepository.getProductByName(geselecteerdProduct.getProduct_naam()).get(0);
+            teWijzigenProduct.setProduct_naam(wijzigProductNaamAdmin_text.getText());
+            teWijzigenProduct.setProduct_soort(wijzigProductSoortAdmin_choice.getValue());
+            List<Product> productList = productRepository.getProductByName(teWijzigenProduct.getProduct_naam());
+            if (productList.isEmpty()) {
+                productRepository.wijzigProduct(teWijzigenProduct);
+                showInformation("Succes!", "Het product is succesvol gewijzigd");
+            } else {
+                showWarning("Warning!", "Dit product staat al in de lijst");
+            }
+            refreshDataProducten();
+        }
     }
 
     // DATA PAKKETTEN:
@@ -377,11 +493,11 @@ public class AdminMainController {
 
     // _rev_id zoeken van de tip in couchdb aan de hand van commandline en de output hiervan in een string plaatsen (https://www.youtube.com/watch?v=moeoyqpS4KI)
     private String getRevID(int product_id, String url) throws IOException {
-        Process p = Runtime.getRuntime().exec("cmd /c curl -X GET http://127.0.0.1:5984/" + MainDatabase.CouchDB + "/_all_docs -u "+MainDatabase.CouchDBUsername+":"+MainDatabase.CouchDBPassword);
+        Process p = Runtime.getRuntime().exec("cmd /c curl -X GET http://127.0.0.1:5984/" + MainDatabase.CouchDB + "/_all_docs -u " + MainDatabase.CouchDBUsername + ":" + MainDatabase.CouchDBPassword);
         String s;
         BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
         while ((s = stdInput.readLine()) != null) {
-            if (s.contains("\"id\":\"" + product_id + url +"\"")) {
+            if (s.contains("\"id\":\"" + product_id + url + "\"")) {
                 return s.substring(s.indexOf(":{\"rev\":\"") + 9, s.indexOf("\"}}"));
             }
         }
@@ -391,6 +507,15 @@ public class AdminMainController {
     //Warning pop-up
     public void showWarning(String title, String content) {
         var alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(title);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    //Information pop-up
+    public void showInformation(String title, String content) {
+        var alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(title);
         alert.setContentText(content);

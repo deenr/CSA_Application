@@ -7,7 +7,6 @@
     <list default="true" id="dfd0d4ab-3c2c-49af-b5fd-806ab20879cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
@@ -15,19 +14,25 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/AdminMainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/AdminMainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BestaandeKlantController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BoerBekijktKlantenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/BoerBekijktKlantenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuwPakketKlantController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/NieuwPakketKlantController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/TipToevoegenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/controller/TipToevoegenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Tip.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/Tip.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/MainDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/MainDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/ProductRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/ProductRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/ZitInRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/domain/ZitInRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/ProductRepositoryJdbi3Impl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/ProductRepositoryJdbi3Impl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/ZitInRepositoryJdbi3Impl.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/be/kuleuven/csa/jdbi/ZitInRepositoryJdbi3Impl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/admin_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/admin_main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/dbcreate.sql" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/dbcreate.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/csa_database.db" beforeDir="false" afterPath="$PROJECT_DIR$/csa_database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/AdminMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/AdminMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeKlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BestaandeKlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BoerBekijktKlantenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/BoerBekijktKlantenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/NieuwPakketKlantController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/NieuwPakketKlantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/TipToevoegenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/TipToevoegenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/AuteurRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/AuteurRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/BoerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/BoerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/ProductRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Tip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/Tip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/KlantRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/KlantRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/ZitInRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/domain/ZitInRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/AuteurRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/AuteurRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/BoerRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/BoerRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/ProductRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/ProductRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/ZitInRepositoryJdbi3Impl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/be/kuleuven/csa/jdbi/ZitInRepositoryJdbi3Impl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/admin_main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/admin_main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dbcreate.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dbcreate.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +99,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Documents/Unief/IIW1819/INF1/ReymenClaesKumpen/ReymenClaesKumpen" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.43678162" />
@@ -249,10 +254,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="wijzigPakket V1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1609277470483">
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser" timestamp="1609548522600">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609277470483" />
+    <state x="765" y="241" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609548522600" />
     <state x="756" y="410" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1609255076460">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -261,22 +266,26 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609270640162" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609334626986">
+    <state x="740" y="280" key="FileChooserDialogImpl" timestamp="1609337608052">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609334626986" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609334626985">
+    <state x="740" y="280" key="FileChooserDialogImpl/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609337608052" />
+    <state width="1877" height="278" key="GridCell.Tab.0.bottom" timestamp="1609550258268">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609334626985" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609334626985">
+    <state width="1877" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609550258268" />
+    <state width="1877" height="278" key="GridCell.Tab.0.center" timestamp="1609550258268">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609334626985" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609334626985">
+    <state width="1877" height="278" key="GridCell.Tab.0.center/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609550258268" />
+    <state width="1877" height="278" key="GridCell.Tab.0.left" timestamp="1609550258268">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609334626985" />
+    <state width="1877" height="278" key="GridCell.Tab.0.left/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609550258268" />
+    <state width="1877" height="278" key="GridCell.Tab.0.right" timestamp="1609550258268">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1877" height="278" key="GridCell.Tab.0.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609550258268" />
     <state width="1877" height="352" key="GridCell.Tab.1.bottom" timestamp="1609287803966">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -293,10 +302,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="352" key="GridCell.Tab.1.right/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609287803965" />
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1609333271386">
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1609337471985">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609333271386" />
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609337471985" />
     <state x="616" y="243" key="run.anything.popup" timestamp="1609286516055">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -307,6 +316,15 @@
     <state x="911" y="371" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050/-1920.2.1920.1050@0.0.1920.1050" timestamp="1609251447322" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/be/kuleuven/csa/controller/AdminMainController.java</url>
+          <line>262</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="klantenVanBoerLijst" />

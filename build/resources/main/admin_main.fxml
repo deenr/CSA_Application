@@ -23,13 +23,25 @@
             <tabs>
                 <Tab text="Klanten">
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                        <TableView fx:id="klantenAdmin_table" layoutY="-1.0" prefHeight="311.0" prefWidth="574.0">
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#115d97" height="56.0" layoutY="289.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="574.0" />
+                        <TableView fx:id="klantenAdmin_table" layoutY="-1.0" prefHeight="288.0" prefWidth="574.0">
                             <columns>
                                 <TableColumn prefWidth="75.0" text="C1" />
                                 <TableColumn prefWidth="75.0" text="C2" />
                             </columns>
                         </TableView>
-                        <Button fx:id="verwijderKlantAdmin_button" alignment="CENTER" layoutX="214.0" layoutY="319.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #0f406b;" text="Verwijder klant" textFill="WHITE">
+                        <Button fx:id="verwijderKlantAdmin_button" alignment="CENTER" layoutX="471.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #0f406b;" text="Verwijder" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <TextField fx:id="wijzigKlantNaamAdmin_text" layoutX="13.0" layoutY="308.0" prefHeight="25.0" prefWidth="128.0" />
+                        <Text fill="WHITE" layoutX="14.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klant naam">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Text>
+                        <Button fx:id="wijzigKlantAdmin_button" alignment="CENTER" layoutX="150.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #0f406b;" text="Wijzig" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -39,13 +51,31 @@
                 <Tab text="Boeren">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <TableView fx:id="boerenAdmin_table" layoutY="-1.0" prefHeight="311.0" prefWidth="574.0">
+                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#115d97" height="56.0" layoutY="289.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="574.0" />
+                            <TableView fx:id="boerenAdmin_table" layoutY="-1.0" prefHeight="288.0" prefWidth="574.0">
                                 <columns>
                                     <TableColumn prefWidth="75.0" text="C1" />
                                     <TableColumn prefWidth="75.0" text="C2" />
                                 </columns>
                             </TableView>
-                            <Button fx:id="verwijderBoerAdmin_button" alignment="CENTER" layoutX="214.0" layoutY="319.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #0f406b;" text="Verwijder boer" textFill="WHITE">
+                            <Button fx:id="verwijderBoerAdmin_button" alignment="CENTER" layoutX="471.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #0f406b;" text="Verwijder" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Button>
+                            <TextField fx:id="wijzigBoerNaamAdmin_text" layoutX="13.0" layoutY="308.0" prefHeight="25.0" prefWidth="128.0" />
+                            <Text fill="WHITE" layoutX="14.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boer naam">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Text>
+                            <TextField fx:id="wijzigBoerAdresAdmin_text" layoutX="150.0" layoutY="308.0" prefHeight="25.0" prefWidth="128.0" />
+                            <Text fill="WHITE" layoutX="151.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boer adres">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Text>
+                            <Button fx:id="wijzigBoerAdmin_button" alignment="CENTER" layoutX="287.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #0f406b;" text="Wijzig" textFill="WHITE">
                                 <font>
                                     <Font name="System Bold" size="12.0" />
                                 </font>
@@ -56,20 +86,42 @@
                 <Tab text="Producten">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#115d97" height="87.0" layoutY="-14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="574.0" />
-                            <TableView fx:id="productenAdmin_table" layoutY="57.0" prefHeight="287.0" prefWidth="574.0">
+                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#115d97" height="56.0" layoutY="289.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="574.0" />
+                            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#115d97" height="67.0" layoutY="-7.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="574.0" />
+                            <TableView fx:id="productenAdmin_table" layoutY="57.0" prefHeight="230.0" prefWidth="574.0">
                                 <columns>
                                     <TableColumn prefWidth="75.0" text="C1" />
                                     <TableColumn prefWidth="75.0" text="C2" />
                                 </columns>
                             </TableView>
-                            <Text fill="WHITE" layoutX="14.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pakket soort">
+                            <Text fill="WHITE" layoutX="14.0" layoutY="16.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product soort">
                                 <font>
                                     <Font name="System Bold" size="12.0" />
                                 </font>
                             </Text>
                             <ChoiceBox fx:id="filterProductSoortAdmin_choice" layoutX="13.0" layoutY="19.0" prefHeight="25.0" prefWidth="128.0" />
+                            <Text fill="WHITE" layoutX="14.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product soort">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Text>
+                            <Text fill="WHITE" layoutX="151.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product naam">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Text>
+                            <ChoiceBox fx:id="wijzigProductSoortAdmin_choice" layoutX="13.0" layoutY="308.0" prefHeight="25.0" prefWidth="128.0" />
                             <Button fx:id="applyProductSoortAdmin_button" alignment="CENTER" layoutX="150.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #0f406b;" text="Filter" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Button>
+                            <Button fx:id="verwijderProductAdmin_button" alignment="CENTER" layoutX="471.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #0f406b;" text="Verwijder" textFill="WHITE">
+                                <font>
+                                    <Font name="System Bold" size="12.0" />
+                                </font>
+                            </Button>
+                            <Button fx:id="wijzigProductAdmin_button" alignment="CENTER" layoutX="287.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: #0f406b;" text="Wijzig" textFill="WHITE">
                                 <font>
                                     <Font name="System Bold" size="12.0" />
                                 </font>
@@ -79,6 +131,7 @@
                                     <Font name="System Bold" size="12.0" />
                                 </font>
                             </Button>
+                            <TextField fx:id="wijzigProductNaamAdmin_text" layoutX="150.0" layoutY="308.0" prefHeight="25.0" prefWidth="128.0" />
 
                         </AnchorPane>
                     </content>

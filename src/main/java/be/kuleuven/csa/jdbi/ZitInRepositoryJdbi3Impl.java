@@ -28,6 +28,16 @@ public class ZitInRepositoryJdbi3Impl implements ZitInRepository {
     }
 
     @Override
+    public List<ZitIn> getAlleZitInByProductID(int product_id) {
+        var query = "SELECT * FROM ZitIn WHERE product_id = " + product_id + ";";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(query)
+                    .mapToBean(ZitIn.class)
+                    .list();
+        });
+    }
+
+    @Override
     public List<DataVoorZitInTableView> getAlleZitVoorTableViewInByVerkoopIDAndWeeknr(int verkoop_id, int weeknr) {
         var query = "SELECT p.product_naam, z.zitIn_hoeveelheid FROM Product p, ZitIn z WHERE z.verkoopt_id = " + verkoop_id + " AND z.product_id = p.product_id AND z.zitIn_weeknr = " + weeknr + ";";
         return jdbi.withHandle(handle -> {

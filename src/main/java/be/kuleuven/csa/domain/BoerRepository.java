@@ -9,7 +9,7 @@ public interface BoerRepository {
     List<DataVoorBoerTableView> getAlleBoerenVoorDataView();
     List<Boer> getBoerByName(String naam);
     void saveNewBoer(Boer boer);
-    void updateBoer(Boer boer);
+    void wijzigBoer(Boer boer);
     List<String> getAlleBoerNamen();
-    void verwijderKlantByAuteurID(int auteur_id);
+    void verwijderBoerByAuteurID(int auteur_id);
 }

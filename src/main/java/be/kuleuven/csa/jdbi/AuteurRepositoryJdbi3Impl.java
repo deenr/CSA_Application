@@ -54,10 +54,11 @@ public class AuteurRepositoryJdbi3Impl implements AuteurRepository {
     }
 
     @Override
-    public void updateAuteur(Auteur auteur) {
+    public void wijzigAuteur(Auteur auteur) {
         jdbi.useHandle(handle -> {
-            handle.createUpdate("UPDATE Auteur SET auteur_naam = ?")
+            handle.createUpdate("UPDATE Auteur SET auteur_naam = ? WHERE auteur_id = ?")
                     .bind(0, auteur.getAuteur_naam())
+                    .bind(1, auteur.getAuteur_id())
                     .execute();
         });
     }

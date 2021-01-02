@@ -57,7 +57,7 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
     }
 
     @Override
-    public void updateBoer(Boer boer) {
+    public void wijzigBoer(Boer boer) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("UPDATE Boer SET boer_adres = ? WHERE auteur_id = ?")
                     .bind(0, boer.getBoer_adres())
@@ -67,7 +67,7 @@ public class BoerRepositoryJdbi3Impl implements BoerRepository {
     }
 
     @Override
-    public void verwijderKlantByAuteurID(int auteur_id) {
+    public void verwijderBoerByAuteurID(int auteur_id) {
         jdbi.useHandle(handle -> {
             handle.createUpdate("DELETE FROM Boer WHERE auteur_id = " + auteur_id + ";")
                     .execute();

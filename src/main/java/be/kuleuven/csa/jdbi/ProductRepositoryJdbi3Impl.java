@@ -45,6 +45,17 @@ public class ProductRepositoryJdbi3Impl implements ProductRepository {
         });
     }
 
+    @Override
+    public void wijzigProduct(Product product) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("UPDATE Product SET product_naam = ?, product_soort = ? WHERE product_id = ?")
+                    .bind(0, product.getProduct_naam())
+                    .bind(1, product.getProduct_soort())
+                    .bind(2, product.getProduct_id())
+                    .execute();
+        });
+    }
+
     public List<String> getAlleProductenBySoort(String soort) {
         var query = "SELECT product_naam FROM Product WHERE product_soort = '" + soort + "';";
         return jdbi.withHandle(handle -> {
@@ -70,6 +81,14 @@ public class ProductRepositoryJdbi3Impl implements ProductRepository {
             return handle.createQuery(query)
                     .mapToBean(Product.class)
                     .list();
+        });
+    }
+
+    @Override
+    public void verwijderProductByName(String naam) {
+        jdbi.useHandle(handle -> {
+            handle.createUpdate("DELETE FROM Product WHERE product_naam = '" + naam + "';")
+                    .execute();
         });
     }
 }

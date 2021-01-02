@@ -13,23 +13,23 @@ CREATE TABLE Boer (
 );
 
 DROP TABLE IF EXISTS HaaltAf;
-CREATE TABLE "HaaltAf" (
-	"haaltAf_id"	INTEGER NOT NULL,
-	"auteur_id"	INTEGER NOT NULL,
-	"verkoopt_id"	INTEGER NOT NULL,
-	"pakket_weeknr"	INTEGER NOT NULL,
-	"pakket_afgehaald"	INTEGER DEFAULT 0,
-	FOREIGN KEY("verkoopt_id") REFERENCES "Verkoopt"("verkoopt_id"),
-	FOREIGN KEY("auteur_id") REFERENCES "Klant"("auteur_id"),
-	PRIMARY KEY("haaltAf_id" AUTOINCREMENT)
+CREATE TABLE HaaltAf (
+	haaltAf_id	INTEGER NOT NULL,
+	auteur_id	INTEGER NOT NULL,
+	verkoopt_id	INTEGER NOT NULL,
+	pakket_weeknr	INTEGER NOT NULL,
+	pakket_afgehaald	INTEGER DEFAULT 0,
+	FOREIGN KEY(verkoopt_id) REFERENCES Verkoopt(verkoopt_id),
+	FOREIGN KEY(auteur_id) REFERENCES Klant(auteur_id),
+	PRIMARY KEY(haaltAf_id AUTOINCREMENT)
 );
 
 DROP TABLE IF EXISTS Klant;
-CREATE TABLE "Klant" (
-	"auteur_id"	INTEGER NOT NULL,
-	"klant_teBetalenBedrag"	INTEGER DEFAULT 0,
-	PRIMARY KEY("auteur_id"),
-	FOREIGN KEY("auteur_id") REFERENCES "Auteur"("auteur_id")
+CREATE TABLE Klant (
+	auteur_id	INTEGER NOT NULL,
+	klant_teBetalenBedrag	INTEGER DEFAULT 0,
+	PRIMARY KEY(auteur_id),
+	FOREIGN KEY(auteur_id) REFERENCES Auteur(auteur_id)
 );
 
 DROP TABLE IF EXISTS Pakket;
@@ -50,13 +50,13 @@ CREATE TABLE Product (
 );
 
 DROP TABLE IF EXISTS SchrijftIn;
-CREATE TABLE "SchrijftIn" (
-	"schrijftIn_id"	INTEGER NOT NULL,
-	"auteur_id"	INTEGER NOT NULL,
-	"verkoopt_id"	INTEGER NOT NULL,
-	FOREIGN KEY("auteur_id") REFERENCES "Klant"("auteur_id"),
-	FOREIGN KEY("verkoopt_id") REFERENCES "Verkoopt"("verkoopt_id"),
-	PRIMARY KEY("schrijftIn_id" AUTOINCREMENT)
+CREATE TABLE SchrijftIn (
+	schrijftIn_id	INTEGER NOT NULL,
+	auteur_id	INTEGER NOT NULL,
+	verkoopt_id	INTEGER NOT NULL,
+	FOREIGN KEY(auteur_id) REFERENCES Klant(auteur_id),
+	FOREIGN KEY(verkoopt_id) REFERENCES Verkoopt(verkoopt_id),
+	PRIMARY KEY(schrijftIn_id AUTOINCREMENT)
 );
 
 DROP TABLE IF EXISTS Verkoopt;
@@ -71,15 +71,15 @@ CREATE TABLE Verkoopt (
 );
 
 DROP TABLE IF EXISTS ZitIn;
-CREATE TABLE "ZitIn" (
-	"zitIn_id"	INTEGER NOT NULL,
-	"product_id"	INTEGER NOT NULL,
-	"verkoopt_id"	INTEGER NOT NULL,
-	"zitIn_hoeveelheid"	INTEGER NOT NULL,
-	"zitIn_weeknr"	INTEGER NOT NULL,
-	FOREIGN KEY("product_id") REFERENCES "Product"("product_id"),
-	FOREIGN KEY("verkoopt_id") REFERENCES "Verkoopt"("verkoopt_id"),
-	PRIMARY KEY("zitIn_id" AUTOINCREMENT)
+CREATE TABLE ZitIn (
+	zitIn_id	INTEGER NOT NULL,
+	product_id	INTEGER NOT NULL,
+	verkoopt_id	INTEGER NOT NULL,
+	zitIn_hoeveelheid	INTEGER NOT NULL,
+	zitIn_weeknr	INTEGER NOT NULL,
+	FOREIGN KEY(product_id) REFERENCES Product(product_id),
+	FOREIGN KEY(verkoopt_id) REFERENCES Verkoopt(verkoopt_id),
+	PRIMARY KEY(zitIn_id AUTOINCREMENT)
 );
 
 INSERT INTO Auteur(auteur_naam) VALUES ('Boer Jaak');
